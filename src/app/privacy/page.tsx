@@ -24,7 +24,7 @@ export default function PrivacyPage() {
         <div className="privacy-hero">
           <span className="privacy-eyebrow">Legal</span>
           <h1>Privacy Policy</h1>
-          <p className="meta">Last updated: April 2026 &nbsp;·&nbsp; Orion Alpha (<a href="https://orionalpha-idx.vercel.app">orionalpha-idx.vercel.app</a>)</p>
+          <p className="meta">Last updated: April 2026 &nbsp;·&nbsp; Orion Alpha (<a href="https://orion-alpha-web.vercel.app">orion-alpha-web.vercel.app</a>)</p>
         </div>
 
         {/*  ── Sections ──  */}
