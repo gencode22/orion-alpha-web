@@ -36,7 +36,11 @@ export default function FeaturesPage() {
       if (e.key === 'Escape') closeModal();
     };
     window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
+    
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = ''; // Reset on unmount
+    };
   }, []);
 
   const openModal = (key: string) => {

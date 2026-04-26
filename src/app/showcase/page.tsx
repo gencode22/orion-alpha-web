@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TradingViewWidget from "@/components/showcase/TradingViewWidget";
+import AnimatedCounter from "@/components/showcase/AnimatedCounter";
 
 export default function IndexPromoPage() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -20,6 +21,10 @@ export default function IndexPromoPage() {
     } else {
       document.documentElement.setAttribute('data-theme', t);
     }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const handleDemoAnalyze = () => {
@@ -100,11 +105,11 @@ export default function IndexPromoPage() {
         <div className="stat-lbl">Coverage</div>
       </div>
       <div className="stat-cell" role="listitem">
-        <div className="stat-val"><span className="accent">20</span> swing setups</div>
+        <div className="stat-val"><span className="accent"><AnimatedCounter value={20} /></span> swing setups</div>
         <div className="stat-lbl">Detectors</div>
       </div>
       <div className="stat-cell" role="listitem">
-        <div className="stat-val"><span className="accent">12</span> indicators</div>
+        <div className="stat-val"><span className="accent"><AnimatedCounter value={12} /></span> indicators</div>
         <div className="stat-lbl">Confluence</div>
       </div>
       <div className="stat-cell" role="listitem">
@@ -225,27 +230,27 @@ export default function IndexPromoPage() {
     <div className="bt-card">
       <div className="bt-metrics">
         <div className="bt-metric">
-          <div className="bt-metric-val green">+482.97%</div>
+          <div className="bt-metric-val green"><AnimatedCounter value={482.97} decimals={2} prefix="+" suffix="%" /></div>
           <div className="bt-metric-lbl">Total Return</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val cyan">68.4%</div>
+          <div className="bt-metric-val cyan"><AnimatedCounter value={68.4} decimals={1} suffix="%" /></div>
           <div className="bt-metric-lbl">Win Rate</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val cyan">5.38×</div>
+          <div className="bt-metric-val cyan"><AnimatedCounter value={5.38} decimals={2} suffix="×" /></div>
           <div className="bt-metric-lbl">Profit Factor</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val red">−28.54%</div>
+          <div className="bt-metric-val red"><AnimatedCounter value={28.54} decimals={2} prefix="−" suffix="%" /></div>
           <div className="bt-metric-lbl">Max Drawdown</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val">+11.71%</div>
+          <div className="bt-metric-val"><AnimatedCounter value={11.71} decimals={2} prefix="+" suffix="%" /></div>
           <div className="bt-metric-lbl">Expectancy / Trade</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val">20.6d</div>
+          <div className="bt-metric-val"><AnimatedCounter value={20.6} decimals={1} suffix="d" /></div>
           <div className="bt-metric-lbl">Avg Hold</div>
         </div>
       </div>
@@ -328,19 +333,19 @@ export default function IndexPromoPage() {
       {/*  Summary stats  */}
       <div className="bt-metrics">
         <div className="bt-metric">
-          <div className="bt-metric-val green">+68.4%</div>
+          <div className="bt-metric-val green"><AnimatedCounter value={68.4} decimals={1} prefix="+" suffix="%" /></div>
           <div className="bt-metric-lbl">Total OOS Return</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val cyan">60.0%</div>
+          <div className="bt-metric-val cyan"><AnimatedCounter value={60.0} decimals={1} suffix="%" /></div>
           <div className="bt-metric-lbl">OOS Win Rate</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val cyan">3.00×</div>
+          <div className="bt-metric-val cyan"><AnimatedCounter value={3.00} decimals={2} suffix="×" /></div>
           <div className="bt-metric-lbl">Profit Factor</div>
         </div>
         <div className="bt-metric">
-          <div className="bt-metric-val red">−18.2%</div>
+          <div className="bt-metric-val red"><AnimatedCounter value={18.2} decimals={1} prefix="−" suffix="%" /></div>
           <div className="bt-metric-lbl">Max Drawdown</div>
         </div>
       </div>

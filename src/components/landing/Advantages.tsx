@@ -29,8 +29,8 @@ export default function Advantages() {
     },
     { 
       title: 'Unmatched Reliability', 
-      desc: 'Automatic retries and persistent state. It runs when the market opens.',
-      size: 'small' 
+      desc: 'Automatic retries and persistent state. Orion Alpha runs when the market opens, every single day.',
+      size: 'medium' 
     },
   ];
 

@@ -34,6 +34,9 @@ export default function ScrollObserver() {
       });
     }, 150);
 
+    // Safety reset for body overflow on navigation
+    document.body.style.overflow = '';
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       observer.disconnect();
