@@ -9,6 +9,7 @@ export default function Footer() {
     { name: "Get Started", href: "/start" },
     { name: "Telegram", href: "https://t.me/orion_idx_bot", external: true },
     { name: "Discord", href: "https://discord.gg/rSAPFDgewe", external: true },
+    { name: "Showcase", href: "/showcase" },
     { name: "Privacy", href: "/privacy" },
   ];
 

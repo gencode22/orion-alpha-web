@@ -1,216 +1,22 @@
-/* ── Orion Alpha Modern Design System ── */
+/* Global styles registry */
+@import "../styles/theme.css";
+@import "../styles/landing.css";
+@import "../styles/showcase.css";
+@import "../styles/pricing.css";
 
-:root {
-  --primary: var(--cyan);
-  --primary-glow: rgba(6, 182, 212, 0.15);
-  --bg-deep: #06080c;
-  --card-bg: rgba(18, 21, 31, 0.6);
-  --card-border: rgba(255, 255, 255, 0.05);
-  --card-hover-border: rgba(6, 182, 212, 0.3);
-  --section-spacing: 120px;
-  --container-width: 1100px;
+/* Shared utilities */
+.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-/* ── Global Reset & Layout ── */
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: none !important; /* Forcefully disable problematic scroll snap */
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-.landing-container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ── Section Styling ── */
-section {
-  padding: var(--section-spacing) 0;
-  position: relative;
-}
-
-.section-head {
-  max-width: 700px;
-  margin: 0 auto 60px auto;
-  text-align: center;
-}
-
-.eyebrow {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--primary);
-  margin-bottom: 12px;
-}
-
-h1, h2, h3 {
-  color: var(--text);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-h2 {
-  font-size: clamp(32px, 5vw, 48px);
-  margin-bottom: 24px;
-}
-
-p {
-  color: var(--text2);
-  font-size: 16px;
-}
-
-/* ── Clean Card System ── */
-.card, .feature-card, .method-card, .audience-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 32px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 100%;
-}
-
-.card:hover, .feature-card:hover, .method-card:hover, .audience-card:hover {
-  border-color: var(--card-hover-border);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
-}
-
-/* ── Buttons ── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 28px;
-  border-radius: 99px;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn-primary, .btn-telegram {
-  background: var(--primary);
-  color: #000;
-}
-
-.btn-primary:hover, .btn-telegram:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--primary-glow);
-  opacity: 0.9;
-}
-
-.btn-discord {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text);
-}
-
-.btn-discord:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* ── Animations ── */
-.fade-up {
+.card-stagger {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.fade-up.is-visible {
+.is-visible .card-stagger {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ── Hero Refinement ── */
-.hero {
-  padding: 140px 0 80px 0;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: clamp(40px, 8vw, 72px);
-  margin-bottom: 24px;
-}
-
-.hero p {
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto 40px auto;
-}
-
-/* ── Grid System ── */
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 900px) {
-  .grid-3, .grid-2 {
-    grid-template-columns: 1fr;
-  }
-  section {
-    padding: 80px 0;
-  }
-}
-
-/* ── Chart & Ticker Refinement ── */
-.chart-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 40px;
-}
-
-.ticker-wrap {
-  background: var(--bg-deep);
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
-  padding: 12px 0;
-}
-
-/* ── Modal & UI Elements ── */
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-}
-
-.modal-content {
-  background: var(--bg2);
-  border: 1px solid var(--card-border);
-  border-radius: 24px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-/* ── Custom Utilities ── */
-.accent {
-  color: var(--primary);
-}
-
-.muted {
-  color: var(--muted);
-}
-
-/* Fix for the scroll to bottom bug */
-.snap-section, .snap-footer {
-  scroll-snap-align: none !important;
 }

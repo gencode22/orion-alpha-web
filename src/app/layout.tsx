@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ScrollObserver from "@/components/ScrollObserver";
-import MobileStickyCTA from "@/components/MobileStickyCTA";
+import "../styles/style.css";
+import ScrollObserver from "@/components/layout/ScrollObserver";
+import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -21,7 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="stylesheet" href="/static/style.css" />
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"></script>
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NZJDRV1E53');
+        ` }} />
         <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js" async></script>
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){

@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Link from "next/link";
-import TradingViewWidget from "@/components/TradingViewWidget";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-
-
+import React, { useEffect, useState } from "react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import TradingViewWidget from "@/components/showcase/TradingViewWidget";
 
 export default function IndexPromoPage() {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [demoTicker, setDemoTicker] = useState("");
+  const [isDemoLoading, setIsDemoLoading] = useState(false);
+  const [showDemoResult, setShowDemoResult] = useState(false);
+  const [resultTicker, setResultTicker] = useState("");
+
   useEffect(() => {
-    // Theme init
     const t = localStorage.getItem('orion-theme');
     if (!t) {
       const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -18,65 +20,39 @@ export default function IndexPromoPage() {
     } else {
       document.documentElement.setAttribute('data-theme', t);
     }
-
-    // Keyboard handler for lightbox
-    const onKeydown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeLightbox();
-    };
-    document.addEventListener('keydown', onKeydown);
-
-    // Demo checker button
-    const analyzeBtn = document.getElementById('demo-analyze-btn');
-    const tickerInput = document.getElementById('demo-ticker-input') as HTMLInputElement;
-    const loadingEl = document.getElementById('demo-loading');
-    const resultEl = document.getElementById('demo-result');
-    const resultTicker = document.getElementById('demo-result-ticker');
-
-    const runDemo = () => {
-      const ticker = (tickerInput?.value || 'BBCA').toUpperCase().trim() || 'BBCA';
-      if (loadingEl) loadingEl.style.display = 'flex';
-      if (resultEl) resultEl.style.display = 'none';
-      setTimeout(() => {
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (resultEl) resultEl.style.display = 'block';
-        if (resultTicker) resultTicker.textContent = ticker + '.JK';
-        const fakeTkr = document.querySelector('.fake-tkr');
-        if (fakeTkr) fakeTkr.textContent = ticker + '.JK';
-      }, 1800);
-    };
-
-    analyzeBtn?.addEventListener('click', runDemo);
-    tickerInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') runDemo(); });
-
-    // Sticky mobile CTA
-    const mobileCta = document.getElementById('mobile-sticky-cta');
-    if (mobileCta) {
-      window.addEventListener('scroll', () => {
-        mobileCta.classList.toggle('is-visible', window.scrollY > 400);
-      }, { passive: true });
-    }
-
-    return () => {
-      document.removeEventListener('keydown', onKeydown);
-      analyzeBtn?.removeEventListener('click', runDemo);
-    };
   }, []);
 
+  const handleDemoAnalyze = () => {
+    let val = demoTicker.trim().toUpperCase();
+    if (!val) return;
+    
+    val = val.replace(/[^A-Z0-9]/g, '');
+    if (val.length > 5) val = val.substring(0, 5);
+    
+    setShowDemoResult(false);
+    setIsDemoLoading(true);
+    
+    setTimeout(() => {
+      setIsDemoLoading(false);
+      setResultTicker(val + '.JK');
+      setShowDemoResult(true);
+    }, 1500);
+  };
+
   const openLightbox = () => {
-    const lb = document.getElementById('lightbox');
-    if (lb) { lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    setIsLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
-    const lb = document.getElementById('lightbox');
-    if (lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    setIsLightboxOpen(false);
+    document.body.style.overflow = '';
   };
 
   return (
     <>
       <div className="landing">
         <Navbar />
-
 
 <div className="promo-outer">
 
@@ -211,7 +187,9 @@ export default function IndexPromoPage() {
       <span style={{marginLeft: 'auto', fontSize: '10px', color: 'var(--muted)'}}>Powered by TradingView</span>
     </div>
     <div className="chart-card">
-      <TradingViewWidget />
+      <div className="tradingview-wrap">
+        <TradingViewWidget />
+      </div>
       <div className="chart-foot">IDX:BBCA · Daily · Use search bar to switch ticker</div>
     </div>
   </div>
@@ -594,35 +572,53 @@ export default function IndexPromoPage() {
     
     <div className="demo-box">
       <div className="demo-input-group">
-        <input type="text" id="demo-ticker-input" placeholder="e.g. BBCA, GOTO, AMMN..." maxLength={4} style={{textTransform: 'uppercase'}} />
-        <button id="demo-analyze-btn" className="btn-primary">Analyze</button>
+        <input 
+          type="text" 
+          value={demoTicker}
+          onChange={(e) => setDemoTicker(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleDemoAnalyze()}
+          placeholder="e.g. BBCA, GOTO, AMMN..." 
+          maxLength={4} 
+          style={{textTransform: 'uppercase'}} 
+        />
+        <button 
+          onClick={handleDemoAnalyze} 
+          className="btn-primary"
+          disabled={isDemoLoading}
+        >
+          {isDemoLoading ? "Scanning..." : "Analyze"}
+        </button>
       </div>
       
-      <div id="demo-loading" className="demo-loading" style={{display: 'none'}}>
-        <div className="spinner"></div>
-        <span>Orion Engine is scanning 20 setups...</span>
-      </div>
+      {isDemoLoading && (
+        <div id="demo-loading" className="demo-loading">
+          <div className="spinner"></div>
+          <span>Orion Engine is scanning 20 setups...</span>
+        </div>
+      )}
       
-      <div id="demo-result" className="demo-result" style={{display: 'none'}}>
-        <div className="demo-card-blur">
-          <div className="blur-overlay">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <h4>Analysis Locked</h4>
-            <p>Orion Alpha has found a potential setup for <strong id="demo-result-ticker">BBCA.JK</strong>.</p>
-            <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary btn-magnetic" style={{fontSize: '13px', padding: '10px 16px'}}>Unlock Full Analysis in Telegram</a>
-          </div>
-          {/*  Fake content underneath  */}
-          <div className="fake-signal-hd">
-            <span className="fake-tkr">BBCA.JK</span>
-            <span className="fake-lbl">STRONG BUY</span>
-          </div>
-          <div className="fake-bars">
-            <div className="fake-bar"></div>
-            <div className="fake-bar"></div>
-            <div className="fake-bar"></div>
+      {showDemoResult && (
+        <div id="demo-result" className="demo-result">
+          <div className="demo-card-blur">
+            <div className="blur-overlay">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <h4>Analysis Locked</h4>
+              <p>Orion Alpha has found a potential setup for <strong>{resultTicker}</strong>.</p>
+              <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary btn-magnetic" style={{fontSize: '13px', padding: '10px 16px'}}>Unlock Full Analysis in Telegram</a>
+            </div>
+            {/* Fake content underneath */}
+            <div className="fake-signal-hd">
+              <span className="fake-tkr">{resultTicker}</span>
+              <span className="fake-lbl">STRONG BUY</span>
+            </div>
+            <div className="fake-bars">
+              <div className="fake-bar"></div>
+              <div className="fake-bar"></div>
+              <div className="fake-bar"></div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   </div>
 
@@ -649,37 +645,24 @@ export default function IndexPromoPage() {
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         Open Telegram Bot
       </a>
-      <Link href="/pricing" className="btn-outline">
+      <a href="/pricing" className="btn-outline">
         View Pricing
-      </Link>
+      </a>
     </div>
   </div>
 
 </main>
 
-<Footer />
-</div>{/*  /promo-outer  */}
-
-{/*  ── Lightbox ──  */}
-<div id="lightbox" onClick={closeLightbox}>
-  <button className="lb-close" onClick={closeLightbox} aria-label="Close lightbox">&times;</button>
-  <img src="/static/sample-chart.png" alt="Orion Alpha full chart — BBCA 6-month" onClick={(e) => e.stopPropagation()} />
+    <Footer />
+  </div>
 </div>
 
-
-
-
-{/*  ── STICKY MOBILE CTA ──  */}
-<div className="mobile-sticky-cta" id="mobile-sticky-cta">
-  <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary">
-    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px', verticalAlign: 'text-bottom'}}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    Open Telegram Bot
-  </a>
-</div>
-
-
-
-</div>
+{isLightboxOpen && (
+  <div id="lightbox" className="open" onClick={closeLightbox}>
+    <button className="lb-close" onClick={closeLightbox} aria-label="Close lightbox">&times;</button>
+    <img src="/static/sample-chart.png" alt="Orion Alpha full chart — BBCA 6-month" onClick={(e) => e.stopPropagation()} />
+  </div>
+)}
     </>
   );
 }

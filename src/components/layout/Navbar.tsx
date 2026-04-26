@@ -24,10 +24,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
+    { name: "Showcase", href: "/showcase" },
     { name: "Features", href: "/#features", isHash: true },
     { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
-    { name: "Explore", href: "/app" },
   ];
 
   return (
@@ -87,8 +87,8 @@ export default function Navbar() {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
-          <Link href="/start" className="is-cta">
-            Start Free →
+          <Link href="/start" className="is-cta" onClick={closeMobileMenu}>
+            Get Started →
           </Link>
         </nav>
       </div>
@@ -108,7 +108,7 @@ export default function Navbar() {
           </Link>
         ))}
         <Link href="/start" className="is-cta" onClick={closeMobileMenu}>
-          Start Free →
+          Get Started →
         </Link>
       </nav>
     </div>
