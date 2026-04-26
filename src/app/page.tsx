@@ -226,7 +226,7 @@ export default function FeaturesPage() {
   <div className="landing-container">
 
     {/*  ── Intro ──  */}
-    <section className="intro">
+    <section className="intro snap-section">
       <div className="intro-body">
         <span className="eyebrow">Systematic Swing Trading · IDX · Walk-Forward Validated</span>
         <h1>Trade like a system.<br />Even if you're <em>starting today.</em></h1>
@@ -287,7 +287,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── Who is this for ──  */}
-    <section className="audience-section fade-up" aria-labelledby="audience-title">
+    <section className="audience-section fade-up snap-section" aria-labelledby="audience-title">
       <div className="section-head">
         <span className="eyebrow">Who Orion is built for</span>
         <h2 id="audience-title">For traders who want a system, <em>not noise.</em></h2>
@@ -320,7 +320,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── Features (clickable, opens modal) ──  */}
-    <section className="features fade-up" id="features">
+    <section className="features fade-up snap-section" id="features">
       <div className="section-head">
         <span className="eyebrow">Swing Trading Toolkit</span>
         <h2>Find the right setup. Every time.</h2>
@@ -434,7 +434,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── How It Works (4-step pipeline) ──  */}
-    <section className="pipeline fade-up" id="how">
+    <section className="pipeline fade-up snap-section" id="how">
       <div className="section-head">
         <span className="eyebrow">How it works</span>
         <h2>Four stages, one signal</h2>
@@ -471,7 +471,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── Methodology (deep concepts) ──  */}
-    <section className="methodology fade-up" id="methodology">
+    <section className="methodology fade-up snap-section" id="methodology">
       <div className="section-head">
         <span className="eyebrow">Methodology</span>
         <h2>How every signal is built</h2>
@@ -538,7 +538,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── Why Orion Alpha ──  */}
-    <section className="advantages fade-up" id="why">
+    <section className="advantages fade-up snap-section" id="why">
       <div className="section-head">
         <span className="eyebrow">Why Orion Alpha</span>
         <h2>Built different. Priced for everyone.</h2>
@@ -597,7 +597,7 @@ export default function FeaturesPage() {
     </section>
 
     {/*  ── Pricing CTA ──  */}
-    <section className="pricing-cta fade-up" aria-labelledby="pricing-cta-title">
+    <section className="pricing-cta fade-up snap-section" aria-labelledby="pricing-cta-title">
       <div className="pricing-cta-head">
         <span className="eyebrow">Pricing</span>
         <h2 id="pricing-cta-title">Start free. Upgrade <em>when you need more</em>.</h2>
@@ -656,7 +656,7 @@ export default function FeaturesPage() {
     </div>
 
     {/*  ── Final CTA ──  */}
-    <section className="final-cta fade-up">
+    <section className="final-cta fade-up snap-section">
       <h2>Your edge in IDX starts here.</h2>
       <p>Open the Telegram bot — free, no signup, no credit card. Your first signal is one command away.</p>
       <div className="intro-ctas">

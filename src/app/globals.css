@@ -4609,3 +4609,42 @@
     @media (max-width: 720px) {
       .mobile-sticky-cta { display: block; }
     }
+
+/* ── SCROLL SNAP CONFIGURATION ── */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Ensure body doesn't mess with snap */
+  margin: 0;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Add padding to account for fixed navbar */
+  padding-top: 80px; 
+  padding-bottom: 40px;
+}
+
+.snap-footer {
+  scroll-snap-align: end;
+}
+
+@media (max-width: 768px) {
+  html {
+    /* Use proximity on mobile so tall content doesn't get stuck */
+    scroll-snap-type: y proximity;
+  }
+  .snap-section {
+    justify-content: flex-start;
+    padding-top: 100px;
+  }
+}

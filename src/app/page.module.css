@@ -1,0 +1,51 @@
+.snapContainer {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  /* Prevent scrolling interference from body */
+  overscroll-behavior-y: none;
+}
+
+.snapSection {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 16px; /* give some room for header/footer */
+  position: relative;
+}
+
+/* Make sure the hero takes exact screen height without cutoff */
+.heroSection {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px; /* Space for navbar */
+}
+
+/* For footer, snap to the end */
+.footerSnap {
+  scroll-snap-align: end;
+}
+
+@media (max-width: 768px) {
+  /* On mobile, if a section is very tall, it might cut off. 
+     We ensure min-height is 100dvh for better mobile browser support */
+  .snapSection, .heroSection {
+    min-height: 100dvh;
+    padding: 100px 16px 60px;
+    justify-content: flex-start; /* allow natural scrolling if content overflows */
+  }
+  
+  .snapContainer {
+    /* Optional: weaken snapping on mobile if content is too long */
+    scroll-snap-type: y proximity;
+  }
+}

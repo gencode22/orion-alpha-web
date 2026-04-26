@@ -13,7 +13,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="landing-footer">
+    <footer className="landing-footer snap-footer">
       <div>
         {footerLinks.map((link, i) => (
           <React.Fragment key={link.name}>
