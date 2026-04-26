@@ -87,7 +87,7 @@ export default function Navbar() {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
-          <Link href="/start" className="is-cta" onClick={closeMobileMenu}>
+          <Link href="/start" className="is-cta btn-shine" onClick={closeMobileMenu}>
             Get Started →
           </Link>
         </nav>
@@ -107,7 +107,7 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
-        <Link href="/start" className="is-cta" onClick={closeMobileMenu}>
+        <Link href="/start" className="is-cta btn-shine" onClick={closeMobileMenu}>
           Get Started →
         </Link>
       </nav>

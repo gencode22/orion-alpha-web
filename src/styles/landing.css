@@ -9,7 +9,7 @@
     .landing-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 24px 20px 80px;
+      padding: 80px 20px 80px;
     }
 
     /* ── Topbar: di-handle oleh style.css global ── */
@@ -41,7 +41,7 @@
     .intro {
       text-align: center;
       margin-bottom: 56px;
-      padding: 8px 0;
+      padding: 24px 0 8px;
     }
     .intro .eyebrow {
       display: inline-block;
@@ -53,13 +53,13 @@
       margin-bottom: 18px;
     }
     .intro h1 {
-      font-size: clamp(32px, 4.8vw, 48px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 auto 16px;
+      font-size: clamp(36px, 5.5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 0 auto 20px;
       color: var(--text);
-      line-height: 1.1;
-      max-width: 760px;
+      line-height: 1.05;
+      max-width: 800px;
     }
     .intro h1 em {
       font-style: normal;
@@ -578,6 +578,28 @@
       margin: 0 0 28px;
       line-height: 1.55;
     }
+    @media (max-width: 640px) {
+      .final-cta {
+        padding: 48px 20px;
+        margin-left: -4px;
+        margin-right: -4px;
+      }
+      .final-cta h2 {
+        font-size: 26px;
+      }
+      .final-cta p {
+        font-size: 14px;
+      }
+      .final-cta .intro-ctas {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .final-cta .btn {
+        width: 100%;
+      }
+    }
 
     /* ── Clickable feature cards (open modal) ─────────────────────────────── */
     .feature-card {
@@ -611,10 +633,21 @@
     }
     .pipeline-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
       position: relative;
       counter-reset: step;
+    }
+    .pipeline-arrow {
+      color: var(--border2);
+      display: flex;
+      align-items: center;
+    }
+    .pipeline-arrow svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
     }
     .pipeline-step {
       padding: 22px 20px;
@@ -659,24 +692,17 @@
     .pipeline-arrow {
       display: none;
     }
-    @media (min-width: 880px) {
+    @media (max-width: 1024px) {
       .pipeline-grid {
-        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
       }
-      .pipeline-arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--muted);
-        opacity: 0.5;
+      .pipeline-arrow { display: none; }
+    }
+    @media (max-width: 640px) {
+      .pipeline-grid {
+        grid-template-columns: 1fr;
       }
-      .pipeline-arrow svg { width: 18px; height: 18px; }
-    }
-    @media (max-width: 879px) {
-      .pipeline-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .pipeline-grid { grid-template-columns: 1fr; }
     }
 
     /* ── Methodology grid ─────────────────────────────────────────────────── */
@@ -752,17 +778,14 @@
       display: flex;
     }
     .modal-content {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       max-width: 720px;
-      width: 100%;
+      width: 90%;
       margin: auto;
-      padding: 36px 40px;
+      padding: 48px 48px 56px;
       position: relative;
-      max-height: calc(100vh - 48px);
+      max-height: calc(100vh - 80px);
       overflow-y: auto;
-      animation: modal-rise 0.22s ease-out;
+      animation: modal-rise 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes modal-rise {
       from { opacity: 0; transform: translateY(12px); }
@@ -799,19 +822,11 @@
       margin-bottom: 10px;
     }
     .modal-content h2 {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin: 0 0 16px;
-      padding-right: 40px;
-      line-height: 1.2;
+      margin: 0 0 20px;
+      padding-right: 48px;
     }
     .modal-content > p {
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--muted);
-      margin: 0 0 24px;
+      margin: 0 0 40px;
     }
     .modal-section {
       margin-bottom: 22px;
@@ -895,17 +910,49 @@
 
     /* Footer */
     .landing-footer {
+      padding: 80px 20px 60px;
       text-align: center;
-      margin-top: 56px;
-      padding-top: 28px;
       border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--text-muted);
+      margin-top: 80px;
+      background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.02));
     }
-    .landing-footer a {
-      color: var(--cyan);
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 16px;
+      margin-bottom: 24px;
+    }
+    .footer-links a {
+      color: var(--muted);
       text-decoration: none;
-      margin: 0 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+    .footer-links .sep {
+      color: var(--border);
+      font-weight: 400;
+    }
+    .footer-legal {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 20px;
+      opacity: 0.7;
+    }
+    .footer-brand {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.5;
     }
 
     @media (max-width: 640px) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import "../styles/style.css";
 import ScrollObserver from "@/components/layout/ScrollObserver";
@@ -8,6 +8,7 @@ import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Orion Alpha — Sinyal Swing Trading Saham IDX & BEI",
@@ -21,6 +22,11 @@ export const metadata: Metadata = {
     siteName: "Orion Alpha",
     locale: "id_ID",
     type: "website",
+  },
+  icons: {
+    icon: "/static/orion-logo.png",
+    shortcut: "/static/orion-logo.png",
+    apple: "/static/orion-logo.png",
   },
 };
 
@@ -51,7 +57,7 @@ export default function RootLayout({
           })();
         ` }} />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${outfit.variable}`}>
         <ScrollObserver />
         <MobileStickyCTA />
         {children}

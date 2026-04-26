@@ -21,8 +21,8 @@ export default function Features({ openModal }: FeaturesProps) {
     <section className="features fade-up" id="features">
       <div className="section-head">
         <span className="eyebrow">Swing Trading Toolkit</span>
-        <h2>Find the right setup. Every time.</h2>
-        <p>Nine modules — setup detection, confluence scoring, risk sizing, fundamentals, and alerts — working together so you always know what the data is saying. Click any card for the full breakdown.</p>
+        <h2 className="display-text">Find the right setup. Every time.</h2>
+        <p className="lede">Nine modules — setup detection, confluence scoring, risk sizing, fundamentals, and alerts — working together so you always know what the data is saying. Click any card for the full breakdown.</p>
       </div>
 
       <div className="feature-grid">
@@ -30,7 +30,7 @@ export default function Features({ openModal }: FeaturesProps) {
           <button 
             key={f.id}
             type="button" 
-            className="feature-card" 
+            className="feature-card glass-card" 
             onClick={() => openModal(f.id)}
             aria-label={`Read more about ${f.title}`}
             style={f.core ? {borderColor: 'rgba(6,182,212,0.3)'} : {}}
@@ -48,9 +48,10 @@ export default function Features({ openModal }: FeaturesProps) {
             </div>
             <h3>{f.title}</h3>
             <p>{f.desc}</p>
-            <span className="feature-card-cta">Read detail
+            <span className="feature-card-cta btn-shine">Read detail
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
+            <div className="card-glow"></div>
           </button>
         ))}
       </div>

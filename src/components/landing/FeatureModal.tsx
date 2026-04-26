@@ -17,13 +17,14 @@ export default function FeatureModal({ activeModal, closeModal, featureData }: F
       aria-modal="true" 
       aria-hidden={!activeModal}
     >
-      <div className="modal-content" tabIndex={-1}>
+      <div className="modal-content glass-card" tabIndex={-1}>
         <button className="modal-close" onClick={closeModal} aria-label="Close">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <span className="modal-eyebrow">{featureData.eyebrow}</span>
-        <h2>{featureData.title}</h2>
-        <p>{featureData.intro}</p>
+        <h2 className="display-text">{featureData.title}</h2>
+        <p className="lede">{featureData.intro}</p>
+        <div className="card-glow"></div>
         
         {featureData.sections.map((sec: any, i: number) => (
           <div className="modal-section" key={i}>

@@ -6,16 +6,16 @@ export default function Footer() {
     { name: "Features", href: "/" },
     { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
-    { name: "Get Started", href: "/start" },
+    { name: "Showcase", href: "/showcase" },
     { name: "Telegram", href: "https://t.me/orion_idx_bot", external: true },
     { name: "Discord", href: "https://discord.gg/rSAPFDgewe", external: true },
-    { name: "Showcase", href: "/showcase" },
     { name: "Privacy", href: "/privacy" },
+    { name: "Terms", href: "/terms" },
   ];
 
   return (
     <footer className="landing-footer">
-      <div>
+      <div className="footer-links">
         {footerLinks.map((link, i) => (
           <React.Fragment key={link.name}>
             {link.external ? (
@@ -25,12 +25,15 @@ export default function Footer() {
             ) : (
               <Link href={link.href}>{link.name}</Link>
             )}
-            {i < footerLinks.length - 1 && " · "}
+            {i < footerLinks.length - 1 && <span className="sep">·</span>}
           </React.Fragment>
         ))}
       </div>
-      <div style={{ marginTop: "12px", opacity: "0.6" }}>
-        Educational tool — not investment advice. Data delayed ~15 min via yfinance.
+      <div className="footer-legal">
+        Built for IDX traders. Data delayed ~15 min. Educational tool — not investment advice.
+      </div>
+      <div className="footer-brand">
+        Orion Alpha · 2026
       </div>
     </footer>
   );

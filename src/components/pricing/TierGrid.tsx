@@ -5,7 +5,7 @@ export default function TierGrid() {
     <section className="tier-grid fade-up" aria-label="Subscription plans">
 
       {/*  FREE  */}
-      <article className="tier-card">
+      <article className="tier-card glass-card">
         <span className="tier-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/></svg>
         </span>
@@ -33,10 +33,11 @@ export default function TierGrid() {
           Start Free
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
+        <div className="card-glow"></div>
       </article>
 
       {/*  STARTER — highlighted  */}
-      <article className="tier-card is-highlight">
+      <article className="tier-card glass-card is-highlight">
         <div className="tier-ribbon">Most Popular</div>
         <span className="tier-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>
@@ -63,15 +64,16 @@ export default function TierGrid() {
           <li className="is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Backtest, auto-alerts, watchlist</span></li>
         </ul>
 
-        <a href="https://t.me/orion_idx_bot?start=upgrade_starter" target="_blank" rel="noopener" className="tier-cta is-primary">
+        <a href="https://t.me/orion_idx_bot?start=upgrade_starter" target="_blank" rel="noopener" className="tier-cta is-primary btn-shine">
           Upgrade to Starter
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <div className="tier-footnote">Bot will send payment instructions in chat (QRIS, GoPay, or Bank Transfer).</div>
+        <div className="tier-footnote">Bot will send payment instructions in chat.</div>
+        <div className="card-glow"></div>
       </article>
 
       {/*  PRO  */}
-      <article className="tier-card is-pro">
+      <article className="tier-card glass-card is-pro">
         <span className="tier-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l3-7 6 4 6-4 3 7M5 20h14"/><path d="M5 11l3 9h8l3-9"/></svg>
         </span>
@@ -97,11 +99,11 @@ export default function TierGrid() {
           <li className="is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Direct support from the maker</span></li>
         </ul>
 
-        <a href="https://t.me/orion_idx_bot?start=upgrade_pro" target="_blank" rel="noopener" className="tier-cta">
+        <a href="https://t.me/orion_idx_bot?start=upgrade_pro" target="_blank" rel="noopener" className="tier-cta btn-shine">
           Upgrade to Pro
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <div className="tier-footnote">Upgrading from Starter? The difference is prorated.</div>
+        <div className="card-glow"></div>
       </article>
     </section>
   );

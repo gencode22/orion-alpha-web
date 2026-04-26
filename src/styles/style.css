@@ -9,6 +9,9 @@
   --bg3:       #1a1e2e;
   --bg4:       #242a3d;
   --bg-glass:  rgba(18, 21, 31, 0.75);
+  --glass-bg:   rgba(18, 21, 31, 0.7);
+  --glass-blur: blur(12px);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --border:    #1e2336;
   --border2:   #2a3050;
   --text:      #e8ecf4;
@@ -31,8 +34,9 @@
   --purple:    #a855f7;
   --cyan:      #06b6d4;
   --cyan2:     #22d3ee;
-  --font:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --mono:      'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font:      var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --display-font: var(--font-display), var(--font);
+  --mono:      var(--font-mono), 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
   /* Aliases — used by features.html landing page */
   --card:       var(--bg2);
@@ -87,6 +91,8 @@
   --bg3:       #F5F7FA;
   --bg4:       #EAECF0;
   --bg-glass:  rgba(255, 255, 255, 0.88);
+  --glass-bg:   rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
   --border:    #E1E4E8;
   --border2:   #C8CDD6;
   --text:      #0F172A;
@@ -158,17 +164,75 @@ body.landing::before {
   100% { background-position: 100% 50%; }
 }
 
-/* ── Universal Card Hover Glow ── */
-[class*="-card"], .feature-card, .signal-card, .chart-card, .method-card, .audience-card {
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+/* ── Glassmorphism & Premium Depth ────────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
 }
-[class*="-card"]:hover, .feature-card:hover, .signal-card:hover, .chart-card:hover, .method-card:hover, .audience-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(6, 182, 212, 0.1) inset !important;
-  border-color: var(--cyan) !important;
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
 }
+
+[class*="-card"]:hover .card-glow {
+  opacity: 1;
+}
+
+/* ── Typography Utilities ── */
+.display-text {
+  font-family: var(--display-font);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+.accent {
+  color: var(--cyan);
+  background: var(--grad-cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lede {
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* ── Enhanced Hover States ── */
+[class*="-card"], .feature-card, .signal-card, .chart-card, .method-card, .audience-card, .tier-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+[class*="-card"]:hover, .tier-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(6, 182, 212, 0.4) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.1) inset !important;
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 [data-theme="light"] [class*="-card"]:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(6, 182, 212, 0.1) inset !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(6, 182, 212, 0.1) inset !important;
 }
 
 /* ── Floating Animation ── */
@@ -215,7 +279,7 @@ body.landing::before {
 }
 @keyframes ticker {
   0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); } /* Assumes track content is duplicated */
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 .ticker-item {
   font-family: var(--mono, monospace);
@@ -264,7 +328,7 @@ body.landing::before {
   height: 100%;
 }
 .tilt-card-inner {
-  transform: translateZ(30px); /* Makes content pop out during tilt */
+  transform: translateZ(30px);
   height: 100%;
   display: flex;
   flex-direction: inherit;

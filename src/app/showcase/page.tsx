@@ -67,8 +67,8 @@ export default function IndexPromoPage() {
         Swing Trading Engine · IDX
       </div>
     </div>
-    <h1>Find the Setup.<br /><span className="accent">Execute with Edge.</span></h1>
-    <p>Stop guessing which IDX stock to buy today. Orion scans all of them against 20 proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.</p>
+    <h1 className="display-text">Find the Setup.<br /><span className="accent">Execute with Edge.</span></h1>
+    <p className="lede">Stop guessing which IDX stock to buy today. Orion scans all of them against 20 proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.</p>
   </div>
 
   {/*  ── Live Market Ticker ──  */}
@@ -121,7 +121,7 @@ export default function IndexPromoPage() {
       <span className="promo-section-name">Signal Sample</span>
       <span className="promo-section-tag">Sample</span>
     </div>
-    <div className="signal-card">
+    <div className="signal-card glass-card">
       <div className="signal-card-hd">
         <div>
           <div className="signal-ticker">BBCA.JK</div>
@@ -176,6 +176,7 @@ export default function IndexPromoPage() {
           <span className="level-val tp">9,475 / 9,975</span>
         </div>
       </div>
+      <div className="card-glow"></div>
     </div>
   </div>
 
@@ -186,11 +187,12 @@ export default function IndexPromoPage() {
       <span className="promo-section-name">Live Market Data</span>
       <span style={{marginLeft: 'auto', fontSize: '10px', color: 'var(--muted)'}}>Powered by TradingView</span>
     </div>
-    <div className="chart-card">
+    <div className="chart-card glass-card">
       <div className="tradingview-wrap">
         <TradingViewWidget />
       </div>
       <div className="chart-foot">IDX:BBCA · Daily · Use search bar to switch ticker</div>
+      <div className="card-glow"></div>
     </div>
   </div>
 

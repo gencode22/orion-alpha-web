@@ -928,7 +928,7 @@
     .landing-container {
       max-width: 960px;
       margin: 0 auto;
-      padding: 24px 20px 80px;
+      padding: 80px 20px 80px;
     }
 
     /* ── Topbar: di-handle oleh style.css global ── */
@@ -974,33 +974,29 @@
     .constellation-svg {
       width: 160px;
       height: 160px;
-      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.4));
     }
     .constellation-svg .star-line {
       stroke: var(--cyan);
-      stroke-width: 1;
-      opacity: 0.3;
+      stroke-width: 1.5;
+      opacity: 0.2;
     }
     .constellation-svg .star-dot {
       fill: var(--cyan);
+      filter: drop-shadow(0 0 4px var(--cyan));
     }
     .constellation-svg .star-dot.bright {
-      fill: var(--gold, #f59e0b);
+      fill: var(--yellow);
+      filter: drop-shadow(0 0 6px var(--yellow));
     }
     @media (prefers-reduced-motion: no-preference) {
       .constellation-svg .star-dot {
         animation: star-pulse 3s ease-in-out infinite;
       }
-      .constellation-svg .star-dot:nth-child(2) { animation-delay: 0.4s; }
-      .constellation-svg .star-dot:nth-child(3) { animation-delay: 0.8s; }
-      .constellation-svg .star-dot:nth-child(4) { animation-delay: 1.2s; }
-      .constellation-svg .star-dot:nth-child(5) { animation-delay: 1.6s; }
-      .constellation-svg .star-dot:nth-child(6) { animation-delay: 2.0s; }
-      .constellation-svg .star-dot:nth-child(7) { animation-delay: 2.4s; }
-      .constellation-svg .star-dot:nth-child(8) { animation-delay: 2.8s; }
+      .constellation-svg .star-dot:nth-child(even) { animation-delay: 1.5s; }
       @keyframes star-pulse {
-        0%, 100% { opacity: 0.7; }
-        50% { opacity: 1; }
+        0%, 100% { opacity: 0.6; transform: scale(0.9); }
+        50% { opacity: 1; transform: scale(1.1); }
       }
     }
 
@@ -1015,30 +1011,36 @@
       .name-grid { grid-template-columns: 1fr; gap: 16px; }
     }
     .name-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
       position: relative;
+      padding: 32px 28px;
+      border-radius: 20px;
       overflow: hidden;
+    }
+    .name-etymology {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-style: italic;
     }
     .name-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
+      height: 3px;
+      background: var(--grad-cyan);
+      opacity: 0.6;
     }
     .name-card.gold-accent::before {
-      background: linear-gradient(90deg, var(--gold, #f59e0b), transparent);
+      background: linear-gradient(90deg, var(--yellow), transparent);
     }
     .name-label {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      opacity: 0.8;
     }
     .name-word {
       font-size: clamp(40px, 7vw, 64px);
@@ -1047,185 +1049,125 @@
       line-height: 1;
       margin-bottom: 20px;
       color: var(--text);
+      font-family: var(--display-font);
     }
-    .name-card:first-child .name-word { color: var(--cyan); }
-    .name-card.gold-accent .name-word { color: var(--gold, #f59e0b); }
-    .name-etymology {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-      font-family: 'Fira Code', monospace;
-    }
+    .name-card:first-child .name-word { color: var(--text); }
+    .name-card.gold-accent .name-word { color: var(--yellow); }
+    
     .name-card p {
       font-size: 15px;
-      color: var(--text-muted, #94a3b8);
+      color: var(--text2);
       line-height: 1.65;
       margin: 0;
     }
-    [data-theme="light"] .name-card p { color: var(--muted); }
 
     /* ── Principles ── */
     .principles-section {
       margin-bottom: 72px;
     }
+    .principle-card {
+      padding: 28px 24px;
+      border-radius: 16px;
+    }
+    .principle-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      font-family: var(--mono);
+      margin-bottom: 14px;
+    }
+    .principle-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 10px;
+    }
+
+    /* ── Outcomes ── */
+    .outcome-card {
+      padding: 28px 24px;
+      border-radius: 16px;
+    }
+    .outcome-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(6, 182, 212, 0.1);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+    }
+    .outcome-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 10px;
+    }
+
+    /* Grids */
+    .principles-grid, .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    /* Section Header */
     .section-header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
     .section-eyebrow {
       display: inline-block;
       font-size: 11px;
       font-weight: 700;
       color: var(--cyan);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .section-header h2 {
-      font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 700;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
       letter-spacing: -0.03em;
+      line-height: 1.1;
       color: var(--text);
-      margin: 0;
     }
 
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 720px) {
-      .principles-grid { grid-template-columns: 1fr; gap: 16px; }
-    }
-    .principle-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-      transition: border-color 0.2s;
-    }
-    .principle-card:hover { border-color: rgba(6,182,212,0.35); }
-    .principle-num {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
-      font-family: 'Fira Code', monospace;
-      margin-bottom: 14px;
-    }
-    .principle-card h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      margin: 0 0 10px;
-    }
-    .principle-card p {
-      font-size: 14px;
-      color: var(--muted, #7b869c);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* ── Outcomes (what changes when you use Orion) ── */
-    .outcomes-section {
-      margin-bottom: 72px;
-    }
-    .outcomes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 720px) {
-      .outcomes-grid { grid-template-columns: 1fr; gap: 16px; }
-    }
-    .outcome-card {
-      padding: 28px 24px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .outcome-card:hover {
-      border-color: rgba(6,182,212,0.35);
-      transform: translateY(-2px);
-    }
-    .outcome-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: rgba(6, 182, 212, 0.1);
-      color: var(--cyan);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-    .outcome-icon svg { width: 18px; height: 18px; }
-    .outcome-card h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      margin: 0 0 10px;
-    }
-    .outcome-card p {
-      font-size: 14px;
-      color: var(--muted, #7b869c);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* ── Trust strip ── */
+    /* Trust Strip */
     .trust-strip-about {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px 24px;
-      margin: 0 auto 72px;
-      padding: 20px 24px;
-      max-width: 920px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      margin-bottom: 80px;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 182, 212, 0.02);
     }
-    .trust-strip-about .trust-pill {
-      display: inline-flex;
+    .trust-pill {
+      display: flex;
       align-items: center;
       gap: 8px;
       font-size: 13px;
-      color: var(--text);
       font-weight: 500;
+      color: var(--text2);
     }
-    .trust-strip-about .trust-pill svg {
-      width: 14px; height: 14px;
+    .trust-pill svg {
+      width: 16px;
+      height: 16px;
       color: var(--cyan);
-      flex-shrink: 0;
-    }
-    @media (max-width: 640px) {
-      .trust-strip-about { flex-direction: column; align-items: flex-start; padding: 16px 20px; }
-      .landing-container { padding: 20px 16px 60px; }
-      .about-hero { padding: 8px 0 36px; }
-      .about-cta { padding: 36px 20px; margin-bottom: 48px; }
-      .cta-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
-      .btn { width: 100%; justify-content: center; }
-    }
-    @media (hover: none) {
-      .outcome-card:hover, .principle-card:hover, .name-card:hover { transform: none; box-shadow: none; }
     }
 
     /* ── CTA ── */
     .about-cta {
       text-align: center;
-      padding: 56px 24px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      padding: 64px 24px;
+      border-radius: 24px;
       margin-bottom: 64px;
-      position: relative;
-      overflow: hidden;
     }
     .about-cta::before {
       content: '';
@@ -1314,14 +1256,14 @@
     /* ── Desktop improvements ── */
     @media (min-width: 1024px) {
       .about-hero h1 { font-size: clamp(36px, 3.2vw, 52px); }
-      .principles-grid { grid-template-columns: repeat(3, 1fr); }
+      .principles-grid, .outcomes-grid { grid-template-columns: repeat(3, 1fr); }
       .name-cards { gap: 24px; }
       .name-card:hover {
         box-shadow: 0 8px 32px rgba(6,182,212,0.1);
         transform: translateY(-3px);
         transition: transform 0.2s, box-shadow 0.2s;
       }
-      .principle-card:hover {
+      .principle-card:hover, .outcome-card:hover {
         box-shadow: 0 8px 24px rgba(6,182,212,0.08);
         transform: translateY(-2px);
         transition: transform 0.2s, box-shadow 0.2s;
