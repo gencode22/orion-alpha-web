@@ -335,29 +335,77 @@ body.landing::before {
   gap: inherit;
 }
 
-/* ── Sticky Mobile CTA ── */
+/* ── Mobile Sticky CTA (Floating Pill) ── */
 .mobile-sticky-cta {
-  display: none; /* hidden on desktop */
+  display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
-  padding: 16px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid var(--border);
-  z-index: 100;
-  text-align: center;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translateY(120%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .mobile-sticky-cta.is-visible {
+  display: block;
+  pointer-events: auto;
   transform: translateY(0);
 }
-.mobile-sticky-cta .btn-primary {
-  width: 100%;
-  padding: 14px;
-  font-size: 15px;
+
+.sticky-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 20px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.sticky-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.sticky-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sticky-action {
+  background: var(--cyan);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
   box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.sticky-action:active {
+  transform: scale(0.95);
 }
 
 @media (max-width: 640px) {
@@ -2833,4 +2881,108 @@ footer {
 .gate-cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+/* ── Mobile Sticky CTA (Floating Pill) ── */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translateY(120%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-sticky-cta.is-visible {
+  display: block;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.sticky-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 20px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.sticky-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.sticky-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.sticky-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sticky-action {
+  background: var(--cyan);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+.sticky-action:active {
+  transform: scale(0.95);
+}
+
+[data-theme="light"] .sticky-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+[data-theme="light"] .sticky-title { color: #000; }
+[data-theme="light"] .sticky-sub { color: #64748b; }
+
+@media (max-width: 640px) {
+  .mobile-sticky-cta {
+    display: block;
+  }
+}
+
+/* ── Discord Card Highlight ── */
+.feature-card.is-link:hover {
+  border-color: #5865F2 !important;
+  box-shadow: 0 20px 40px rgba(88, 101, 242, 0.2), 0 0 0 1px rgba(88, 101, 242, 0.1) inset !important;
+}
+.feature-card.is-link .feature-icon {
+  background: rgba(88, 101, 242, 0.1);
+  color: #5865F2;
+  border-color: rgba(88, 101, 242, 0.2);
+}
+.feature-card.is-link .feature-card-cta {
+  color: #5865F2;
 }

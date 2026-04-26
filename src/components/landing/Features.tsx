@@ -15,6 +15,7 @@ export default function Features({ openModal }: FeaturesProps) {
     { id: 'portfolio', title: 'Portfolio Tracking', desc: 'SQLite-backed positions. Real-time net P&L (fee-aware). Natural-language commands and XLSX export.', icon: <><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></> },
     { id: 'news', title: 'News Aggregation', desc: 'Global RSS (Reuters, Investing.com) + Indonesia (CNBC, Bisnis, Kontan). Per-stock keyword filter.', icon: <><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8m8-4h-8m4-4H8"></path></> },
     { id: 'charts', title: 'Decision-Ready Charts', desc: 'Candle render with entry zone, SL/TP horizontals, pattern annotations, multi-indicator overlays.', icon: <><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></> },
+    { id: 'discord', title: 'Join Community', desc: 'Real-time discussions with 500+ traders. Share setups, get support, and trade together on Discord.', icon: <><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></>, link: 'https://discord.gg/rSAPFDgewe' },
   ];
 
   return (
@@ -27,12 +28,19 @@ export default function Features({ openModal }: FeaturesProps) {
 
       <div className="feature-grid">
         {featureList.map((f) => (
-          <button 
+          <a 
             key={f.id}
-            type="button" 
-            className="feature-card glass-card" 
-            onClick={() => openModal(f.id)}
-            aria-label={`Read more about ${f.title}`}
+            href={f.link || '#'}
+            target={f.link ? "_blank" : undefined}
+            rel={f.link ? "noopener" : undefined}
+            className={`feature-card glass-card ${f.link ? 'is-link' : ''}`}
+            onClick={(e) => {
+              if (!f.link) {
+                e.preventDefault();
+                openModal(f.id);
+              }
+            }}
+            aria-label={f.link ? `Join our Discord community` : `Read more about ${f.title}`}
             style={f.core ? {borderColor: 'rgba(6,182,212,0.3)'} : {}}
           >
             {f.core && (
@@ -48,11 +56,12 @@ export default function Features({ openModal }: FeaturesProps) {
             </div>
             <h3>{f.title}</h3>
             <p>{f.desc}</p>
-            <span className="feature-card-cta btn-shine">Read detail
+            <span className="feature-card-cta btn-shine">
+              {f.link ? 'Join Discord' : 'Read detail'}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
             <div className="card-glow"></div>
-          </button>
+          </a>
         ))}
       </div>
     </section>
