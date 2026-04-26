@@ -10,8 +10,18 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Orion Alpha — Systematic Swing Trading for IDX",
-  description: "Find the setup, execute with edge. Orion Alpha provides systematic swing trading signals for the Indonesia Stock Exchange via Telegram.",
+  title: "Orion Alpha — Sinyal Swing Trading Saham IDX & BEI",
+  description: "Dapatkan sinyal trading saham IDX (BEI) yang sistematis dan terukur. Orion Alpha membantu trader menemukan setup swing trading terbaik melalui bot Telegram & Discord.",
+  keywords: ["saham idx", "sinyal saham", "bot saham telegram", "swing trading indonesia", "analisa teknikal bei", "trading sistematis"],
+  authors: [{ name: "Orion Alpha Team" }],
+  openGraph: {
+    title: "Orion Alpha — Systematic Swing Trading for IDX",
+    description: "Sinyal trading saham BEI yang presisi dan berbasis sistem.",
+    url: "https://orion-alpha-web.vercel.app",
+    siteName: "Orion Alpha",
+    locale: "id_ID",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
