@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/store/LanguageContext';
 
 export default function MobileStickyCTA() {
   const [isVisible, setIsVisible] = useState(false);

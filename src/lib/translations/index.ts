@@ -9,10 +9,10 @@ export const translations: Record<'en' | 'id', any> = {
       get_started: 'Get Started'
     },
     nav: {
+      home: 'Home',
       showcase: 'Showcase',
       about: 'About',
-      pricing: 'Pricing',
-      features: 'Features'
+      pricing: 'Pricing'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',
@@ -143,10 +143,10 @@ export const translations: Record<'en' | 'id', any> = {
       get_started: 'Mulai Sekarang'
     },
     nav: {
+      home: 'Beranda',
       showcase: 'Showcase',
       about: 'Tentang',
-      pricing: 'Harga',
-      features: 'Fitur'
+      pricing: 'Harga'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',

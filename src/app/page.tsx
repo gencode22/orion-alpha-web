@@ -5,31 +5,31 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 // Modular Components
-import Hero from "@/components/landing/Hero";
-import AudienceSection from "@/components/landing/AudienceSection";
-import Features from "@/components/landing/Features";
-import Pipeline from "@/components/landing/Pipeline";
-import Methodology from "@/components/landing/Methodology";
-import Advantages from "@/components/landing/Advantages";
-import PricingCTA from "@/components/landing/PricingCTA";
-import FinalCTA from "@/components/landing/FinalCTA";
-import FeatureModal from "@/components/landing/FeatureModal";
-import { useLanguage } from "@/context/LanguageContext";
+import Hero from "@/features/landing/components/Hero";
+import AudienceSection from "@/features/landing/components/AudienceSection";
+import Features from "@/features/landing/components/Features";
+import Pipeline from "@/features/landing/components/Pipeline";
+import Methodology from "@/features/landing/components/Methodology";
+import Advantages from "@/features/landing/components/Advantages";
+import PricingCTA from "@/features/landing/components/PricingCTA";
+import FinalCTA from "@/features/landing/components/FinalCTA";
+import FeatureModal from "@/features/landing/components/FeatureModal";
+import { useLanguage } from "@/store/LanguageContext";
 
 // Config
 
-export default function FeaturesPage() {
+export default function HomePage() {
   const { t } = useLanguage();
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   useEffect(() => {
     // Theme initialization
-    const t = localStorage.getItem('orion-theme');
-    if (!t) {
+    const savedTheme = localStorage.getItem('orion-theme');
+    if (!savedTheme) {
       const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', defaultTheme);
     } else {
-      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
     // Modal ESC handler

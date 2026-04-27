@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/store/LanguageContext';
 
 export default function Advantages() {
   const { t } = useLanguage();

@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { translations } from '@/lib/translations';
 
 type Language = 'en' | 'id';
 
@@ -49,4 +50,3 @@ export const useLanguage = () => {
   return context;
 };
 
-import { translations } from '@/translations';

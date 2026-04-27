@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from "@/store/LanguageContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,8 +30,8 @@ export default function Navbar() {
   };
 
   const navLinks = [
+    { name: t('nav.home'), href: "/" },
     { name: t('nav.showcase'), href: "/showcase" },
-    { name: t('nav.features'), href: "/#features", isHash: true },
     { name: t('nav.pricing'), href: "/pricing" },
     { name: t('nav.about'), href: "/about" },
   ];

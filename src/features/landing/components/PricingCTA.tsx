@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/store/LanguageContext';
 
 export default function PricingCTA() {
   const { t } = useLanguage();

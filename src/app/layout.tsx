@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/style.css";
 import ScrollObserver from "@/components/layout/ScrollObserver";
 import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
+import { LanguageProvider } from "@/store/LanguageContext";
 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -30,7 +31,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RootLayout({
   children,

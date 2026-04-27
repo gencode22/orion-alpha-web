@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import TradingViewWidget from "@/components/showcase/TradingViewWidget";
-import AnimatedCounter from "@/components/showcase/AnimatedCounter";
+import TradingViewWidget from "@/features/market/components/TradingViewWidget";
+import AnimatedCounter from "@/features/market/components/AnimatedCounter";
 
 export default function IndexPromoPage() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
