@@ -42,7 +42,7 @@ export default function Advantages() {
       <div className="section-head">
         <span className="eyebrow">{t('advantages.eyebrow')}</span>
         <h2 className="display-text">{t('advantages.title')} <span className="accent">{t('advantages.title_accent')}</span></h2>
-        <p>{t('advantages.desc')}</p>
+        <p dangerouslySetInnerHTML={{ __html: t('advantages.desc') }} />
       </div>
 
       <div className="advantages-bento">
@@ -54,7 +54,7 @@ export default function Advantages() {
               </div>
               <div className="text-content">
                 <h4>{adv.title}</h4>
-                <p>{adv.desc}</p>
+                <p dangerouslySetInnerHTML={{ __html: adv.desc }} />
               </div>
             </div>
             <div className="card-glow"></div>

@@ -17,7 +17,7 @@ export default function Methodology() {
           <div key={idx} className="method-card glass-card">
             <span className="method-eyebrow">{card.eyebrow}</span>
             <h4>{card.title}</h4>
-            <p>{card.desc}</p>
+            <p dangerouslySetInnerHTML={{ __html: card.desc }} />
             <div className="method-meta" dangerouslySetInnerHTML={{ __html: card.meta.replace(/·/g, ' · ') }}>
             </div>
             <div className="card-glow"></div>

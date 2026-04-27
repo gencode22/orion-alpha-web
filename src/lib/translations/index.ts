@@ -18,7 +18,7 @@ export const translations: Record<'en' | 'id', any> = {
       badge: 'Swing Trading Engine · IDX',
       title: 'Find the Setup.',
       title_accent: 'Execute with Edge.',
-      desc: 'Stop guessing which IDX stock to buy today. Orion scans all of them against 20 proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.',
+      desc: 'Stop guessing which IDX stock to buy today. Orion scans all of them against <span class="kw">20 proven swing setups</span> — and tells you <span class="kw">exactly when to enter</span>, where to stop, and when to take profit.',
       stats: {
         setups: 'Swing Setups',
         indicators: 'Indicators',
@@ -36,16 +36,16 @@ export const translations: Record<'en' | 'id', any> = {
       title_accent: 'Every time.',
       desc: 'Nine modules — setup detection, confluence scoring, risk sizing, fundamentals, and alerts — working together so you always know what the data is saying.',
       cards: {
-        setups: { title: '20+ Swing Setup Detectors', desc: 'VCP, Pullback, Breakout-Volume, Donchian, Cup-Handle, Flag — each scored 0–100 with regime-aware filter.' },
-        confluence: { title: 'Multi-TF Confluence Scoring', desc: '12-indicator weighted vote across Daily, Weekly, 4H. Final 0–100 score with regime-adaptive weights.' },
-        ai: { title: 'AI Research Assistant', desc: 'Gemini 2.5 Flash primary, local Qwen 2.5 3B fallback. Tool-augmented natural-language queries on live data.' },
-        fundamental: { title: 'Fundamental Analysis', desc: '4-pillar 0–100 scoring: valuation, profitability, health, growth. Graham Number with margin-of-safety.' },
-        backtest: { title: 'Backtest Engine', desc: 'Bar-by-bar replay. 3-phase trailing stop. Per-setup expectancy + walk-forward validation.' },
-        alerts: { title: 'Smart Alerts', desc: 'Personal price triggers + auto swing-broadcast every 15 min. Per-user watchlist filter, SL/TP proximity warnings.' },
-        portfolio: { title: 'Portfolio Tracking', desc: 'SQLite-backed positions. Real-time net P&L (fee-aware). Natural-language commands and XLSX export.' },
+        setups: { title: '20+ Swing Setup Detectors', desc: '<span class="kw">VCP, Pullback, Breakout-Volume</span>, Donchian, Cup-Handle, Flag — each scored 0–100 with regime-aware filter.' },
+        confluence: { title: 'Multi-TF Confluence Scoring', desc: '12-indicator weighted vote across <span class="kw">Daily, Weekly, 4H</span>. Final 0–100 score with regime-adaptive weights.' },
+        ai: { title: 'AI Research Assistant', desc: '<span class="kw">Gemini 2.5 Flash</span> primary, local Qwen 2.5 3B fallback. Tool-augmented natural-language queries on live data.' },
+        fundamental: { title: 'Fundamental Analysis', desc: '4-pillar 0–100 scoring: valuation, profitability, health, growth. <span class="kw">Graham Number</span> with margin-of-safety.' },
+        backtest: { title: 'Backtest Engine', desc: 'Bar-by-bar replay. 3-phase trailing stop. Per-setup expectancy + <span class="kw">walk-forward validation</span>.' },
+        alerts: { title: 'Smart Alerts', desc: 'Personal price triggers + auto <span class="kw">swing-broadcast every 15 min</span>. Per-user watchlist filter, SL/TP proximity warnings.' },
+        portfolio: { title: 'Portfolio Tracking', desc: 'SQLite-backed positions. Real-time net P&L (fee-aware). Natural-language commands and <span class="kw">XLSX export</span>.' },
         news: { title: 'News Aggregation', desc: 'Global RSS (Reuters, Investing.com) + Indonesia (CNBC, Bisnis, Kontan). Per-stock keyword filter.' },
         charts: { title: 'Decision-Ready Charts', desc: 'Candle render with entry zone, SL/TP horizontals, pattern annotations, multi-indicator overlays.' },
-        discord: { title: 'Join Community', desc: 'Real-time discussions with 500+ traders. Share setups, get support, and trade together on Discord.' }
+        discord: { title: 'Join Community', desc: 'Real-time discussions with <span class="kw">500+ traders</span>. Share setups, get support, and trade together on Discord.' }
       }
     },
     modals: modalTranslations.en,
@@ -66,12 +66,12 @@ export const translations: Record<'en' | 'id', any> = {
       eyebrow: 'Why Orion Alpha',
       title: 'Built different.',
       title_accent: 'Priced for everyone.',
-      desc: 'Most signal bots give you a number with no context. Orion Alpha shows you the work — so you learn while you trade.',
+      desc: 'Most signal bots give you a number with no context. Orion Alpha <span class="kw">shows you the work</span> — so you learn while you trade.',
       cards: [
-        { title: 'Made for IDX, not adapted for it', desc: 'Indonesian tickers, BEI market hours, Rupiah formatting, LQ45 / IDX30 sector groupings — built for this market from day one.' },
-        { title: 'Same signal everywhere', desc: 'Telegram, Discord, or the web — zero drift between platforms.' },
-        { title: 'Start free. Always.', desc: '3 signals/day, full market scan, and news — no credit card required.' },
-        { title: 'Explainable AI', desc: 'Not just "BUY" — get the confluence checklist and market regime context for every single alert.' },
+          { title: 'Made for IDX, not adapted for it', desc: 'Indonesian tickers, BEI market hours, Rupiah formatting, <span class="kw">LQ45 / IDX30</span> sector groupings — built for this market from day one.' },
+          { title: 'Same signal everywhere', desc: 'Telegram, Discord, or the web — <span class="kw">zero drift</span> between platforms.' },
+          { title: 'Start free. Always.', desc: '3 signals/day, full market scan, and news — <span class="kw">no credit card</span> required.' },
+          { title: 'Explainable AI', desc: 'Not just "BUY" — get the <span class="kw">confluence checklist</span> and market regime context for every single alert.' },
         { title: 'Local Intelligence', desc: 'Qwen 2.5 takes over locally if the cloud is unavailable. Zero interruption.' },
         { title: 'Unmatched Reliability', desc: 'Automatic retries and persistent state. Orion Alpha runs when the market opens, every single day.' }
       ]
@@ -152,7 +152,7 @@ export const translations: Record<'en' | 'id', any> = {
       badge: 'Swing Trading Engine · IDX',
       title: 'Find the Setup.',
       title_accent: 'Execute with Edge.',
-      desc: 'Stop guessing which IDX stock to buy today. Orion scans all of them against 20 proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.',
+      desc: 'Berhenti menebak saham IDX mana yang harus dibeli hari ini. Orion memindai semuanya berdasarkan <span class="kw">20 setup swing teruji</span> — dan memberi tahu Anda <span class="kw">kapan harus masuk</span>, di mana harus stop, dan kapan harus take profit.',
       ctas: {
         telegram: 'Buka Bot Telegram',
         showcase: 'Showcase Live',
@@ -170,16 +170,16 @@ export const translations: Record<'en' | 'id', any> = {
       title_accent: 'Setiap saat.',
       desc: 'Sembilan modul — deteksi setup, skor confluence, manajemen risiko, fundamental, dan notifikasi — bekerja bersama agar Anda selalu tahu apa yang dikatakan data.',
       cards: {
-        setups: { title: '20+ Detektor Swing Setup', desc: 'VCP, Pullback, Breakout, Cup-Handle, Flag — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
-        confluence: { title: 'Skor Konfluensi Multi-TF', desc: 'Evaluasi 12 indikator di Daily, Weekly, 4H. Skor akhir 0–100 yang adaptif terhadap kondisi market.' },
-        ai: { title: 'Asisten Riset AI', desc: 'Gemini 2.5 Flash sebagai otak utama. Tanya jawab seputar data saham secara real-time dengan bahasa natural.' },
-        fundamental: { title: 'Analisis Fundamental', desc: 'Penilaian 0–100 dari 4 pilar: valuasi, profitabilitas, kesehatan, dan pertumbuhan. Termasuk Graham Number.' },
-        backtest: { title: 'Engine Backtest', desc: 'Replay per bar. Trailing stop 3 fase. Validasi walk-forward untuk memastikan strategi tetap tangguh.' },
-        alerts: { title: 'Notifikasi Pintar', desc: 'Trigger harga personal + siaran otomatis setup swing setiap 15 menit. Filter berdasarkan watchlist Anda.' },
-        portfolio: { title: 'Pelacakan Portofolio', desc: 'Kelola posisi dengan database SQLite. Pantau P&L real-time (setelah biaya) dan ekspor ke XLSX.' },
+        setups: { title: '20+ Detektor Swing Setup', desc: '<span class="kw">VCP, Pullback, Breakout</span>, Cup-Handle, Flag — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
+        confluence: { title: 'Skor Konfluensi Multi-TF', desc: 'Evaluasi 12 indikator di <span class="kw">Daily, Weekly, 4H</span>. Skor akhir 0–100 yang adaptif terhadap kondisi market.' },
+        ai: { title: 'Asisten Riset AI', desc: '<span class="kw">Gemini 2.5 Flash</span> sebagai otak utama. Tanya jawab seputar data saham secara real-time dengan bahasa natural.' },
+        fundamental: { title: 'Analisis Fundamental', desc: 'Penilaian 0–100 dari 4 pilar: valuasi, profitabilitas, kesehatan, dan pertumbuhan. Termasuk <span class="kw">Graham Number</span>.' },
+        backtest: { title: 'Engine Backtest', desc: 'Replay per bar. Trailing stop 3 fase. <span class="kw">Validasi walk-forward</span> untuk memastikan strategi tetap tangguh.' },
+        alerts: { title: 'Notifikasi Pintar', desc: 'Trigger harga personal + <span class="kw">siaran otomatis setup swing setiap 15 menit</span>. Filter berdasarkan watchlist Anda.' },
+        portfolio: { title: 'Pelacakan Portofolio', desc: 'Kelola posisi dengan database SQLite. Pantau P&L real-time (setelah biaya) dan <span class="kw">ekspor ke XLSX</span>.' },
         news: { title: 'Berita Agregasi', desc: 'Berita global (Reuters) + lokal (CNBC, Bisnis, Kontan). Filter kata kunci spesifik per saham.' },
         charts: { title: 'Chart Siap Eksekusi', desc: 'Visualisasi candle dengan zona entry, SL/TP, anotasi pola, dan berbagai indikator teknis.' },
-        discord: { title: 'Gabung Komunitas', desc: 'Diskusi real-time dengan 500+ trader. Berbagi setup, edukasi, dan trading bersama di Discord.' }
+        discord: { title: 'Gabung Komunitas', desc: 'Diskusi real-time dengan <span class="kw">500+ trader</span>. Berbagi setup, edukasi, dan trading bersama di Discord.' }
       }
     },
     modals: modalTranslations.id,
@@ -200,12 +200,12 @@ export const translations: Record<'en' | 'id', any> = {
       eyebrow: 'Mengapa Orion Alpha',
       title: 'Built different.',
       title_accent: 'Priced for everyone.',
-      desc: 'Kebanyakan bot hanya memberi angka tanpa konteks. Orion Alpha menunjukkan prosesnya — sehingga Anda belajar sambil trading.',
+      desc: 'Kebanyakan bot hanya memberi angka tanpa konteks. Orion Alpha <span class="kw">menunjukkan prosesnya</span> — sehingga Anda belajar sambil trading.',
       cards: [
-        { title: 'Dibuat untuk IDX, bukan adaptasi', desc: 'Ticker Indonesia, jam market BEI, format Rupiah, grup sektor LQ45 / IDX30 — dirancang khusus untuk pasar kita.' },
-        { title: 'Sinyal yang sama di mana saja', desc: 'Telegram, Discord, atau web — sinkronisasi sempurna antar platform.' },
-        { title: 'Mulai Gratis. Selamanya.', desc: '3 sinyal/hari, scan seluruh market, dan berita — tanpa perlu kartu kredit.' },
-        { title: 'AI yang Bisa Dijelaskan', desc: 'Bukan sekadar "BELI" — dapatkan checklist konfluensi dan konteks kondisi market untuk setiap sinyal.' },
+          { title: 'Dibuat untuk IDX, bukan adaptasi', desc: 'Ticker Indonesia, jam market BEI, format Rupiah, grup sektor <span class="kw">LQ45 / IDX30</span> — dirancang khusus untuk pasar kita.' },
+          { title: 'Sinyal yang sama di mana saja', desc: 'Telegram, Discord, atau web — <span class="kw">sinkronisasi sempurna</span> antar platform.' },
+          { title: 'Mulai Gratis. Selamanya.', desc: '3 sinyal/hari, scan seluruh market, dan berita — <span class="kw">tanpa perlu kartu kredit</span>.' },
+          { title: 'AI yang Bisa Dijelaskan', desc: 'Bukan sekadar "BELI" — dapatkan <span class="kw">checklist konfluensi</span> dan konteks kondisi market untuk setiap sinyal.' },
         { title: 'Kecerdasan Lokal', desc: 'Qwen 2.5 mengambil alih secara lokal jika koneksi cloud terputus. Tanpa interupsi.' },
         { title: 'Keandalan Tanpa Tanding', desc: 'Retry otomatis dan sistem yang tangguh. Orion Alpha berjalan saat market buka, setiap hari.' }
       ]

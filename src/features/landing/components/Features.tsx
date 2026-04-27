@@ -29,7 +29,7 @@ export default function Features({ openModal }: FeaturesProps) {
         <p className="lede">{t('features.desc')}</p>
       </div>
 
-      <div className="feature-grid">
+      <div className="feature-grid stagger-in">
         {featureList.map((f) => (
           <div key={f.id} className="feature-card-wrapper">
             {f.core && (
@@ -57,7 +57,7 @@ export default function Features({ openModal }: FeaturesProps) {
                 </svg>
               </div>
               <h3>{f.title}</h3>
-              <p>{f.desc}</p>
+              <p dangerouslySetInnerHTML={{ __html: f.desc }} />
               <span className="feature-card-cta btn-shine">
                 {f.link ? (t('common.join_discord') || 'Join Discord') : (t('common.learn_more') || 'Read detail')}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>

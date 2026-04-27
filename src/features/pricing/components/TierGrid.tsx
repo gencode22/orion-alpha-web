@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TierGrid() {
   return (
-    <section className="tier-grid fade-up" aria-label="Subscription plans">
+    <section className="tier-grid stagger-in" aria-label="Subscription plans">
 
       {/*  FREE  */}
       <article className="tier-card glass-card">
