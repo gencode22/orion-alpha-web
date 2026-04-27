@@ -14,11 +14,12 @@ import Advantages from "@/components/landing/Advantages";
 import PricingCTA from "@/components/landing/PricingCTA";
 import FinalCTA from "@/components/landing/FinalCTA";
 import FeatureModal from "@/components/landing/FeatureModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Config
-import { FEATURE_MODALS } from "@/config/features";
 
 export default function FeaturesPage() {
+  const { t } = useLanguage();
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   useEffect(() => {
@@ -68,22 +69,12 @@ export default function FeaturesPage() {
 
         {/* Trust strip */}
         <div className="trust-strip-features fade-up" role="list">
-          <span className="trust-pill" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Built by a trader, for traders
-          </span>
-          <span className="trust-pill" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Open methodology — no black box
-          </span>
-          <span className="trust-pill" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Walk-forward A rated
-          </span>
-          <span className="trust-pill" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            161 automated tests
-          </span>
+          {t('trust').map((text: string, i: number) => (
+            <span key={i} className="trust-pill" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              {text}
+            </span>
+          ))}
         </div>
 
         <FinalCTA />
@@ -93,7 +84,7 @@ export default function FeaturesPage() {
       <FeatureModal 
         activeModal={activeModal} 
         closeModal={closeModal} 
-        featureData={activeModal ? FEATURE_MODALS[activeModal] : null} 
+        featureData={activeModal ? t('modals')[activeModal] : null} 
       />
     </div>
   );

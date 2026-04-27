@@ -1,35 +1,38 @@
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Advantages() {
+  const { t } = useLanguage();
+
   const advantages = [
     { 
-      title: 'Made for IDX, not adapted for it', 
-      desc: 'Indonesian tickers, BEI market hours, Rupiah formatting, LQ45 / IDX30 sector groupings — built for this market from day one.',
+      title: t('advantages.cards.0.title'), 
+      desc: t('advantages.cards.0.desc'),
       size: 'large' 
     },
     { 
-      title: 'Same signal everywhere', 
-      desc: 'Telegram, Discord, or the web — zero drift between platforms.',
+      title: t('advantages.cards.1.title'), 
+      desc: t('advantages.cards.1.desc'),
       size: 'small' 
     },
     { 
-      title: 'Start free. Always.', 
-      desc: '3 signals/day, full market scan, and news — no credit card required.',
+      title: t('advantages.cards.2.title'), 
+      desc: t('advantages.cards.2.desc'),
       size: 'small' 
     },
     { 
-      title: 'Explainable AI', 
-      desc: 'Not just "BUY" — get the confluence checklist and market regime context for every single alert.',
+      title: t('advantages.cards.3.title'), 
+      desc: t('advantages.cards.3.desc'),
       size: 'medium' 
     },
     { 
-      title: 'Local Intelligence', 
-      desc: 'Qwen 2.5 takes over locally if the cloud is unavailable. Zero interruption.',
+      title: t('advantages.cards.4.title'), 
+      desc: t('advantages.cards.4.desc'),
       size: 'medium' 
     },
     { 
-      title: 'Unmatched Reliability', 
-      desc: 'Automatic retries and persistent state. Orion Alpha runs when the market opens, every single day.',
+      title: t('advantages.cards.5.title'), 
+      desc: t('advantages.cards.5.desc'),
       size: 'medium' 
     },
   ];
@@ -37,9 +40,9 @@ export default function Advantages() {
   return (
     <section className="advantages fade-up" id="why">
       <div className="section-head">
-        <span className="eyebrow">Why Orion Alpha</span>
-        <h2 className="display-text">Built different. <span className="accent">Priced for everyone.</span></h2>
-        <p>Most signal bots give you a number with no context. Orion Alpha shows you the work — so you learn while you trade.</p>
+        <span className="eyebrow">{t('advantages.eyebrow')}</span>
+        <h2 className="display-text">{t('advantages.title')} <span className="accent">{t('advantages.title_accent')}</span></h2>
+        <p>{t('advantages.desc')}</p>
       </div>
 
       <div className="advantages-bento">

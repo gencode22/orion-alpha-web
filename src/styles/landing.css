@@ -20,8 +20,18 @@
       padding: 3px;
     }
 
-    /* Feature badge (core/featured callout on a card) */
+    .feature-card-wrapper {
+      position: relative;
+      height: 100%;
+    }
+
+    /* Feature badge (core/featured callout on a card) - now floating center above */
     .feature-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
       display: inline-flex;
       align-items: center;
       gap: 5px;
@@ -29,12 +39,13 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 14px;
-      background: rgba(6,182,212,0.1);
-      border: 1px solid rgba(6,182,212,0.25);
+      padding: 3px 10px;
+      border-radius: 99px; /* Pill style looks better floating */
+      background: var(--bg); /* Solid background to cover the card border */
+      border: 1px solid var(--cyan);
       color: var(--cyan);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(6,182,212,0.15);
     }
 
     /* Compact intro above features (no big hero logo) */
@@ -201,7 +212,8 @@
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+      gap: 20px; /* Increased gap for cleaner floating badges */
+      padding-top: 12px; /* Space for the floating badges in top row */
     }
     .feature-card {
       padding: 24px;
@@ -209,6 +221,13 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .feature-card.is-core {
+      border-color: rgba(6, 182, 212, 0.45);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.05);
     }
     .feature-card:hover {
       border-color: var(--cyan);
@@ -499,6 +518,9 @@
     .audience-card {
       padding: 32px 28px;
       border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     .audience-icon {
       width: 38px; height: 38px;
@@ -615,7 +637,8 @@
       position: relative;
     }
     .feature-card-cta {
-      margin-top: 14px;
+      margin-top: auto;
+      padding-top: 14px;
       display: inline-flex;
       align-items: center;
       gap: 5px;
@@ -739,6 +762,9 @@
     .method-card {
       padding: 28px;
       border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     .method-card .method-eyebrow {
       font-family: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
@@ -764,6 +790,7 @@
       margin: 0 0 12px;
     }
     .method-card .method-meta {
+      margin-top: auto;
       font-family: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
       font-size: 11px;
       color: var(--text);

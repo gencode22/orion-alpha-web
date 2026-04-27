@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from "@/context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,7 +40,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"></script>
         <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
@@ -58,9 +59,11 @@ export default function RootLayout({
         ` }} />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${outfit.variable}`}>
-        <ScrollObserver />
-        <MobileStickyCTA />
-        {children}
+        <LanguageProvider>
+          <ScrollObserver />
+          <MobileStickyCTA />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

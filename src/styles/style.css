@@ -348,10 +348,12 @@ body.landing::before {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mobile-sticky-cta.is-visible {
-  display: block;
-  pointer-events: auto;
-  transform: translateY(0);
+@media (max-width: 640px) {
+  .mobile-sticky-cta.is-visible {
+    display: block;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
 .sticky-pill {
@@ -406,12 +408,6 @@ body.landing::before {
 
 .sticky-action:active {
   transform: scale(0.95);
-}
-
-@media (max-width: 640px) {
-  .mobile-sticky-cta {
-    display: block;
-  }
 }
 
 /* ── Interactive Fake Demo ── */
@@ -765,7 +761,7 @@ header {
 .topbar-nav a.is-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
 /* Theme toggle */
-.theme-toggle-btn {
+.theme-toggle-btn, .lang-toggle-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -778,20 +774,29 @@ header {
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   flex-shrink: 0;
 }
-.theme-toggle-btn:hover { color: var(--cyan); border-color: var(--cyan); }
-.theme-toggle-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.lang-toggle-btn span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.theme-toggle-btn:hover, .lang-toggle-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+.theme-toggle-btn:focus-visible, .lang-toggle-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .theme-toggle-btn svg { width: 16px; height: 16px; }
 .theme-toggle-btn .icon-moon { display: block; }
 .theme-toggle-btn .icon-sun  { display: none; }
 [data-theme="light"] .theme-toggle-btn .icon-moon { display: none; }
 [data-theme="light"] .theme-toggle-btn .icon-sun  { display: block; }
+[data-theme="light"] .theme-toggle-btn, [data-theme="light"] .lang-toggle-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
 [data-theme="light"] .theme-toggle-btn {
   color: #d97706;
   border-color: rgba(217,119,6,.25);
   background: rgba(217,119,6,.05);
 }
-[data-theme="light"] .theme-toggle-btn:hover { color: var(--cyan); border-color: var(--cyan); }
-@media (pointer: coarse) { .theme-toggle-btn { width: 44px; height: 44px; } }
+[data-theme="light"] .theme-toggle-btn:hover, [data-theme="light"] .lang-toggle-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+@media (pointer: coarse) { .theme-toggle-btn, .lang-toggle-btn { width: 44px; height: 44px; } }
 
 @media (max-width: 640px) {
   .landing-topbar { padding: 12px 16px; }
@@ -2881,96 +2886,6 @@ footer {
 .gate-cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
-}
-
-/* ── Mobile Sticky CTA (Floating Pill) ── */
-.mobile-sticky-cta {
-  display: none;
-  position: fixed;
-  bottom: 24px;
-  left: 20px;
-  right: 20px;
-  z-index: 1000;
-  pointer-events: none;
-  transform: translateY(120%);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-sticky-cta.is-visible {
-  display: block;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.sticky-pill {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 8px 8px 20px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  box-shadow: 
-    0 10px 25px -5px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.sticky-info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.sticky-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.01em;
-}
-
-.sticky-sub {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.sticky-action {
-  background: var(--cyan);
-  color: #000;
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
-  transition: transform 0.2s ease, background 0.2s;
-}
-
-.sticky-action:active {
-  transform: scale(0.95);
-}
-
-[data-theme="light"] .sticky-pill {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-}
-[data-theme="light"] .sticky-title { color: #000; }
-[data-theme="light"] .sticky-sub { color: #64748b; }
-
-@media (max-width: 640px) {
-  .mobile-sticky-cta {
-    display: block;
-  }
 }
 
 /* ── Discord Card Highlight ── */
