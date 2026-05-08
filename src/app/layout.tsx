@@ -13,7 +13,7 @@ import "../styles/docs.css";
 import "./globals.css";
 
 import ScrollObserver from "@/components/layout/ScrollObserver";
-import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
+
 import { LanguageProvider } from "@/store/LanguageContext";
 import { cn } from "@/lib/utils";
 
@@ -83,7 +83,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">Skip to content</a>
         <LanguageProvider>
           <ScrollObserver />
-          <MobileStickyCTA />
+
           <main id="main-content">
             {children}
           </main>
