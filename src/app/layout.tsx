@@ -1,15 +1,41 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
-import "./globals.css";
+import { Inter, JetBrains_Mono, Outfit, Geist } from "next/font/google";
+
+// Legacy Styles (Fallback)
+import "../styles/theme.css";
 import "../styles/style.css";
+import "../styles/landing.css";
+import "../styles/showcase.css";
+import "../styles/pricing.css";
+import "../styles/docs.css";
+
+// Global Tailwind v4 & DESIGN.md Tokens (Overrides Legacy)
+import "./globals.css";
+
 import ScrollObserver from "@/components/layout/ScrollObserver";
 import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
 import { LanguageProvider } from "@/store/LanguageContext";
+import { cn } from "@/lib/utils";
 
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-display" });
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter" 
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ["latin"], 
+  variable: "--font-mono" 
+});
+
+const outfit = Outfit({ 
+  subsets: ["latin"], 
+  variable: "--font-display" 
+});
 
 export const metadata: Metadata = {
   title: "Orion Alpha — Sinyal Swing Trading Saham IDX & BEI",
@@ -31,14 +57,18 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html 
+      lang="en" 
+      suppressHydrationWarning 
+      className={cn("dark", geist.variable, inter.variable, jetbrainsMono.variable, outfit.variable)}
+      data-theme="dark"
+    >
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"></script>
         <script dangerouslySetInnerHTML={{ __html: `
@@ -48,21 +78,15 @@ export default function RootLayout({
           gtag('config', 'G-NZJDRV1E53');
         ` }} />
         <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js" async></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function(){
-            let t = localStorage.getItem('orion-theme');
-            if (!t) {
-              t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            }
-            document.documentElement.setAttribute('data-theme', t);
-          })();
-        ` }} />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} ${outfit.variable}`}>
+      <body className="antialiased">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <LanguageProvider>
           <ScrollObserver />
           <MobileStickyCTA />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
         </LanguageProvider>
       </body>
     </html>

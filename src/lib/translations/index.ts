@@ -12,7 +12,8 @@ export const translations: Record<'en' | 'id', any> = {
       home: 'Home',
       showcase: 'Showcase',
       about: 'About',
-      pricing: 'Pricing'
+      pricing: 'Pricing',
+      docs: 'Docs'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',
@@ -22,18 +23,23 @@ export const translations: Record<'en' | 'id', any> = {
       stats: {
         setups: 'Swing Setups',
         indicators: 'Indicators',
-        stocks: 'IDX Stocks'
+        stocks: 'IDX Tickers',
+        rating: 'Backtest Rating'
       },
       ctas: {
         telegram: 'Open Telegram Bot',
         showcase: 'Live Showcase',
         hint: 'Interactive preview — no signup'
-      }
+      },
+      micro: '3 signals/day free · No credit card · No expiry',
+      panel_title: 'Analysis Engine',
+      panel_platforms: 'Telegram · Discord · Web Dashboard'
     },
     features: {
       eyebrow: 'Swing Trading Toolkit',
       title: 'Find the right setup.',
       title_accent: 'Every time.',
+      also_included: 'Also included:',
       desc: 'Nine modules — setup detection, confluence scoring, risk sizing, fundamentals, and alerts — working together so you always know what the data is saying.',
       cards: {
         setups: { title: '20+ Swing Setup Detectors', desc: '<span class="kw">VCP, Pullback, Breakout-Volume</span>, Donchian, Cup-Handle, Flag — each scored 0–100 with regime-aware filter.' },
@@ -82,7 +88,7 @@ export const translations: Record<'en' | 'id', any> = {
       title_italic: 'not noise.',
       desc: "Whether you're new to swing trading or systematic for years, Orion meets you where you are.",
       cards: [
-        { title: 'Beginners who want a real system', desc: 'No more FOMO trades or grup signal roulette. Every signal explains itself — score, setup, levels — so you learn while the bot does the heavy lifting.' },
+        { title: 'Beginners who want a real system', desc: 'No more FOMO trades or random signal groups. Every signal explains itself — score, setup, levels — so you learn while the bot does the heavy lifting.' },
         { title: 'Working professionals', desc: '30 seconds for a setup, not 3 hours of charting. Check your watchlist on lunch break, set alerts, trade with conviction.' },
         { title: 'Data-driven retail traders', desc: 'Open methodology. Decomposable scores. Walk-forward backtests. No black boxes — every signal traceable to its inputs.' }
       ]
@@ -110,11 +116,39 @@ export const translations: Record<'en' | 'id', any> = {
       title_italic: 'when you need more',
       desc: 'Monthly plans, no lock-in. Cancel anytime. Manual activation under 10 minutes via QRIS or bank transfer.',
       cta: 'See all plans',
+      see_all: 'See full plan details',
       tiers: {
         free: { title: 'Free', desc: '3 signals/day · scan · regime' },
         starter: { title: 'Starter', badge: 'Popular', desc: 'Unlimited signals · swing · FA · chart' },
         pro: { title: 'Pro', desc: '+ backtest · auto-alert · watchlist' }
       }
+    },
+    stats: {
+      tickers: 'IDX Tickers Scanned',
+      setups: 'Swing Setups',
+      indicators: 'Confluence Indicators',
+      rating: 'Backtest Rating'
+    },
+    pricing_inline: {
+      free: {
+        name: 'FREE',
+        price: 'Rp 0',
+        features: ['3 signals/day', 'Full IDX market scan', 'Regime read (Bull/Bear/Sideways)', 'News aggregation', 'Telegram & Discord access'],
+        cta: 'Start Free on Telegram',
+        note: 'No credit card · No expiry'
+      },
+      pro: {
+        name: 'PRO',
+        price: 'Rp 49K',
+        period: '/month',
+        badge: 'Most Popular',
+        features: ['Unlimited signals', 'All 9 modules unlocked', 'Priority smart alerts every 15 min', 'Backtest engine + walk-forward', 'Portfolio tracker + XLSX export', 'QRIS or bank transfer · Under 10 min'],
+        cta: 'Upgrade to Pro'
+      }
+    },
+    method_summary: {
+      text: 'Every signal is built on a <strong>12-indicator weighted vote</strong>, regime-adaptive weights, multi-timeframe alignment, and ATR-anchored risk sizing. <strong>No black boxes.</strong>',
+      link: 'See full methodology'
     },
     trust: [
       'Built by a trader, for traders',
@@ -146,7 +180,8 @@ export const translations: Record<'en' | 'id', any> = {
       home: 'Beranda',
       showcase: 'Showcase',
       about: 'Tentang',
-      pricing: 'Harga'
+      pricing: 'Harga',
+      docs: 'Docs'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',
@@ -158,16 +193,21 @@ export const translations: Record<'en' | 'id', any> = {
         showcase: 'Showcase Live',
         hint: 'Pratinjau interaktif — tanpa daftar'
       },
+      micro: '3 sinyal/hari gratis · Tanpa kartu kredit · Tanpa batas waktu',
+      panel_title: 'Mesin Analisis',
+      panel_platforms: 'Telegram · Discord · Web Dashboard',
       stats: {
         setups: 'Setup Swing',
         indicators: 'Indikator',
-        stocks: 'Saham IDX'
+        stocks: 'Ticker IDX',
+        rating: 'Rating Backtest'
       }
     },
     features: {
       eyebrow: 'Swing Trading Toolkit',
       title: 'Temukan setup yang tepat.',
       title_accent: 'Setiap saat.',
+      also_included: 'Juga termasuk:',
       desc: 'Sembilan modul — deteksi setup, skor confluence, manajemen risiko, fundamental, dan notifikasi — bekerja bersama agar Anda selalu tahu apa yang dikatakan data.',
       cards: {
         setups: { title: '20+ Detektor Swing Setup', desc: '<span class="kw">VCP, Pullback, Breakout</span>, Cup-Handle, Flag — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
@@ -245,11 +285,39 @@ export const translations: Record<'en' | 'id', any> = {
       title_italic: 'saat butuh lebih',
       desc: 'Paket bulanan, tanpa kontrak. Batalkan kapan saja. Aktivasi manual di bawah 10 menit via QRIS atau transfer bank.',
       cta: 'Lihat semua paket',
+      see_all: 'Lihat detail lengkap paket',
       tiers: {
         free: { title: 'Free', desc: '3 sinyal/hari · scan · regime' },
         starter: { title: 'Starter', badge: 'Populer', desc: 'Sinyal tanpa batas · swing · FA · chart' },
         pro: { title: 'Pro', desc: '+ backtest · auto-alert · watchlist' }
       }
+    },
+    stats: {
+      tickers: 'Ticker IDX Dipindai',
+      setups: 'Setup Swing',
+      indicators: 'Indikator Konfluensi',
+      rating: 'Rating Backtest'
+    },
+    pricing_inline: {
+      free: {
+        name: 'GRATIS',
+        price: 'Rp 0',
+        features: ['3 sinyal/hari', 'Scan seluruh market IDX', 'Pembacaan regime (Bull/Bear/Sideways)', 'Agregasi berita', 'Akses Telegram & Discord'],
+        cta: 'Mulai Gratis di Telegram',
+        note: 'Tanpa kartu kredit · Tanpa batas waktu'
+      },
+      pro: {
+        name: 'PRO',
+        price: 'Rp 49K',
+        period: '/bulan',
+        badge: 'Paling Populer',
+        features: ['Sinyal tanpa batas', 'Semua 9 modul terbuka', 'Alert pintar prioritas setiap 15 menit', 'Engine backtest + walk-forward', 'Pelacak portofolio + ekspor XLSX', 'QRIS atau transfer bank · Di bawah 10 menit'],
+        cta: 'Upgrade ke Pro'
+      }
+    },
+    method_summary: {
+      text: 'Setiap sinyal dibangun dari <strong>voting berbobot 12-indikator</strong>, bobot adaptif regime, keselarasan multi-timeframe, dan manajemen risiko berbasis ATR. <strong>Tanpa black box.</strong>',
+      link: 'Lihat metodologi lengkap'
     },
     trust: [
       'Dibuat oleh trader, untuk trader',

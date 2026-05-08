@@ -1,0 +1,776 @@
+"use client";
+
+import React from "react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import "@/styles/docs.css";
+
+/* ── Reusable: Setup accordion card ── */
+function SetupCard({ name, quality, hold, desc, children }: {
+  name: string; quality: string; hold: string; desc: string; children: React.ReactNode;
+}) {
+  return (
+    <details className="setup-card">
+      <summary>
+        <span className="setup-card-title">{name}</span>
+        <div className="setup-card-right">
+          <div className="setup-meta"><span>{quality}</span><span>{hold}</span></div>
+          <svg className="setup-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </summary>
+      <div className="setup-card-body">
+        <p className="setup-desc">{desc}</p>
+        {children}
+      </div>
+    </details>
+  );
+}
+
+/* ── Reusable: Requirement table ── */
+function ReqTable({ rows }: { rows: [string, 'Hard' | 'Soft', string][] }) {
+  return (
+    <div className="doc-table-wrap">
+      <table className="doc-table">
+        <thead><tr><th>Requirement</th><th>Type</th><th>Detail</th></tr></thead>
+        <tbody>
+          {rows.map(([req, type, detail], i) => (
+            <tr key={i}>
+              <td>{req}</td>
+              <td><span className={type === 'Hard' ? 'badge-hard' : 'badge-soft'}>{type}</span></td>
+              <td>{detail}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ── TOC Data ── */
+const tocItems = [
+  { id: 'philosophy', num: '01', label: 'Philosophy' },
+  { id: 'setups', num: '02', label: '20 Swing Setups' },
+  { id: 'confluence', num: '03', label: 'Signal Scoring' },
+  { id: 'regime', num: '04', label: 'Market Regime' },
+  { id: 'risk', num: '05', label: 'Risk Management' },
+  { id: 'trendiness', num: '06', label: 'Adaptive Adjustments' },
+  { id: 'backtest', num: '07', label: 'Backtest Evidence' },
+  { id: 'limitations', num: '08', label: 'Limitations' },
+];
+
+export default function DocsPage() {
+  return (
+    <div className="landing">
+      <Navbar />
+      <div className="landing-container">
+
+        {/* ── Hero ── */}
+        <section className="docs-hero">
+          <span className="about-eyebrow">Strategy Documentation</span>
+          <h1 className="display-text">
+            Trading Strategy<br /><span className="accent">Methodology</span>
+          </h1>
+          <p className="lede">
+            Complete documentation of Orion Alpha&apos;s swing setup detectors,
+            confluence scoring, market regimes, and walk-forward validated backtest evidence.
+          </p>
+          <div className="docs-stats">
+            <div className="docs-stat">
+              <div className="docs-stat-value"><span className="accent-num">20</span></div>
+              <div className="docs-stat-label">Swing Setups</div>
+            </div>
+            <div className="docs-stat">
+              <div className="docs-stat-value"><span className="accent-num">12</span></div>
+              <div className="docs-stat-label">Confluence Points</div>
+            </div>
+            <div className="docs-stat">
+              <div className="docs-stat-value"><span className="accent-num">4</span></div>
+              <div className="docs-stat-label">Market Regimes</div>
+            </div>
+            <div className="docs-stat">
+              <div className="docs-stat-value"><span className="accent-num">1,137</span></div>
+              <div className="docs-stat-label">OOS Trades</div>
+            </div>
+          </div>
+          <p className="docs-version">v2.5.3 &middot; Educational purpose only &middot; Not investment advice</p>
+        </section>
+
+        {/* ── Mobile TOC ── */}
+        <nav className="docs-toc-mobile" aria-label="Table of contents">
+          {tocItems.map(t => (
+            <a key={t.id} href={`#${t.id}`}><span className="toc-num">{t.num}</span> {t.label}</a>
+          ))}
+        </nav>
+
+        {/* ── Layout: Sidebar + Main ── */}
+        <div className="docs-layout">
+
+          {/* Sidebar TOC (desktop) */}
+          <aside className="docs-sidebar">
+            <div className="docs-sidebar-title">Contents</div>
+            {tocItems.map(t => (
+              <a key={t.id} href={`#${t.id}`}><span className="toc-num">{t.num}</span> {t.label}</a>
+            ))}
+          </aside>
+
+          {/* Main Content */}
+          <div className="docs-main">
+
+        {/* ══ 1. Philosophy ══ */}
+        <section id="philosophy" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 1</span>
+            <h2>Philosophy & Approach</h2>
+            <p>
+              Orion Alpha is a trend-following swing trading system for the Indonesian stock market
+              (Bursa Efek Indonesia / IDX). It scans 62+ stocks across 9 sectors and identifies
+              actionable setups with defined entry, stop-loss, and take-profit levels.
+            </p>
+          </div>
+          <div className="doc-content">
+            <h3>Core Principles</h3>
+            <ul>
+              <li><strong>Trend-following bias:</strong> prioritize buying in established uptrends or at trend initiation. Mean-reversion is secondary.</li>
+              <li><strong>Swing timeframe:</strong> 5-45 day holding, adapted per-stock based on historical trend episode length.</li>
+              <li><strong>Long-only:</strong> IDX has no retail short selling. Bearish detectors exist in code but are disabled in the live dispatcher.</li>
+              <li><strong>20 diverse setups:</strong> different market conditions favor different entry patterns. The engine runs all detectors and picks the highest-quality match.</li>
+              <li><strong>Checklist-based quality:</strong> each setup has 7-11 binary items. Quality = (passed / total) x 100. Hard requirements gate entry.</li>
+              <li><strong>Regime-aware:</strong> IHSG market regime modulates indicator weights, setup selection, and quality thresholds.</li>
+            </ul>
+
+            <h3>Why 20 Setups?</h3>
+            <p>
+              A single setup works in some conditions and fails in others. By maintaining 20 detectors
+              spanning trend continuation, breakout, momentum shift, pattern recognition, and accumulation,
+              the system finds opportunities across all market conditions &mdash; from strong trends
+              to post-consolidation expansions, direction changes, and institutional support zones.
+            </p>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 2. The 20 Swing Setups ══ */}
+        <section id="setups" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 2</span>
+            <h2>The 20 Swing Setups</h2>
+            <p>Each setup has <strong>Hard</strong> requirements (must-pass gates) and <strong>Soft</strong> requirements (quality score contributors). Click any setup to expand its checklist.</p>
+          </div>
+          <div className="doc-content">
+
+            {/* Group A */}
+            <div className="setup-group">
+              <div className="setup-group-title">Group A: Trend Continuation</div>
+
+              <SetupCard name="Pullback-Uptrend" quality="/8" hold="5-15d" desc="Weekly uptrend + daily EMA stack bullish + price pulled back to EMA20 or nearest swing support. Classic buy-the-dip in an uptrend.">
+                <ReqTable rows={[
+                  ['Weekly uptrend (price>EMA20 & MACD>=0)', 'Hard', 'MTF confirmation'],
+                  ['EMA stack bullish (20>50>100, price>EMA20)', 'Hard', 'Trend structure'],
+                  ['Price above EMA200', 'Hard', 'Long-term uptrend'],
+                  ['In pullback zone (\u22641.2 ATR of EMA20 or \u22641.5 ATR of support)', 'Hard', 'Entry timing'],
+                  ['RSI 38-62', 'Soft', 'Not overbought'],
+                  ['Volume healthy (\u22642.5x, no panic)', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['IHSG regime not BEAR', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Donchian-Break (Turtle System)" quality="/9" hold="15-45d" desc="Close above 20-day (S1) or 55-day (S2) Donchian channel high. Classic Turtle trading breakout. SL: 10-day Donchian low.">
+                <ReqTable rows={[
+                  ['Close > 20-day Donchian high', 'Hard', 'Channel breakout'],
+                  ['Channel width \u2265 3%', 'Hard', 'Filter false breakouts'],
+                  ['Volume \u2265 1.2x', 'Hard', 'Confirmation'],
+                  ['Trend profile not STRONG_DOWNTREND/RANGE', 'Hard', ''],
+                  ['Close > 55-day Donchian high', 'Soft', '+5 quality bonus'],
+                  ['ADX \u2265 20', 'Soft', ''],
+                  ['Above EMA50', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                  ['Weekly not bearish', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Flag-Continuation" quality="/7" hold="5-20d" desc="Bull flag or pennant after sharp rally. Target: measured move (pole height projected).">
+                <ReqTable rows={[
+                  ['Bull flag/pennant pattern detected', 'Hard', 'Pattern recognition'],
+                  ['Volume \u2265 1.2x', 'Soft', ''],
+                  ['Price > EMA20', 'Soft', ''],
+                  ['MACD histogram > 0', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                  ['Weekly aligned', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Golden-Cross" quality="/8" hold="10-25d" desc="EMA20 crosses above EMA50 within last 5 bars. Trend initiation.">
+                <ReqTable rows={[
+                  ['EMA20 crossed above EMA50 in last 5 bars', 'Hard', 'Detected bar-by-bar'],
+                  ['Price > EMA20 > EMA50', 'Hard', 'Cross confirmed'],
+                  ['MACD histogram > 0', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['Volume \u2265 1.0x', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                  ['Weekly not bearish', 'Soft', ''],
+                  ['Above EMA200', 'Soft', ''],
+                ]} />
+              </SetupCard>
+            </div>
+
+            {/* Group B */}
+            <div className="setup-group">
+              <div className="setup-group-title">Group B: Breakout</div>
+
+              <SetupCard name="Breakout-Volume" quality="/8" hold="10-30d" desc="Price breaks above 20-bar high with volume surge \u2265 1.5x. Range/squeeze break with conviction.">
+                <ReqTable rows={[
+                  ['Close > 20-bar high (0.2% margin)', 'Hard', 'Breakout'],
+                  ['Volume \u2265 1.5x', 'Hard', 'Conviction'],
+                  ['Prior consolidation (BB width < avg x 0.85)', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['Above EMA50', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                  ['Weekly not bearish', 'Soft', ''],
+                  ['No resistance within 2% above', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="BB-Squeeze-Break" quality="/8" hold="5-15d" desc="BB squeeze (width < 80% of 50-bar avg) then price breaks above upper band. Post-squeeze expansion.">
+                <ReqTable rows={[
+                  ['BB width < avg x 0.8', 'Hard', 'Squeeze detected'],
+                  ['Price \u2265 upper BB', 'Hard', 'Break confirmed'],
+                  ['Above EMA50', 'Hard', 'Trend filter'],
+                  ['Volume \u2265 1.5x', 'Hard', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['RSI \u2264 78', 'Soft', ''],
+                  ['CMF > 0', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="52W-High-Break" quality="/8" hold="10-30d" desc="Price breaks above 252-bar high. Pure momentum, price discovery zone with no overhead resistance.">
+                <ReqTable rows={[
+                  ['Price \u2265 N-bar high (up to 252)', 'Hard', ''],
+                  ['Volume \u2265 1.5x', 'Hard', ''],
+                  ['ADX \u2265 20', 'Soft', ''],
+                  ['Above EMA50', 'Soft', ''],
+                  ['Above EMA200', 'Soft', ''],
+                  ['RSI 45-82', 'Soft', 'Not exhausted'],
+                  ['CMF > 0', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Inside-Bar-Break" quality="/7" hold="3-10d" desc="Yesterday's bar inside the prior bar (mother). Today breaks above mother bar high. SL: inside bar low.">
+                <ReqTable rows={[
+                  ['Inside bar pattern valid', 'Hard', ''],
+                  ['Price \u2265 mother bar high', 'Hard', ''],
+                  ['Above EMA50', 'Hard', 'Trend filter'],
+                  ['Volume \u2265 1.3x', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['RSI \u2264 72', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="VCP (Volatility Contraction Pattern)" quality="/9" hold="10-30d" desc="Minervini-style: 3 contracting price ranges (depth shrinking), volume drying, then breakout from pivot. High-conviction.">
+                <ReqTable rows={[
+                  ['3 contracting phases (last < 65% of first)', 'Hard', ''],
+                  ['Breakout from 10-bar pivot high', 'Hard', ''],
+                  ['Volume \u2265 1.5x at breakout', 'Hard', ''],
+                  ['Price > EMA50', 'Hard', ''],
+                  ['Volume drying during contraction (<85% early)', 'Soft', ''],
+                  ['Price > EMA200', 'Soft', '+5 quality bonus'],
+                  ['Last base \u2264 10% depth', 'Soft', '+5 bonus'],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Flat-Base" quality="/10" hold="15-40d" desc="O'Neil CAN SLIM: tight base (<15% depth, 25-40 bars) near prior high, volume drying, then breakout. Extra +8 if base < 8%.">
+                <ReqTable rows={[
+                  ['Base depth < 15%', 'Hard', ''],
+                  ['Breakout from base high', 'Hard', ''],
+                  ['Volume \u2265 1.4x at breakout', 'Hard', ''],
+                  ['Price > EMA50', 'Hard', ''],
+                  ['Near prior high (\u2265 85%)', 'Soft', ''],
+                  ['Volume drying during base (<80% pre-base)', 'Soft', ''],
+                  ['Price > EMA200', 'Soft', '+5 bonus'],
+                  ['ADX \u2265 18', 'Soft', ''],
+                  ['RSI \u2264 80', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+            </div>
+
+            {/* Group C */}
+            <div className="setup-group">
+              <div className="setup-group-title">Group C: Momentum / Direction Change</div>
+
+              <SetupCard name="Supertrend-Flip" quality="/7" hold="7-25d" desc="Supertrend flips bearish to bullish within 5 bars. SL: below Supertrend line.">
+                <ReqTable rows={[
+                  ['Supertrend flip bullish \u2264 5 bars ago', 'Hard', ''],
+                  ['Volume \u2265 1.3x at flip', 'Hard', ''],
+                  ['Price > Supertrend line', 'Hard', ''],
+                  ['ADX \u2265 15', 'Soft', ''],
+                  ['RSI \u2264 70', 'Soft', ''],
+                  ['Above EMA20', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Ichimoku-Break" quality="/8" hold="15-30d" desc="Price breaks above Kumo cloud + Tenkan > Kijun. Multi-layered trend confirmation. SL: below Kijun line.">
+                <ReqTable rows={[
+                  ['Price above Kumo cloud', 'Hard', ''],
+                  ['Tenkan > Kijun (TK cross)', 'Hard', ''],
+                  ['MACD histogram > 0', 'Soft', ''],
+                  ['ADX \u2265 20', 'Soft', ''],
+                  ['Volume \u2265 1.0x', 'Soft', ''],
+                  ['Price > EMA50', 'Soft', ''],
+                  ['Weekly aligned', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="EMA200-Bounce" quality="/8" hold="7-20d" desc="Price corrects to EMA200 area and bounces. Institutional support at the 200-day moving average.">
+                <ReqTable rows={[
+                  ['Was above EMA200+5% in last 60 bars', 'Hard', 'Not perma-below-200'],
+                  ['Price within 2 ATR of EMA200', 'Hard', 'Near the level'],
+                  ['Price \u2265 EMA200 x 0.99', 'Hard', 'Support holding'],
+                  ['EMA50 > EMA200', 'Soft', 'Golden cross area'],
+                  ['RSI \u2264 52', 'Soft', 'Correction happened'],
+                  ['Volume \u2265 1.0x', 'Soft', ''],
+                  ['Bullish reversal candle', 'Soft', 'Hammer/engulfing'],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Weakness-Recovery" quality="/11" hold="7-25d" desc="Corrected \u22655% from 20-bar high, then fresh Golden Cross within 7 bars. Double confirmation. +5 if depth\u226510%, +5 if cross\u22642 bars.">
+                <ReqTable rows={[
+                  ['Correction \u2265 5% from 20-bar high', 'Hard', 'Meaningful pullback'],
+                  ['Fresh Golden Cross within 7 bars', 'Hard', 'Momentum turning'],
+                  ['Price > EMA20 > EMA50 (confirmed)', 'Soft', ''],
+                  ['Above EMA100', 'Soft', 'Not collapsed'],
+                  ['Volume exhaustion during decline', 'Soft', ''],
+                  ['RSI 35-58', 'Soft', 'Room to rise'],
+                  ['CMF > -0.1', 'Soft', ''],
+                  ['Above EMA200', 'Soft', ''],
+                  ['Weekly not strong bearish', 'Soft', ''],
+                  ['Volume uptick at cross \u2265 1.0x', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+            </div>
+
+            {/* Group D */}
+            <div className="setup-group">
+              <div className="setup-group-title">Group D: Pattern Recognition</div>
+
+              <SetupCard name="Cup & Handle" quality="/8" hold="15-40d" desc="Rounded bottom + small handle pullback + rim breakout. Target: cup depth projected from rim.">
+                <ReqTable rows={[
+                  ['Cup & Handle detected', 'Hard', 'Pattern recognition'],
+                  ['Pattern confirmed (price \u2265 rim)', 'Hard', 'Breakout'],
+                  ['Volume \u2265 1.2x', 'Soft', ''],
+                  ['Price > EMA50', 'Soft', ''],
+                  ['Handle present', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                  ['Weekly aligned', 'Soft', ''],
+                  ['ADX \u2265 18', 'Soft', ''],
+                ]} />
+              </SetupCard>
+
+              <SetupCard name="Accumulation-Zone" quality="/8" hold="7-20d" desc="Sideways above EMA50 with rising OBV + positive CMF. Smart money accumulating. Target: nearest resistance or 2.5 ATR.">
+                <ReqTable rows={[
+                  ['Above EMA50', 'Hard', 'Trend filter'],
+                  ['ADX \u2264 25', 'Hard', 'Sideways'],
+                  ['CMF > 0.05', 'Hard', 'Institutional inflow'],
+                  ['MFI 30-65', 'Soft', ''],
+                  ['Price near EMA20 (within 1 ATR)', 'Soft', ''],
+                  ['RSI \u2264 60', 'Soft', ''],
+                  ['OBV rising over 10 bars', 'Soft', ''],
+                  ['IHSG not bear', 'Soft', ''],
+                ]} />
+              </SetupCard>
+            </div>
+
+            {/* Group E */}
+            <div className="setup-group">
+              <div className="setup-group-title">Group E: Reversal (Disabled in Live)</div>
+              <div className="doc-callout warning">
+                These 4 detectors exist in code but are disabled in the live dispatcher. IDX has no retail short selling, so bearish setups are not actionable.
+              </div>
+              <div className="doc-table-wrap">
+                <table className="doc-table">
+                  <thead><tr><th>Setup</th><th>Direction</th><th>Hard Gates</th></tr></thead>
+                  <tbody>
+                    <tr><td>Reversal-Support</td><td>Bullish</td><td>At support + (RSI&lt;38 OR bullish divergence)</td></tr>
+                    <tr><td>Rejection-Downtrend</td><td>Bearish</td><td>Wk down + EMA bear stack + pullback + &lt;EMA200</td></tr>
+                    <tr><td>Breakdown-Volume</td><td>Bearish</td><td>Close &lt; 20-bar low + vol&ge;1.5x + &lt;EMA50</td></tr>
+                    <tr><td>Reversal-Resistance</td><td>Bearish</td><td>At resistance + (RSI&gt;62 OR bearish divergence)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 3. Signal Scoring ══ */}
+        <section id="confluence" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 3</span>
+            <h2>Signal Scoring & Confluence</h2>
+            <p>The confluence score counts how many of 12 independent indicators agree on a bullish stance (0-12).</p>
+          </div>
+          <div className="doc-content">
+            <h3>12-Point Confluence Checklist</h3>
+            <div className="confluence-grid">
+              {[
+                { num: 1, check: 'RSI < 50', meaning: 'Oversold zone' },
+                { num: 2, check: 'MACD Hist > 0', meaning: 'Momentum bullish' },
+                { num: 3, check: 'Price > EMA200', meaning: 'Major uptrend' },
+                { num: 4, check: 'Price > EMA50', meaning: 'Medium uptrend' },
+                { num: 5, check: 'Supertrend BULL', meaning: 'Trend = bullish' },
+                { num: 6, check: 'PSAR bullish', meaning: 'SAR below price' },
+                { num: 7, check: 'CMF > 0', meaning: 'Money inflow' },
+                { num: 8, check: 'OBV confirms', meaning: 'OBV > OBV EMA20' },
+                { num: 9, check: 'ADX > 20', meaning: 'Trending market' },
+                { num: 10, check: 'StochRSI K > D', meaning: 'Stoch cross bullish' },
+                { num: 11, check: 'Above Ichimoku', meaning: 'Above Senkou A & B' },
+                { num: 12, check: 'Tenkan > Kijun', meaning: 'TK cross bullish' },
+              ].map(item => (
+                <div key={item.num} className="confluence-item">
+                  <span className="confluence-num">{item.num}</span>
+                  <span className="confluence-check">{item.check}</span>
+                  <span className="confluence-meaning">{item.meaning}</span>
+                </div>
+              ))}
+            </div>
+
+            <h3>Signal Labels</h3>
+            <div className="signal-label-grid">
+              <div className="signal-label-item">
+                <div className="signal-label-name strong-buy">STRONG BUY</div>
+                <div className="label-desc">Quality &ge; 80 &middot; High-conviction setup</div>
+              </div>
+              <div className="signal-label-item">
+                <div className="signal-label-name buy">BUY</div>
+                <div className="label-desc">Quality &ge; 60 (50 counter) &middot; Standard entry</div>
+              </div>
+              <div className="signal-label-item">
+                <div className="signal-label-name neutral">NEUTRAL</div>
+                <div className="label-desc">No setup or below threshold &middot; No edge</div>
+              </div>
+              <div className="signal-label-item">
+                <div className="signal-label-name sell">SELL / STRONG SELL</div>
+                <div className="label-desc">Bearish quality &ge; 60/80 &middot; Disabled in live</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 4. Market Regime ══ */}
+        <section id="regime" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 4</span>
+            <h2>Market Regime Detection</h2>
+            <p>The system detects the IHSG (Jakarta Composite Index) regime and adjusts indicator weights accordingly.</p>
+          </div>
+          <div className="doc-content">
+            <h3>Regime Classification</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Regime</th><th>Conditions</th><th>Weight Shift</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>BULL</strong></td><td>&gt;EMA200, &gt;EMA50, ADX&gt;20, +DI&gt;-DI</td><td>Trend wt up, osc down</td></tr>
+                  <tr><td><strong>BEAR</strong></td><td>&lt;EMA200, &lt;EMA50, ADX&gt;20, -DI&gt;+DI</td><td>Trend wt max, osc down</td></tr>
+                  <tr><td><strong>KOREKSI</strong></td><td>&gt;EMA200, &lt;EMA50</td><td>Default weights</td></tr>
+                  <tr><td><strong>SIDEWAYS</strong></td><td>ADX &lt; 20</td><td>Osc wt up, trend down</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Adaptive Weight Examples</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Indicator</th><th>Default</th><th>Bull</th><th>Sideways</th><th>Bear</th></tr></thead>
+                <tbody>
+                  <tr><td>EMA</td><td>0.16</td><td>0.20</td><td>0.08</td><td>0.20</td></tr>
+                  <tr><td>MACD</td><td>0.12</td><td>0.14</td><td>0.10</td><td>0.14</td></tr>
+                  <tr><td>RSI</td><td>0.12</td><td>0.08</td><td>0.16</td><td>0.08</td></tr>
+                  <tr><td>Supertrend</td><td>0.09</td><td>0.11</td><td>0.05</td><td>0.12</td></tr>
+                  <tr><td>BB</td><td>0.08</td><td>0.06</td><td>0.12</td><td>0.05</td></tr>
+                  <tr><td>Stochastic</td><td>0.04</td><td>0.03</td><td>0.08</td><td>0.03</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>EIDO Leading Indicator</h3>
+            <p>
+              EIDO (iShares MSCI Indonesia ETF, NYSE) closes at ~04:00 WIB. Overnight movement can signal
+              next-day IHSG direction. Flags generated for: overnight move &ge; +/-1.5%, and divergence between
+              IHSG regime and EIDO trend. Informational only.
+            </p>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 5. Risk Management ══ */}
+        <section id="risk" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 5</span>
+            <h2>Risk Management</h2>
+          </div>
+          <div className="doc-content">
+            <h3>Stop-Loss Placement (Per-Setup)</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Setup</th><th>SL Method</th></tr></thead>
+                <tbody>
+                  <tr><td>Pullback-Uptrend</td><td>Swing low - 0.5 ATR or Entry - 1.5 ATR (tighter)</td></tr>
+                  <tr><td>Breakout-Volume</td><td>Below breakout level (nearest support) x 0.995</td></tr>
+                  <tr><td>Donchian-Break</td><td>10-day Donchian low - 0.3 ATR (Turtle rule)</td></tr>
+                  <tr><td>Golden-Cross</td><td>Below EMA50 - 0.5 ATR</td></tr>
+                  <tr><td>Ichimoku-Break</td><td>Below Kijun line - 0.5 ATR</td></tr>
+                  <tr><td>CupHandle / Flag</td><td>Below pattern low - 0.3 ATR</td></tr>
+                  <tr><td>EMA200-Bounce</td><td>Below swing low in EMA200 area - 0.3 ATR</td></tr>
+                  <tr><td>Supertrend-Flip</td><td>Below Supertrend line - 0.3 ATR</td></tr>
+                  <tr><td>BB-Squeeze / 52W</td><td>Below pre-breakout swing low - 0.3 ATR</td></tr>
+                  <tr><td>Inside-Bar-Break</td><td>Below inside bar low - 0.2 ATR</td></tr>
+                  <tr><td>VCP</td><td>Below last contraction low - 0.2 ATR</td></tr>
+                  <tr><td>Flat-Base</td><td>Below base low - 0.3 ATR</td></tr>
+                  <tr><td>Weakness-Recovery</td><td>Below 20-bar weakness low - 0.3 ATR</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="doc-callout info">
+              <strong>SL Safety Cap:</strong> Regardless of setup logic, SL distance is capped at the tighter of: 2.5 x ATR from entry, or 6% of entry price.
+            </div>
+
+            <h3>3-Phase Trailing Stop (Backtest)</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Phase</th><th>Trigger</th><th>SL moves to</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>1</strong></td><td>Entry &rarr; TP1 hit</td><td>Original SL (no change)</td></tr>
+                  <tr><td><strong>2</strong></td><td>TP1 hit (high &ge; TP1)</td><td>Entry price (breakeven)</td></tr>
+                  <tr><td><strong>3</strong></td><td>TP2 hit (high &ge; TP2)</td><td>TP1 (locked profit)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Position Sizing</h3>
+            <p>
+              Default Rp 50M capital, 1% risk per trade = Rp 500K risk amount.
+              Shares = risk_amount / (entry - SL), rounded to 100-share lots (IDX standard). Max position: 20% of capital.
+            </p>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 6. Trendiness ══ */}
+        <section id="trendiness" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 6</span>
+            <h2>Per-Stock Trendiness & Adaptive Adjustments</h2>
+            <p>Not all stocks trend equally. The system computes a trendiness score (0-100) for each stock using 6-month historical data.</p>
+          </div>
+          <div className="doc-content">
+            <h3>Trendiness Score (0-100)</h3>
+            <ul>
+              <li><strong>Kaufman Efficiency Ratio (60% weight):</strong> net_move / total_path over 126 bars. Score = efficiency x 250 (capped 100).</li>
+              <li><strong>Avg Trend Episode Length (40% weight):</strong> count EMA20/EMA50 crossover transitions, divide lookback by episodes. Score = avg_length x 3 (capped 100).</li>
+            </ul>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Score</th><th>Label</th><th>Effect</th></tr></thead>
+                <tbody>
+                  <tr><td>&ge; 70</td><td><strong>TRENDY</strong></td><td>+5 quality boost</td></tr>
+                  <tr><td>35-69</td><td><strong>MIXED</strong></td><td>No adjustment</td></tr>
+                  <tr><td>&lt; 30</td><td><strong>CHOPPY</strong></td><td>-10 penalty; skip most trend-following setups</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Chandelier Trailing Stop (State-Adaptive)</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Trend State</th><th>Conserv.</th><th>Normal</th><th>Aggress.</th><th>Note</th></tr></thead>
+                <tbody>
+                  <tr><td>STRONG_UPTREND</td><td>HH-3.5ATR</td><td>HH-3.0ATR</td><td>HH-2.5ATR</td><td>Loose: ride the trend</td></tr>
+                  <tr><td>EARLY_UPTREND</td><td>HH-3.0ATR</td><td>HH-2.5ATR</td><td>HH-2.0ATR</td><td>Medium</td></tr>
+                  <tr><td>LATE_UPTREND</td><td>HH-2.0ATR</td><td>HH-1.5ATR</td><td>HH-1.2ATR</td><td>Tight: lock profits</td></tr>
+                  <tr><td>Default/RANGE</td><td>HH-2.5ATR</td><td>HH-2.0ATR</td><td>HH-1.5ATR</td><td>Standard</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 7. Backtest Evidence ══ */}
+        <section id="backtest" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 7</span>
+            <h2>Backtest Evidence</h2>
+          </div>
+          <div className="doc-content">
+            <h3>Aggregate: 62 Stocks x 3 Years</h3>
+
+            <div className="backtest-highlights">
+              <div className="backtest-highlight">
+                <div className="backtest-highlight-value cyan">1,203</div>
+                <div className="backtest-highlight-label">Total Trades</div>
+              </div>
+              <div className="backtest-highlight">
+                <div className="backtest-highlight-value green">53.2%</div>
+                <div className="backtest-highlight-label">Win Rate</div>
+              </div>
+              <div className="backtest-highlight">
+                <div className="backtest-highlight-value">3-4x</div>
+                <div className="backtest-highlight-label">Avg Win / Avg Loss</div>
+              </div>
+            </div>
+
+            <div className="doc-callout info">
+              <strong>Method:</strong> Bar-by-bar replay of detect_swing_setup() with 3-phase trailing stop. 62 IDX stocks, 3 years. No weekly MTF. Regime = UNKNOWN.
+            </div>
+
+            <h3>Per-Setup Breakdown</h3>
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Setup</th><th>N</th><th>Stk</th><th>WR%</th><th>AvgW%</th><th>AvgL%</th><th>Exp</th><th>PF</th></tr></thead>
+                <tbody>
+                  <tr><td>EMA200-Bounce</td><td>364</td><td>59</td><td>49.7</td><td>+16.12</td><td>-4.14</td><td>+5.93</td><td>3.85</td></tr>
+                  <tr><td>Ichimoku-Break</td><td>335</td><td>61</td><td>53.7</td><td>+16.09</td><td>-5.99</td><td>+5.87</td><td>3.12</td></tr>
+                  <tr><td>Accumul-Zone</td><td>124</td><td>49</td><td>51.6</td><td>+14.25</td><td>-3.09</td><td>+5.86</td><td>4.92</td></tr>
+                  <tr><td>Inside-Bar-Brk</td><td>120</td><td>52</td><td>55.0</td><td>+17.59</td><td>-4.47</td><td>+7.66</td><td>4.81</td></tr>
+                  <tr><td>VCP</td><td>81</td><td>45</td><td>59.3</td><td>+7.78</td><td>-3.77</td><td>+3.08</td><td>3.00</td></tr>
+                  <tr><td>Donchian-Break</td><td>53</td><td>38</td><td>52.8</td><td>+10.20</td><td>-4.72</td><td>+3.16</td><td>2.42</td></tr>
+                  <tr><td>Golden-Cross</td><td>40</td><td>27</td><td>45.0</td><td>+33.02</td><td>-2.33</td><td>+13.58</td><td>11.61</td></tr>
+                  <tr><td>Breakout-Vol</td><td>26</td><td>20</td><td>65.4</td><td>+4.93</td><td>-4.12</td><td>+1.80</td><td>2.26</td></tr>
+                  <tr><td>Weakness-Recov</td><td>15</td><td>14</td><td>86.7</td><td>+3.75</td><td>-1.81</td><td>+3.01</td><td>13.51</td></tr>
+                  <tr><td>Supertrend-Flip</td><td>12</td><td>12</td><td>50.0</td><td>+40.59</td><td>-1.57</td><td>+19.51</td><td>25.83</td></tr>
+                  <tr><td>BB-Squeeze-Brk</td><td>10</td><td>8</td><td>50.0</td><td>+5.20</td><td>-4.45</td><td>+0.38</td><td>1.17</td></tr>
+                  <tr><td>CupHandle</td><td>9</td><td>9</td><td>44.4</td><td>+15.19</td><td>-4.25</td><td>+4.38</td><td>2.86</td></tr>
+                  <tr><td>Flag-Cont</td><td>8</td><td>7</td><td>75.0</td><td>+11.53</td><td>-4.00</td><td>+7.65</td><td>8.65</td></tr>
+                  <tr><td>52W-High-Brk</td><td>4</td><td>4</td><td>75.0</td><td>+10.74</td><td>-2.75</td><td>+7.37</td><td>11.72</td></tr>
+                  <tr><td>Flat-Base</td><td>2</td><td>2</td><td>50.0</td><td>+0.00</td><td>-2.17</td><td>-1.08</td><td>0.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Walk-Forward Validation (4 Folds x 6 Months)</h3>
+            <div className="doc-callout info">
+              <strong>Method:</strong> 59 stocks, 36 months (May 2023 - Apr 2026), 12-month warmup, 4 x 6-month test folds, 1,137 total out-of-sample trades.
+            </div>
+
+            <div className="doc-table-wrap">
+              <table className="doc-table">
+                <thead><tr><th>Setup</th><th>N</th><th>Folds</th><th>WR%</th><th>Exp</th><th>PF</th><th>Verdict</th></tr></thead>
+                <tbody>
+                  <tr><td>EMA200-Bounce</td><td>348</td><td>4/4</td><td>54.3</td><td>+5.43</td><td>3.82</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Ichimoku-Break</td><td>321</td><td>4/4</td><td>50.2</td><td>+5.28</td><td>2.93</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Inside-Bar-Brk</td><td>102</td><td>4/4</td><td>56.9</td><td>+6.04</td><td>4.12</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Donchian-Break</td><td>50</td><td>4/4</td><td>68.0</td><td>+6.56</td><td>5.92</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Golden-Cross</td><td>42</td><td>4/4</td><td>52.4</td><td>+3.98</td><td>4.43</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Weakness-Recov</td><td>15</td><td>4/4</td><td>73.3</td><td>+3.48</td><td>11.32</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Flag-Cont</td><td>7</td><td>2/4</td><td>71.4</td><td>+7.00</td><td>7.12</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
+                  <tr><td>Accumul-Zone</td><td>122</td><td>4/4</td><td>53.3</td><td>+8.55</td><td>6.56</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>VCP</td><td>80</td><td>4/4</td><td>60.0</td><td>+5.34</td><td>4.67</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>Supertrend-Flip</td><td>11</td><td>3/4</td><td>54.5</td><td>+9.84</td><td>14.25</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>BB-Squeeze-Brk</td><td>11</td><td>4/4</td><td>63.6</td><td>+4.89</td><td>4.63</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>CupHandle</td><td>4</td><td>3/4</td><td>50.0</td><td>+1.11</td><td>1.49</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>52W-High-Brk</td><td>3</td><td>2/4</td><td>66.7</td><td>+2.07</td><td>2.82</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
+                  <tr><td>Breakout-Vol</td><td>19</td><td>4/4</td><td>57.9</td><td>-0.05</td><td>0.97</td><td><span className="verdict-negative">NEGATIVE</span></td></tr>
+                  <tr><td>Flat-Base</td><td>2</td><td>1/4</td><td>50.0</td><td>-0.07</td><td>0.00</td><td><span className="verdict-insufficient">INSUFFICIENT</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Verdict Definitions</h3>
+            <ul>
+              <li><strong>CONSISTENT:</strong> Positive expectancy across folds AND std dev &lt; |mean|. Edge holds through different market conditions.</li>
+              <li><strong>VOLATILE:</strong> Positive expectancy overall, but high variance across folds. Edge real but unreliable.</li>
+              <li><strong>NEGATIVE:</strong> Aggregate expectancy &le; 0. No edge detected.</li>
+              <li><strong>INSUFFICIENT:</strong> Appeared in &lt; 2 folds. Too few data points.</li>
+            </ul>
+
+            <div className="doc-callout success">
+              <strong>Bottom Line:</strong> Walk-forward validation confirms 7/15 setups CONSISTENT across 4 independent OOS periods (1,137 trades, 54.7% WR). Edge is real but driven by asymmetric payoff (avg win 3-4x loss), not high WR.
+            </div>
+          </div>
+        </section>
+
+        <div className="doc-divider" />
+
+        {/* ══ 8. Limitations ══ */}
+        <section id="limitations" className="doc-section">
+          <div className="doc-section-header">
+            <span className="section-eyebrow">Chapter 8</span>
+            <h2>Known Limitations & Caveats</h2>
+          </div>
+          <div className="doc-content">
+            <h3>Data Limitations</h3>
+            <ul>
+              <li>Delayed data (~15 min): yfinance free tier. Real fills differ.</li>
+              <li>No real-time order book: no bid-ask spread, no market depth.</li>
+              <li>No intraday data for daily setups: gaps and spikes not captured.</li>
+            </ul>
+
+            <h3>Backtest Limitations</h3>
+            <ul>
+              <li>Survivorship bias: WATCHLIST contains stocks that exist today. Delisted stocks from 2023-2026 are not included.</li>
+              <li>Per-stock, not portfolio-level: no correlation, max concurrent positions, or capital allocation modeling.</li>
+              <li>No slippage modeling: fills assumed at computed prices.</li>
+              <li>Flat fee assumption: 0.15% each way used in portfolio tracking but NOT in backtest P&L.</li>
+              <li>No weekly MTF in backtest: setups relying on weekly confirmation may behave differently live.</li>
+              <li>3-year window = one IDX cycle: 2023-2026 conditions may not repeat.</li>
+            </ul>
+
+            <h3>Statistical Limitations</h3>
+            <ul>
+              <li>Walk-forward covers 3 years (4 folds). While more robust than a single train/test split, 4 OOS periods is still small.</li>
+              <li>Low-N setups remain unvalidated: Flat-Base (2t), 52W-High (3t), CupHandle (4t), Flag (7t) fire too rarely.</li>
+              <li>Quality score is ordinal, not predictive. Equal-weighted binary checklist items.</li>
+            </ul>
+
+            <h3>What This System Is Good At</h3>
+            <ul>
+              <li>Systematic scanning of 60+ stocks for actionable setups</li>
+              <li>Defined entry/exit levels with position sizing</li>
+              <li>Diverse setup detection across market conditions</li>
+              <li>Honest quality scoring (not every signal is BUY)</li>
+            </ul>
+
+            <h3>What This System Is NOT</h3>
+            <ul>
+              <li>A high-frequency trading system</li>
+              <li>A guaranteed profit machine</li>
+              <li>A replacement for fundamental analysis and due diligence</li>
+              <li>Tested on a sufficiently long sample to claim statistical robustness</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Disclaimer ── */}
+        <div className="docs-disclaimer">
+          <div className="doc-callout warning">
+            <strong>Educational purpose only. Not investment advice. DYOR.</strong><br />
+            Walk-forward validation confirms 7/15 setups CONSISTENT across 4 independent OOS periods (1,137 trades, 54.7% WR). Edge is real but driven by asymmetric payoff (avg win 3-4x loss), not high WR.
+          </div>
+        </div>
+
+          </div>{/* end docs-main */}
+        </div>{/* end docs-layout */}
+
+        <Footer />
+      </div>
+    </div>
+  );
+}

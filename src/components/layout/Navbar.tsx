@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/store/LanguageContext";
@@ -9,17 +9,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { lang, setLang, t } = useLanguage();
-
-  const toggleTheme = () => {
-    const current = document.documentElement.getAttribute("data-theme");
-    const next = current === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("orion-theme", next);
-  };
-
-  const toggleLanguage = () => {
-    setLang(lang === 'en' ? 'id' : 'en');
-  };
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -33,6 +22,7 @@ export default function Navbar() {
     { name: t('nav.home'), href: "/" },
     { name: t('nav.showcase'), href: "/showcase" },
     { name: t('nav.pricing'), href: "/pricing" },
+    { name: t('nav.docs'), href: "/docs" },
     { name: t('nav.about'), href: "/about" },
   ];
 
@@ -55,44 +45,19 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          
           <button
-            className="lang-toggle-btn"
-            onClick={toggleLanguage}
-            title={lang === 'en' ? 'Switch to Indonesia' : 'Ganti ke English'}
-            aria-label="Toggle language"
+            className="lang-switch"
+            onClick={() => setLang(lang === 'en' ? 'id' : 'en')}
+            aria-label="Switch language"
           >
-            <span>{lang.toUpperCase()}</span>
+            {lang === 'en' ? 'ID' : 'EN'}
           </button>
-
           <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            title="Toggle dark / light mode"
-            aria-label="Toggle theme"
-          >
-            <svg className="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-            <svg className="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-          </button>
-          
-          <button
-            className="hamburger-btn"
-            id="hamburger-btn"
+            className={`hamburger-btn${isMenuOpen ? ' is-open' : ''}`}
             onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
+            aria-controls="nav-dropdown"
           >
             <svg className="ham-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
               <line x1="3" y1="6" x2="21" y2="6" />
@@ -124,27 +89,24 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
-        <div className="mobile-menu-actions" style={{ display: 'flex', gap: '12px', padding: '12px 20px', borderTop: '1px solid var(--border)' }}>
+        <div className="mobile-menu-actions" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 20px', borderTop: '1px solid var(--border)' }}>
           <button
+            onClick={() => setLang(lang === 'en' ? 'id' : 'en')}
             className="lang-toggle-btn"
-            onClick={toggleLanguage}
-            title={lang === 'en' ? 'Switch to Indonesia' : 'Ganti ke English'}
-            aria-label="Toggle language"
-            style={{ padding: '8px 12px', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', fontSize: '14px', fontWeight: '600' }}
+            aria-label="Switch language"
+            style={{
+              background: 'var(--bg2)',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              padding: '8px 14px',
+              color: 'var(--text)',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'border-color var(--transition)',
+            }}
           >
-            {lang.toUpperCase()}
-          </button>
-
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            title="Toggle dark / light mode"
-            aria-label="Toggle theme"
-            style={{ padding: '8px 12px', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
+            {lang === 'en' ? '🇮🇩 Bahasa' : '🇬🇧 English'}
           </button>
         </div>
         <Link href="/start" className="is-cta btn-shine" onClick={closeMobileMenu}>
