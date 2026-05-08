@@ -660,6 +660,7 @@
     .pricing-inline-card.is-primary {
       border-color: rgba(0, 180, 196, 0.35);
       box-shadow: 0 0 30px rgba(0, 180, 196, 0.06);
+      overflow: visible;
     }
     .pricing-inline-badge {
       position: absolute;
