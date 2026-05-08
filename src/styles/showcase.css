@@ -4,9 +4,9 @@
 
     /* ── Outer container (aligns navbar + content + footer) ── */
     .promo-outer {
-      max-width: 752px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 24px 16px 0;
+      padding: 24px 32px 0;
     }
 
     /* ── Page container ── */
@@ -89,7 +89,7 @@
       font-size: 15px;
       color: var(--text2);
       line-height: 1.65;
-      max-width: 540px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
@@ -106,7 +106,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin: 0 auto;
-      max-width: 720px;
+      max-width: 960px;
     }
     .promo-stat-strip .stat-cell {
       text-align: center;
@@ -891,7 +891,7 @@
 
     /* ── Desktop improvements ── */
     @media (min-width: 1024px) {
-      .promo-outer { max-width: 892px; }
+      .promo-outer { max-width: 1080px; }
       .bt-metrics { grid-template-columns: repeat(4, 1fr); }
       .wf-window-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
       .bt-card { padding: 28px; }
@@ -902,6 +902,9 @@
         transform: translateY(-2px);
         transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
       }
+    }
+    @media (min-width: 1440px) {
+      .promo-outer { max-width: 1200px; padding: 24px 48px 0; }
     }
     .landing-footer {
       text-align: center;
@@ -919,17 +922,6 @@
   
 
 /* Styles from about.html */
-
-    .landing {
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-    .landing-container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 20px 80px;
-    }
 
     /* ── Topbar: di-handle oleh style.css global ── */
 
@@ -954,13 +946,13 @@
       line-height: 1.05;
       color: var(--text);
       margin: 0 auto 20px;
-      max-width: 700px;
+      max-width: 860px;
     }
     .about-hero h1 .accent { color: var(--cyan); }
     .about-hero p {
       font-size: 17px;
       color: var(--muted, #7b869c);
-      max-width: 520px;
+      max-width: 640px;
       margin: 0 auto;
       line-height: 1.6;
     }

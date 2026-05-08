@@ -5,15 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export default function PrivacyPage() {
-  useEffect(() => {
-    const t = localStorage.getItem('orion-theme');
-    if (!t) {
-      const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', defaultTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', t);
-    }
-  }, []);
+
 
   return (
     <div className="landing">

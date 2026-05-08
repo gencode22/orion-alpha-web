@@ -14,14 +14,6 @@ export default function IndexPromoPage() {
   const [resultTicker, setResultTicker] = useState("");
 
   useEffect(() => {
-    const t = localStorage.getItem('orion-theme');
-    if (!t) {
-      const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', defaultTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', t);
-    }
-
     return () => {
       document.body.style.overflow = '';
     };
@@ -431,7 +423,7 @@ export default function IndexPromoPage() {
           <div className="wf-rob-fill" style={{width: '80%'}}></div>
         </div>
         <span className="wf-rob-val">80% windows profit</span>
-        <span className="wf-rob-badge">Rating: A+ (Sangat Bagus)</span>
+        <span className="wf-rob-badge">Rating: A+ (Excellent)</span>
       </div>
       <div className="wf-vs-note">vs regular backtest (section 04): same RAJA 3y data → +482% in-sample. Walk-forward OOS: +68.4% — more realistic, no data leakage.</div>
 

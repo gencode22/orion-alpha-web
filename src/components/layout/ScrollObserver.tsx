@@ -6,69 +6,83 @@ export default function ScrollObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // 🧲 Magnetic Button Logic
-    const handleMagneticMove = (e: MouseEvent) => {
-      const magnetics = document.querySelectorAll('.btn-magnetic');
-      magnetics.forEach(btn => {
-        const rect = (btn as HTMLElement).getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY);
-        
-        // Only trigger if kursor is close (within 80px)
-        if (distance < 80) {
-          const x = (e.clientX - centerX) * 0.45;
-          const y = (e.clientY - centerY) * 0.45;
-          (btn as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
-        } else {
-          (btn as HTMLElement).style.transform = `translate(0, 0)`;
-        }
-      });
-    };
+    let rafId: number | null = null;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
 
-    // ✨ Card Glow Logic
     const handleMouseMove = (e: MouseEvent) => {
-      const cards = document.querySelectorAll('.glass-card, [class*="-card"]');
-      cards.forEach(card => {
-        const rect = (card as HTMLElement).getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        (card as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
-        (card as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+
+        // Card glow — only update cards near the cursor
+        const el = document.elementFromPoint(lastMouseX, lastMouseY);
+        const card = el?.closest('.glass-card, [class*="-card"]') as HTMLElement | null;
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          const x = ((lastMouseX - rect.left) / rect.width) * 100;
+          const y = ((lastMouseY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', `${x}%`);
+          card.style.setProperty('--mouse-y', `${y}%`);
+        }
+
+        // Magnetic buttons
+        const magnetics = document.querySelectorAll('.btn-magnetic');
+        magnetics.forEach(btn => {
+          const rect = (btn as HTMLElement).getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const distance = Math.hypot(lastMouseX - centerX, lastMouseY - centerY);
+
+          if (distance < 80) {
+            const x = (lastMouseX - centerX) * 0.35;
+            const y = (lastMouseY - centerY) * 0.35;
+            (btn as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+          } else {
+            (btn as HTMLElement).style.transform = '';
+          }
+        });
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousemove', handleMagneticMove);
+    // Only add mousemove on non-touch devices
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (!isTouchDevice) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
 
-    // 🚀 Intersection Observer for Animations
+    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          
-          // Handle Staggered Children
+
           if (entry.target.classList.contains('stagger-in')) {
             const children = entry.target.children;
             Array.from(children).forEach((child, index) => {
-              (child as HTMLElement).style.transitionDelay = `${index * 0.1}s`;
+              (child as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
             });
           }
+
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 
     const timer = setTimeout(() => {
       document.querySelectorAll('.fade-up, .stagger-in').forEach(el => {
         observer.observe(el);
       });
-    }, 150);
+    }, 100);
 
     document.body.style.overflow = '';
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousemove', handleMagneticMove);
+      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
       clearTimeout(timer);
     };

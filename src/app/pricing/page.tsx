@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PricingHero from "@/features/pricing/components/PricingHero";
@@ -11,16 +11,6 @@ import RiskBlock from "@/features/pricing/components/RiskBlock";
 import PricingFinalCTA from "@/features/pricing/components/PricingFinalCTA";
 
 export default function PricingPage() {
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('orion-theme');
-    if (!savedTheme) {
-      const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', defaultTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-  }, []);
-
   return (
     <div className="landing">
       <Navbar />
@@ -42,7 +32,7 @@ export default function PricingPage() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
               </div>
               <h4>Beginners who want a real system</h4>
-              <p>No more FOMO trades or grup signal roulette. Orion explains every score, every setup, every level — so you learn while the bot does the heavy lifting.</p>
+              <p>No more FOMO trades or group signal roulette. Orion explains every score, every setup, every level — so you learn while the bot does the heavy lifting.</p>
               <div className="card-glow"></div>
             </div>
             <div className="audience-card glass-card">

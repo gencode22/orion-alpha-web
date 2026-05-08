@@ -5,15 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export default function StartPage() {
-  useEffect(() => {
-    const t = localStorage.getItem('orion-theme');
-    if (!t) {
-      const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', defaultTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', t);
-    }
-  }, []);
+
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -118,9 +110,9 @@ export default function StartPage() {
               <div className="step-img">
                 <div className="mock-msg">
                   <span className="cmd">Orion Alpha</span><br />
-                  Halo! Selamat datang di Orion Alpha.<br />
-                  Ketik <span className="cmd">/help</span> untuk daftar lengkap perintah.<br />
-                  Mulai dengan <span className="cmd">/signal BBCA</span> untuk analisis teknikal.
+                  Hello! Welcome to Orion Alpha.<br />
+                  Type <span className="cmd">/help</span> for a complete list of commands.<br />
+                  Start with <span className="cmd">/signal BBCA</span> for technical analysis.
                 </div>
               </div>
             </div>

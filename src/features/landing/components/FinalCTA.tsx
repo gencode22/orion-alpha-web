@@ -1,12 +1,11 @@
-import React from 'react';
 import { useLanguage } from '@/store/LanguageContext';
 
 export default function FinalCTA() {
   const { t } = useLanguage();
 
   return (
-    <section className="final-cta fade-up glass-card cta-gate">
-      <h2 className="display-text">{t('final_cta.title')}</h2>
+    <section className="final-cta fade-up glass-card cta-gate" aria-labelledby="final-cta-heading">
+      <h2 id="final-cta-heading" className="display-text">{t('final_cta.title')}</h2>
       <p className="lede">{t('final_cta.desc')}</p>
       <div className="intro-ctas">
         <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn btn-telegram btn-shine">

@@ -1,22 +1,133 @@
-/* Global styles registry */
-@import "../styles/theme.css";
-@import "../styles/landing.css";
-@import "../styles/showcase.css";
-@import "../styles/pricing.css";
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
 
-/* Shared utilities */
+/* 
+  Bridge between Tailwind v4 and Legacy Styles.
+  We preserve these to prevent "berantakan" UI in components not yet refactored.
+*/
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-border: var(--border);
+  
+  --radius-xl: var(--radius);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 6px);
+
+  --animate-count-up: count-up 2s ease-out forwards;
+
+  @keyframes count-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  /* Tailwind v4 / DESIGN.md Tokens */
+  --background: #0e0f11;
+  --foreground: #ffffff;
+  --surface: #161719;
+  --primary: #00b4c4;
+  --primary-foreground: #000000;
+  --muted: #6b7280;
+  --muted-foreground: #9ca3af;
+  --success: #22c55e;
+  --error: #ef4444;
+  --border: rgba(255, 255, 255, 0.06);
+  --radius: 0.75rem;
+
+  /* Legacy Mappings for style.css / landing.css */
+  --bg: var(--background);
+  --bg2: var(--surface);
+  --bg3: #1a1e2e;
+  --bg4: #242a3d;
+  --text: var(--foreground);
+  --text2: #c5ccd8;
+  --text-muted: var(--muted-foreground);
+  --cyan: var(--primary);
+  --cyan2: #0891b2;
+  
+  /* Use next/font variables mapped in layout.tsx */
+  --font: var(--font-inter), sans-serif;
+  --display-font: var(--font-display), var(--font);
+  --mono: var(--font-mono), monospace;
+
+  /* shadcn required variables */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+  --secondary: #1f2937;
+  --secondary-foreground: #ffffff;
+  --accent: var(--primary);
+  --accent-foreground: var(--background);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --input: var(--border);
+  --ring: var(--primary);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font);
+  }
+  h1, h2, h3, h4, .display-text {
+    font-family: var(--display-font);
+  }
+}
+
+/* Scroll reveal utilities used in page.tsx */
 .is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  @apply opacity-100 translate-y-0;
 }
 
 .card-stagger {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  @apply opacity-0 translate-y-5 transition-all duration-600 ease-out;
 }
 
 .is-visible .card-stagger {
-  opacity: 1;
-  transform: translateY(0);
+  @apply opacity-100 translate-y-0;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ensure legacy resets don't override Tailwind base entirely */
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
+@layer utilities {
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(0, 180, 196, 0.15) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+  
+  .radial-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 400px;
+    background: radial-gradient(ellipse at top, rgba(0, 180, 196, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
 }

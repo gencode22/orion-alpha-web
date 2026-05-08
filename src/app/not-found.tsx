@@ -4,15 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 export default function NotFoundPage() {
-  useEffect(() => {
-    const t = localStorage.getItem('orion-theme');
-    if (!t) {
-      const defaultTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', defaultTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', t);
-    }
-  }, []);
+
 
   const toggleTheme = () => {
     const current = document.documentElement.getAttribute('data-theme');
