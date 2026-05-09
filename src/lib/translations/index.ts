@@ -1,4 +1,6 @@
 import { modalTranslations } from './modals';
+import { pricingTranslations } from './pricing';
+import { pagesTranslations } from './pages';
 
 export const translations: Record<'en' | 'id', any> = {
   en: {
@@ -55,6 +57,9 @@ export const translations: Record<'en' | 'id', any> = {
       }
     },
     modals: modalTranslations.en,
+    pricing: pricingTranslations.en,
+    about: pagesTranslations.en.about,
+    start: pagesTranslations.en.start,
     methodology: {
       eyebrow: 'Methodology',
       title: 'How every signal is built',
@@ -137,13 +142,14 @@ export const translations: Record<'en' | 'id', any> = {
         cta: 'Start Free on Telegram',
         note: 'No credit card · No expiry'
       },
-      pro: {
-        name: 'PRO',
+      starter: {
+        name: 'STARTER',
         price: 'Rp 49K',
         period: '/month',
         badge: 'Most Popular',
-        features: ['Unlimited signals', 'All 9 modules unlocked', 'Priority smart alerts every 15 min', 'Backtest engine + walk-forward', 'Portfolio tracker + XLSX export', 'QRIS or bank transfer · Under 10 min'],
-        cta: 'Upgrade to Pro'
+        features: ['Unlimited /signal', '/chart full indicators + patterns', '/swing — 20 setup detectors', '/fa + /fascan screener', '/sizing + /calculator', '/scan across all IDX sectors'],
+        cta: 'Upgrade to Starter',
+        pro_hint: 'Need backtest, alerts & watchlist? See Pro plan →'
       }
     },
     method_summary: {
@@ -223,6 +229,9 @@ export const translations: Record<'en' | 'id', any> = {
       }
     },
     modals: modalTranslations.id,
+    pricing: pricingTranslations.id,
+    about: pagesTranslations.id.about,
+    start: pagesTranslations.id.start,
     methodology: {
       eyebrow: 'Metodologi',
       title: 'Bagaimana setiap sinyal dibuat',
@@ -306,13 +315,14 @@ export const translations: Record<'en' | 'id', any> = {
         cta: 'Mulai Gratis di Telegram',
         note: 'Tanpa kartu kredit · Tanpa batas waktu'
       },
-      pro: {
-        name: 'PRO',
+      starter: {
+        name: 'STARTER',
         price: 'Rp 49K',
         period: '/bulan',
         badge: 'Paling Populer',
-        features: ['Sinyal tanpa batas', 'Semua 9 modul terbuka', 'Alert pintar prioritas setiap 15 menit', 'Engine backtest + walk-forward', 'Pelacak portofolio + ekspor XLSX', 'QRIS atau transfer bank · Di bawah 10 menit'],
-        cta: 'Upgrade ke Pro'
+        features: ['Sinyal tanpa batas (/signal)', '/chart indikator & pola lengkap', '/swing — 20 detektor setup', '/fa + /fascan screener', '/sizing + /calculator', '/scan seluruh sektor IDX'],
+        cta: 'Upgrade ke Starter',
+        pro_hint: 'Butuh backtest, alert & watchlist? Lihat paket Pro →'
       }
     },
     method_summary: {

@@ -7,8 +7,29 @@ export default function ScrollObserver() {
 
   useEffect(() => {
     let rafId: number | null = null;
+    let scrollRafId: number | null = null;
     let lastMouseX = 0;
     let lastMouseY = 0;
+
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Parallax — write scroll-y to a CSS custom property; let CSS apply transforms.
+    // rAF-throttled, no DOM queries inside the hot path.
+    const handleScroll = () => {
+      if (scrollRafId !== null) return;
+      scrollRafId = requestAnimationFrame(() => {
+        scrollRafId = null;
+        document.documentElement.style.setProperty(
+          '--scroll-y',
+          `${window.scrollY}px`
+        );
+      });
+    };
+    if (!prefersReducedMotion) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    }
 
     const handleMouseMove = (e: MouseEvent) => {
       lastMouseX = e.clientX;
@@ -63,7 +84,7 @@ export default function ScrollObserver() {
           if (entry.target.classList.contains('stagger-in')) {
             const children = entry.target.children;
             Array.from(children).forEach((child, index) => {
-              (child as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
+              (child as HTMLElement).style.transitionDelay = `${index * 0.06}s`;
             });
           }
 
@@ -82,9 +103,12 @@ export default function ScrollObserver() {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
+      if (scrollRafId) cancelAnimationFrame(scrollRafId);
       observer.disconnect();
       clearTimeout(timer);
+      document.documentElement.style.removeProperty('--scroll-y');
     };
   }, [pathname]);
 

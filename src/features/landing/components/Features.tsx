@@ -58,33 +58,29 @@ export default function Features({ openModal }: FeaturesProps) {
       {/* Top 4 featured — large cards */}
       <div className="feature-grid stagger-in">
         {featuredModules.map((f) => (
-          <div key={f.id} className="feature-card-wrapper">
+          <button
+            key={f.id}
+            type="button"
+            className={`feature-card glass-card${f.core ? ' is-core' : ''}`}
+            onClick={() => openModal(f.id)}
+            aria-label={`Read more about ${f.title}`}
+          >
             {f.core && (
-              <div className="feature-badge">
-                <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                {t('common.core_feature')}
-              </div>
+              <span className="feature-tag">{t('common.core_feature')}</span>
             )}
-            <a
-              href="#"
-              className={`feature-card glass-card${f.core ? ' is-core' : ''}`}
-              onClick={(e) => { e.preventDefault(); openModal(f.id); }}
-              aria-label={`Read more about ${f.title}`}
-            >
-              <div className="feature-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {f.icon}
-                </svg>
-              </div>
-              <h3>{f.title}</h3>
-              <p dangerouslySetInnerHTML={{ __html: f.desc }} />
-              <span className="feature-card-cta btn-shine">
-                {t('common.learn_more') || 'Read detail'}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-              <div className="card-glow"></div>
-            </a>
-          </div>
+            <div className="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {f.icon}
+              </svg>
+            </div>
+            <h3>{f.title}</h3>
+            <p dangerouslySetInnerHTML={{ __html: f.desc }} />
+            <span className="feature-card-cta btn-shine">
+              {t('common.learn_more') || 'Read detail'}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+            <div className="card-glow"></div>
+          </button>
         ))}
       </div>
 

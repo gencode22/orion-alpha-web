@@ -121,10 +121,11 @@
   margin-bottom: 16px;
   padding-left: 12px;
 }
-.docs-sidebar a {
+.docs-sidebar-btn {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 13px;
@@ -132,20 +133,33 @@
   color: var(--text2);
   text-decoration: none;
   transition: all 0.2s ease;
+  border: none;
   border-left: 2px solid transparent;
   margin-bottom: 2px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
 }
-.docs-sidebar a:hover {
+.docs-sidebar-btn:hover {
   color: var(--cyan);
   background: rgba(6, 182, 212, 0.05);
   border-left-color: rgba(6, 182, 212, 0.3);
 }
-.docs-sidebar a .toc-num {
+.docs-sidebar-btn.is-active {
+  color: var(--cyan);
+  background: rgba(6, 182, 212, 0.08);
+  border-left-color: var(--cyan);
+  font-weight: 600;
+}
+.docs-sidebar-btn .toc-num {
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
   color: var(--dim);
   min-width: 18px;
+}
+.docs-sidebar-btn.is-active .toc-num {
+  color: var(--cyan);
 }
 
 /* ── Mobile TOC (inline pills) ── */
@@ -161,7 +175,7 @@
 @media (min-width: 1080px) {
   .docs-toc-mobile { display: none; }
 }
-.docs-toc-mobile a {
+.docs-toc-btn {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -172,22 +186,68 @@
   color: var(--text2);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  text-decoration: none;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
-.docs-toc-mobile a:hover {
+.docs-toc-btn:hover {
   color: var(--cyan);
   border-color: rgba(6, 182, 212, 0.3);
 }
-.docs-toc-mobile a .toc-num {
+.docs-toc-btn.is-active {
+  color: var(--cyan);
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+.docs-toc-btn .toc-num {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--dim);
+}
+.docs-toc-btn.is-active .toc-num {
+  color: var(--cyan);
 }
 
 /* ── Doc Main Content Area ── */
 .docs-main {
   min-width: 0; /* prevent grid blowout */
+}
+
+/* ── Chapter Panel (fade-in on switch) ── */
+@keyframes docFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-chapter-panel {
+  animation: docFadeIn 0.3s ease-out;
+}
+
+/* ── Prev / Next Navigation ── */
+.doc-nav-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0 8px;
+  margin-top: 32px;
+  border-top: 1px solid var(--glass-border);
+}
+.doc-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.doc-nav-btn:hover {
+  color: var(--cyan);
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.05);
 }
 
 /* ── Doc Section ── */

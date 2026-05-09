@@ -104,11 +104,6 @@
       box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
       animation: float 4s ease-in-out infinite;
     }
-    [data-theme="light"] .tier-card.is-highlight {
-      box-shadow: 0 12px 32px rgba(6, 182, 212, 0.2);
-      background: linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, transparent 40%), #fff;
-    }
-
     .tier-ribbon {
       position: absolute;
       top: -14px;
@@ -145,8 +140,8 @@
       color: var(--cyan);
     }
     .tier-card.is-pro .tier-icon {
-      background: rgba(168, 85, 247, 0.12);
-      color: var(--purple);
+      background: rgba(245, 158, 11, 0.10);
+      color: var(--yellow);
     }
 
     .tier-name {
@@ -265,7 +260,6 @@
       background: var(--cyan2);
       border-color: var(--cyan2);
     }
-    [data-theme="light"] .tier-cta.is-primary { color: #FFFFFF; }
     .tier-cta svg { width: 16px; height: 16px; }
 
     .tier-footnote {
@@ -561,6 +555,11 @@
       margin: 0;
     }
     .risk-block strong { color: var(--text); }
+    .risk-block .risk-data-note {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(245, 158, 11, 0.15);
+    }
     @media (max-width: 640px) {
       .risk-block { flex-direction: column; gap: var(--sp-3); padding: var(--sp-5); }
     }
@@ -609,14 +608,23 @@
     }
     .btn:hover { transform: translateY(-1px); }
     .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-    .btn-telegram { background: #229ED9; color: white; }
-    .btn-telegram:hover { background: #1a8abe; }
+    .btn-telegram {
+      background: var(--cyan);
+      color: #0b1120;
+      box-shadow: 0 0 16px rgba(0, 180, 196, 0.3), 0 4px 16px rgba(0, 180, 196, 0.2);
+    }
+    .btn-telegram:hover {
+      box-shadow: 0 0 28px rgba(0, 180, 196, 0.55), 0 6px 20px rgba(0, 180, 196, 0.3);
+    }
     .btn-secondary {
       background: var(--bg2);
       color: var(--text);
-      border-color: var(--border2);
+      border-color: var(--border);
     }
-    .btn-secondary:hover { border-color: var(--text-muted); }
+    .btn-secondary:hover {
+      border-color: rgba(6,182,212,0.45);
+      color: var(--cyan);
+    }
 
     /* ── Footer ───────────────────────────────────────────────────────── */
     .landing-footer {
@@ -660,21 +668,12 @@
     @media (hover: none) {
       .audience-card:hover, .tier-card:hover { transform: none; box-shadow: none; }
     }
-    @media (pointer: coarse) {
-      .theme-toggle-btn { width: 44px; height: 44px; }
-    }
-    [data-theme="light"] .landing-brand img {
-      background: #12151f;
-      border-radius: 6px;
-      padding: 3px;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
-      .btn:hover, .tier-card:hover { transform: none; }
+      .tier-card:hover { transform: none; }
     }
 
     /* ── Scroll animations ── */
@@ -973,6 +972,14 @@
       line-height: 1.6; margin: 0 0 14px;
     }
     .step-body p:last-child { margin-bottom: 0; }
+    .step-body code {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      color: var(--yellow);
+      background: rgba(245, 158, 11, 0.08);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
 
     .step-code {
       display: inline-flex; align-items: center; gap: 8px;
@@ -986,10 +993,15 @@
       cursor: pointer;
       transition: border-color 0.18s, background 0.18s;
       user-select: all;
+      /* button reset for <button class="step-code"> */
+      font: inherit; line-height: 1;
+      text-align: left;
     }
     .step-code:hover { border-color: rgba(6,182,212,0.4); background: rgba(6,182,212,0.06); }
+    .step-code:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
     .step-code .copy-icon { opacity: 0.5; transition: opacity 0.15s; flex-shrink: 0; }
     .step-code:hover .copy-icon { opacity: 1; }
+    .step-codes-stack { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
     .copy-hint { font-size: 11px; color: var(--muted); margin-top: 6px; display: block; }
 
     .step-img {
@@ -1094,20 +1106,14 @@
     }
     .start-cta p { font-size: 15px; color: var(--muted); margin: 0 0 28px; }
     .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn {
+    .start-cta .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 13px 22px; border-radius: 10px;
       font-size: 14px; font-weight: 600;
       text-decoration: none; cursor: pointer; border: none;
       transition: opacity 0.15s, transform 0.15s; min-height: 48px;
     }
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-telegram { background: #229ED9; color: #fff; }
-    .btn-secondary {
-      background: var(--bg3, rgba(255,255,255,0.06));
-      color: var(--text); border: 1px solid var(--border);
-    }
-    [data-theme="light"] .btn-secondary { background: var(--bg2); }
+    .start-cta .btn:hover { opacity: 0.92; transform: translateY(-1px); }
 
     /* ── Footer ── */
     .landing-footer {
@@ -1127,7 +1133,7 @@
       transition: opacity 0.2s, transform 0.2s;
       z-index: 999; white-space: nowrap;
     }
-    .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .copy-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     /* ── Scroll animations ── */
     .fade-up {
@@ -1154,7 +1160,7 @@
       .landing-container { padding: 20px 16px 60px; }
       .start-hero { padding: 8px 0 36px; }
       .cta-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
-      .btn { width: 100%; justify-content: center; }
+      .cta-buttons .btn { width: 100%; justify-content: center; }
       .start-cta { padding: 36px 20px; }
       .free-callout { padding: 24px 18px; }
     }

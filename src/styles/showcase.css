@@ -784,7 +784,7 @@
       align-items: center;
       gap: 8px;
       background: var(--cyan);
-      color: #000;
+      color: #0b1120;
       font-size: 15px;
       font-weight: 700;
       padding: 0 24px;
@@ -792,9 +792,11 @@
       border-radius: var(--radius-sm);
       text-decoration: none;
       cursor: pointer;
+      border: 0;
       transition: opacity 0.18s ease;
     }
-    .btn-primary:hover { opacity: 0.85; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
     .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -972,6 +974,9 @@
       stroke: var(--cyan);
       stroke-width: 1.5;
       opacity: 0.2;
+    }
+    .constellation-svg .star-line.star-belt {
+      opacity: 0.6;
     }
     .constellation-svg .star-dot {
       fill: var(--cyan);
@@ -1197,28 +1202,7 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: opacity 0.15s, transform 0.15s;
-      min-height: 48px;
-    }
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-telegram { background: #229ED9; color: #fff; }
-    .btn-secondary {
-      background: var(--bg3, rgba(255,255,255,0.06));
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    [data-theme="light"] .btn-secondary { background: var(--bg2); }
+    /* (CTA bottom strip uses .btn-primary / .btn-outline above) */
 
     /* ── Footer ── */
     .landing-footer {

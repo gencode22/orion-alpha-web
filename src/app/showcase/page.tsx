@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TradingViewWidget from "@/features/market/components/TradingViewWidget";
@@ -12,12 +13,28 @@ export default function IndexPromoPage() {
   const [isDemoLoading, setIsDemoLoading] = useState(false);
   const [showDemoResult, setShowDemoResult] = useState(false);
   const [resultTicker, setResultTicker] = useState("");
+  const lightboxCloseRef = useRef<HTMLButtonElement>(null);
+  const lightboxTriggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     return () => {
       document.body.style.overflow = '';
     };
   }, []);
+
+  // Lightbox a11y: focus the close button on open, restore focus + handle Esc on close
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    lightboxCloseRef.current?.focus();
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      lightboxTriggerRef.current?.focus?.();
+    };
+  }, [isLightboxOpen]);
 
   const handleDemoAnalyze = () => {
     let val = demoTicker.trim().toUpperCase();
@@ -36,7 +53,8 @@ export default function IndexPromoPage() {
     }, 1500);
   };
 
-  const openLightbox = () => {
+  const openLightbox = (e: React.MouseEvent<HTMLElement>) => {
+    lightboxTriggerRef.current = e.currentTarget;
     setIsLightboxOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -202,7 +220,14 @@ export default function IndexPromoPage() {
     </div>
     <div className="chart-card">
       <button className="chart-click-wrap" onClick={openLightbox} aria-label="Enlarge Orion Alpha chart">
-        <img src="/static/sample-chart.png" alt="Orion Alpha full chart — BBCA 6-month with Entry/SL/TP overlays" className="sample-chart-img" loading="lazy" />
+        <Image
+          src="/static/sample-chart.png"
+          alt="Orion Alpha full chart — BBCA 6-month with Entry/SL/TP overlays"
+          className="sample-chart-img"
+          width={1200}
+          height={720}
+          sizes="(max-width: 768px) 100vw, 80vw"
+        />
         <div className="chart-zoom-hint">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           Click to enlarge
@@ -580,8 +605,9 @@ export default function IndexPromoPage() {
           maxLength={4} 
           style={{textTransform: 'uppercase'}} 
         />
-        <button 
-          onClick={handleDemoAnalyze} 
+        <button
+          type="button"
+          onClick={handleDemoAnalyze}
           className="btn-primary"
           disabled={isDemoLoading}
         >
@@ -603,7 +629,7 @@ export default function IndexPromoPage() {
               <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               <h4>Analysis Locked</h4>
               <p>Orion Alpha has found a potential setup for <strong>{resultTicker}</strong>.</p>
-              <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary btn-magnetic" style={{fontSize: '13px', padding: '10px 16px'}}>Unlock Full Analysis in Telegram</a>
+              <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary btn-magnetic">Unlock Full Analysis in Telegram</a>
             </div>
             {/* Fake content underneath */}
             <div className="fake-signal-hd">
@@ -641,7 +667,7 @@ export default function IndexPromoPage() {
     <p>Real-time swing alerts, personalized watchlists, sector scans, FA scoring — every signal traceable to its inputs. Free to start, no credit card.</p>
     <div className="cta-row">
       <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="btn-primary btn-magnetic">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         Open Telegram Bot
       </a>
       <a href="/pricing" className="btn-outline">
@@ -657,9 +683,34 @@ export default function IndexPromoPage() {
 </div>
 
 {isLightboxOpen && (
-  <div id="lightbox" className="open" onClick={closeLightbox}>
-    <button className="lb-close" onClick={closeLightbox} aria-label="Close lightbox">&times;</button>
-    <img src="/static/sample-chart.png" alt="Orion Alpha full chart — BBCA 6-month" onClick={(e) => e.stopPropagation()} />
+  <div
+    id="lightbox"
+    className="open"
+    onClick={closeLightbox}
+    role="dialog"
+    aria-modal="true"
+    aria-label="Orion Alpha sample chart, enlarged"
+  >
+    <button
+      ref={lightboxCloseRef}
+      type="button"
+      className="lb-close"
+      onClick={closeLightbox}
+      aria-label="Close lightbox"
+    >
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <Image
+      src="/static/sample-chart.png"
+      alt="Orion Alpha full chart — BBCA 6-month"
+      width={1600}
+      height={960}
+      sizes="100vw"
+      onClick={(e) => e.stopPropagation()}
+    />
   </div>
 )}
     </>

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { useLanguage } from '@/store/LanguageContext';
 
@@ -14,15 +16,16 @@ export default function PricingCTA() {
     external: true,
   };
 
-  const proTier = {
-    name: t('pricing_inline.pro.name') || 'PRO',
-    price: t('pricing_inline.pro.price') || 'Rp 49K',
-    period: t('pricing_inline.pro.period') || '/month',
-    badge: t('pricing_inline.pro.badge') || 'Most Popular',
-    features: t('pricing_inline.pro.features') || [],
-    cta: t('pricing_inline.pro.cta') || 'Upgrade to Pro',
-    ctaHref: '/pricing',
-    external: false,
+  const starterTier = {
+    name: t('pricing_inline.starter.name') || 'STARTER',
+    price: t('pricing_inline.starter.price') || 'Rp 49K',
+    period: t('pricing_inline.starter.period') || '/month',
+    badge: t('pricing_inline.starter.badge') || 'Most Popular',
+    features: t('pricing_inline.starter.features') || [],
+    cta: t('pricing_inline.starter.cta') || 'Upgrade to Starter',
+    proHint: t('pricing_inline.starter.pro_hint') || 'Need backtest, alerts & watchlist? See Pro plan →',
+    ctaHref: 'https://t.me/orion_idx_bot?start=upgrade_starter',
+    external: true,
   };
 
   return (
@@ -68,18 +71,18 @@ export default function PricingCTA() {
           <div className="card-glow"></div>
         </div>
 
-        {/* Pro Tier */}
+        {/* Starter Tier — homepage's "most popular" preview. Pro is one click away via see-all link. */}
         <div className="pricing-inline-card glass-card is-primary">
-          <div className="pricing-inline-badge">{proTier.badge}</div>
+          <div className="pricing-inline-badge">{starterTier.badge}</div>
           <div className="pricing-inline-header">
-            <span className="pricing-inline-name">{proTier.name}</span>
+            <span className="pricing-inline-name">{starterTier.name}</span>
             <div className="pricing-inline-price">
-              {proTier.price}
-              <span className="pricing-inline-period">{proTier.period}</span>
+              {starterTier.price}
+              <span className="pricing-inline-period">{starterTier.period}</span>
             </div>
           </div>
           <ul className="pricing-inline-features" role="list">
-            {proTier.features.map((f: string, i: number) => (
+            {starterTier.features.map((f: string, i: number) => (
               <li key={i} className="pricing-inline-feature">
                 <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <polyline points="20 6 9 17 4 12"/>
@@ -89,9 +92,15 @@ export default function PricingCTA() {
             ))}
           </ul>
           <div className="pricing-inline-footer">
-            <Link href={proTier.ctaHref} className="pricing-inline-cta btn btn-telegram btn-shine">
-              {proTier.cta}
-            </Link>
+            <a
+              href={starterTier.ctaHref}
+              target="_blank"
+              rel="noopener"
+              className="pricing-inline-cta btn btn-telegram btn-shine"
+            >
+              {starterTier.cta}
+            </a>
+            <p className="pricing-inline-note">{starterTier.proHint}</p>
           </div>
           <div className="card-glow"></div>
         </div>
@@ -100,7 +109,7 @@ export default function PricingCTA() {
       <div className="pricing-inline-seeall">
         <Link href="/pricing" className="pricing-see-all-link">
           {t('pricing_cta.see_all') || 'See full plan details'}
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>

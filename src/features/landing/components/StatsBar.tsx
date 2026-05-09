@@ -6,7 +6,8 @@ import { useLanguage } from "@/store/LanguageContext";
 
 function Counter({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  // once: false — re-animate every time it enters view (feels alive on scroll-back)
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   const numericMatch = value.match(/\d+/);
   const numericPart = numericMatch ? parseInt(numericMatch[0]) : null;
@@ -15,8 +16,16 @@ function Counter({ value }: { value: string }) {
   const rounded = useTransform(motionValue, (latest) => Math.round(latest));
 
   useEffect(() => {
-    if (isInView && numericPart !== null) {
-      animate(motionValue, numericPart, { duration: 2, ease: "easeOut" });
+    if (numericPart === null) return;
+    if (isInView) {
+      // Slightly punchier curve than easeOut; matches --ease-out-quart
+      animate(motionValue, numericPart, {
+        duration: 1.6,
+        ease: [0.25, 1, 0.5, 1],
+      });
+    } else {
+      // Reset so re-entering view replays the count from 0
+      motionValue.set(0);
     }
   }, [isInView, motionValue, numericPart]);
 
