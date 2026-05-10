@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Outfit, Geist } from "next/font/google";
+import Script from "next/script";
 
 // Legacy Styles (Fallback)
 import "../styles/theme.css";
@@ -69,17 +70,21 @@ export default function RootLayout({
       className={cn("dark", geist.variable, inter.variable, jetbrainsMono.variable, outfit.variable)}
       data-theme="dark"
     >
-      <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-NZJDRV1E53');
-        ` }} />
-        <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js" async></script>
-      </head>
       <body className="antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NZJDRV1E53');`}
+        </Script>
+        <Script
+          src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"
+          strategy="afterInteractive"
+        />
         <a href="#main-content" className="skip-link">Skip to content</a>
         <LanguageProvider>
           <ScrollObserver />

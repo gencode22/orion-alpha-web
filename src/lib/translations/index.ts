@@ -15,7 +15,8 @@ export const translations: Record<'en' | 'id', any> = {
       showcase: 'Showcase',
       about: 'About',
       pricing: 'Pricing',
-      docs: 'Docs'
+      docs: 'Docs',
+      backtest: 'Backtest'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',
@@ -187,7 +188,8 @@ export const translations: Record<'en' | 'id', any> = {
       showcase: 'Showcase',
       about: 'Tentang',
       pricing: 'Harga',
-      docs: 'Docs'
+      docs: 'Docs',
+      backtest: 'Backtest'
     },
     hero: {
       badge: 'Swing Trading Engine · IDX',
