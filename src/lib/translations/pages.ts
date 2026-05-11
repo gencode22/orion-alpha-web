@@ -61,7 +61,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
         'Built by a trader, for traders',
         'Open methodology — no black box',
         'Walk-forward A rated',
-        '161 automated tests',
+        '213 automated tests',
       ],
       cta: {
         title: 'Hunt smarter. Start free.',
@@ -218,7 +218,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
         'Dibuat oleh trader, untuk trader',
         'Metodologi terbuka — tanpa black box',
         'Rating Walk-forward A',
-        '161 tes otomatis',
+        '213 tes otomatis',
       ],
       cta: {
         title: 'Berburu lebih cerdas. Mulai gratis.',

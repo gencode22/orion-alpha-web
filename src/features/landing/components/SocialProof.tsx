@@ -23,7 +23,7 @@ export default function SocialProof() {
           <div className="h-1 w-1 bg-border rounded-full hidden md:block" />
           <span>Gemini 2.5 Flash + Qwen 2.5 fallback</span>
           <div className="h-1 w-1 bg-border rounded-full hidden md:block" />
-          <span>161 automated tests</span>
+          <span>213 automated tests</span>
         </div>
       </div>
     </motion.div>

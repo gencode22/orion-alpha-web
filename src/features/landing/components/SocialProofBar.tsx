@@ -21,7 +21,7 @@ export default function SocialProofBar() {
         <span className="social-proof-sep" aria-hidden="true">·</span>
         <span className="social-proof-text">Gemini 2.5 Flash + Qwen 2.5 fallback</span>
         <span className="social-proof-sep" aria-hidden="true">·</span>
-        <span className="social-proof-text"><strong>161</strong> automated tests</span>
+        <span className="social-proof-text"><strong>213</strong> automated tests</span>
       </div>
     </motion.section>
   );

@@ -97,7 +97,7 @@ function ChapterSetups() {
       </div>
       <div className="doc-content">
         <div className="doc-callout info">
-          <strong>Engine v9 note.</strong> This chapter documents the 20-setup original design. Engine v9 currently runs <strong>15 active setups</strong> — 5 were retired after walkforward review; 5 new ones (Pocket-Pivot, Wyckoff-Spring, Stage2-Breakout, HL-Reversal, High-Tight-Flag) were added but their detailed criteria docs are pending. See <a href="/backtest" style={{ color: 'var(--cyan)' }}>/backtest §1</a> for the canonical active list with current stats.
+          <strong>Engine v9 note.</strong> This chapter documents the 20-setup original design. Engine v9 currently runs <strong>15 active setups</strong>. <strong>6 retired</strong> after walkforward returned NEGATIVE/INSUFFICIENT verdicts: <em>Breakout-Volume, BB-Squeeze-Break, Cup-Handle, Flag-Continuation, Flat-Base, Supertrend-Flip</em>. <strong>5 added</strong> in phases 3–4: <em>Pocket-Pivot, Wyckoff-Spring, Stage2-Breakout, HL-Reversal, High-Tight-Flag</em> — detailed criteria docs pending. See <a href="/backtest" style={{ color: 'var(--cyan)' }}>/backtest §1</a> for the canonical active list with current stats.
         </div>
 
         {/* Group A */}
@@ -508,7 +508,7 @@ export default function DocsPage() {
             <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">4</span></div><div className="docs-stat-label">Market Regimes</div></div>
             <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">3,240</span></div><div className="docs-stat-label">Trades Audited</div></div>
           </div>
-          <p className="docs-version">v2.5.3 &middot; Educational purpose only &middot; Not investment advice</p>
+          <p className="docs-version">v2.6 · Engine v9 · Educational purpose only · Not investment advice</p>
         </section>
 
         {/* ── Mobile TOC (horizontal scroll tabs) ── */}

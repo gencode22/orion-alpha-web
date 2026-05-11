@@ -161,7 +161,7 @@ export const translations: Record<'en' | 'id', any> = {
       'Built by a trader, for traders',
       'Open methodology — no black box',
       'Walk-forward A rated',
-      '161 automated tests'
+      '213 automated tests'
     ],
     footer: {
       legal: 'Built for IDX traders. Data delayed ~15 min. Educational tool — not investment advice.',
@@ -335,7 +335,7 @@ export const translations: Record<'en' | 'id', any> = {
       'Dibuat oleh trader, untuk trader',
       'Metodologi terbuka — tanpa kotak hitam',
       'Rating Walk-forward A',
-      '161 tes otomatis'
+      '213 tes otomatis'
     ],
     footer: {
       legal: 'Dibuat untuk trader IDX. Data tertunda ~15 menit. Alat edukasi — bukan nasihat investasi.',
