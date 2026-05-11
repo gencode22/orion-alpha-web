@@ -16,13 +16,13 @@ export default function PrivacyPage() {
         <div className="privacy-hero">
           <span className="privacy-eyebrow">Legal</span>
           <h1>Privacy Policy</h1>
-          <p className="meta">Last updated: April 2026 &nbsp;·&nbsp; Orion Alpha (<a href="https://orion-alpha-web.vercel.app">orion-alpha-web.vercel.app</a>)</p>
+          <p className="meta">Last updated: May 2026 &nbsp;·&nbsp; Orion Alpha (<a href="https://orion-alpha-web.vercel.app">orion-alpha-web.vercel.app</a>)</p>
         </div>
 
         {/*  ── Sections ──  */}
         <div className="privacy-section">
           <h2>1. Overview</h2>
-          <p>Orion Alpha ("we", "us") is an Indonesian stock market analysis tool delivered via Telegram bot, Discord bot, and this web dashboard. This policy explains what data we collect, why, and how it is used when you visit this website or interact with our bots.</p>
+          <p>Orion Alpha ("we", "us") is an Indonesian stock market analysis tool delivered via Telegram bot and this web dashboard. A community Discord server is also available, but no signals are delivered there at this time. This policy explains what data we collect, why, and how it is used when you visit this website or interact with our Telegram bot.</p>
           <p>We do not sell your data. We do not run ads. We collect only what is necessary to operate the service.</p>
         </div>
 
@@ -35,13 +35,14 @@ export default function PrivacyPage() {
             <li>Approximate geographic location (country/city level)</li>
             <li>This data is anonymized and aggregated — no personally identifiable information</li>
           </ul>
-          <p><strong>Telegram / Discord bots</strong></p>
+          <p><strong>Telegram bot</strong></p>
           <ul>
             <li>Your Telegram user ID and username (to track subscription tier and personal watchlist)</li>
             <li>Commands you send (to generate analysis responses)</li>
             <li>Portfolio positions you add (owner account only, stored locally in SQLite)</li>
             <li>Price alerts you set (stored locally, deleted when triggered or cancelled)</li>
           </ul>
+          <p><strong>Discord</strong> — no Orion Alpha bot is currently deployed on Discord; the linked Discord server is a community space only. We do not collect any data from Discord beyond what Discord itself provides for any user joining a public server.</p>
           <p><strong>We do not collect</strong> passwords, payment card numbers, or government ID. Payments are handled manually via screenshot proof — we never see your banking credentials.</p>
         </div>
 
@@ -62,7 +63,7 @@ export default function PrivacyPage() {
           <ul>
             <li><strong>Google Analytics 4</strong> — website usage analytics. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. You can opt out via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out</a>.</li>
             <li><strong>Telegram</strong> — bot platform. Messages are processed per <a href="https://telegram.org/privacy" target="_blank" rel="noopener">Telegram's Privacy Policy</a>.</li>
-            <li><strong>Discord</strong> — bot platform. Messages are processed per <a href="https://discord.com/privacy" target="_blank" rel="noopener">Discord's Privacy Policy</a>.</li>
+            <li><strong>Discord</strong> — community server only (no bot deployed). Membership is governed by <a href="https://discord.com/privacy" target="_blank" rel="noopener">Discord's Privacy Policy</a>.</li>
             <li><strong>Yahoo Finance (yfinance)</strong> — market data source. Data is delayed ~15 minutes. We do not share your identity with Yahoo Finance.</li>
             <li><strong>Google Gemini / Ollama</strong> — AI analysis (owner account only). Messages sent to AI agents may be processed by Google's API.</li>
           </ul>
