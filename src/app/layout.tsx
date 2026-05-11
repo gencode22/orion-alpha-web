@@ -9,6 +9,7 @@ import "../styles/landing.css";
 import "../styles/showcase.css";
 import "../styles/pricing.css";
 import "../styles/docs.css";
+import "../styles/backtest.css";
 
 // Global Tailwind v4 & DESIGN.md Tokens (Overrides Legacy)
 import "./globals.css";

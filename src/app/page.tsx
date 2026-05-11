@@ -13,6 +13,7 @@ import Advantages from "@/features/landing/components/Advantages";
 import PricingCTA from "@/features/landing/components/PricingCTA";
 import FinalCTA from "@/features/landing/components/FinalCTA";
 import FeatureModal from "@/features/landing/components/FeatureModal";
+import { SampleSignals } from "@/features/sample-signal/SampleSignals";
 import { useLanguage } from "@/store/LanguageContext";
 
 export default function HomePage() {
@@ -51,7 +52,21 @@ export default function HomePage() {
         <StatsBar />
         {/* 4. Features Grid — top 4 featured + collapsible rest */}
         <Features openModal={openModal} />
-        {/* 5. How It Works (4-stage pipeline) */}
+
+        {/* 5. Proof — signals we actually shipped */}
+        <section className="sample-signal-home fade-up" aria-labelledby="sample-signal-home-title">
+          <div className="section-head">
+            <span className="eyebrow">Receipts</span>
+            <h2 id="sample-signal-home-title">Two signals we shipped</h2>
+            <p>
+              Auto-broadcast that lands in subscribers&rsquo; DMs, and a manual <code>/signal</code> query.
+              What the engine returned. What the stock did.
+            </p>
+          </div>
+          <SampleSignals variant="home" />
+        </section>
+
+        {/* 6. How It Works (4-stage pipeline) */}
         <Pipeline />
         {/* Why Orion Alpha */}
         <Advantages />
