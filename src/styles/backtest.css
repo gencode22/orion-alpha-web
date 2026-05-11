@@ -72,6 +72,12 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.bt-hero-stat-value .accent-num.is-green {
+  background: linear-gradient(135deg, var(--green2, #22c55e), #4ade80);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .bt-hero-stat-sub {
   position: relative;
   font-family: var(--mono);

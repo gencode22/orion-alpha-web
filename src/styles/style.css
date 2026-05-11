@@ -648,15 +648,21 @@ a[class*="-card"] {
 /* ── Smooth scroll ────────────────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   SCROLL-TRIGGERED REVEAL ANIMATIONS (global)
+   Toggled by ScrollObserver adding `.is-visible` when element intersects.
+   Default curve: ease-out-expo for cinematic deceleration.
+   ══════════════════════════════════════════════════════════════════════════════ */
+
 /* ── Staggered Entrance Helper ──
    ScrollObserver applies inline transition-delay per child (0.06s steps).
    We provide the base "to" / "from" + curve here. */
 .stagger-in > * {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(24px);
   transition:
-    opacity var(--dur-reveal) var(--ease-out-quart),
-    transform var(--dur-reveal) var(--ease-out-quart);
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
   will-change: opacity, transform;
 }
 .stagger-in.is-visible > * {
@@ -666,14 +672,111 @@ html { scroll-behavior: smooth; }
 
 .fade-up {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(32px);
   transition:
-    opacity var(--dur-reveal) var(--ease-out-quart),
-    transform var(--dur-reveal) var(--ease-out-quart);
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+  will-change: opacity, transform;
 }
 .fade-up.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Opt-in variants ──
+   Use any of these in place of (or alongside) .fade-up. ScrollObserver
+   observes them too and toggles `.is-visible` on intersection. */
+
+/* Fade + subtle scale — premium for cards / hero stat tiles */
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  transition:
+    opacity 720ms var(--ease-out-expo),
+    transform 720ms var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Fade + de-blur — soft cinematic entrance for big sections */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(16px);
+  transition:
+    opacity 800ms var(--ease-out-expo),
+    filter 800ms var(--ease-out-expo),
+    transform 800ms var(--ease-out-expo);
+  will-change: opacity, filter, transform;
+}
+.reveal-blur.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* Slide in from sides — for paired columns or quote blocks */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Accent line "draws in" from left — for section dividers / underlines */
+.reveal-line {
+  --reveal-line-color: var(--cyan);
+  position: relative;
+}
+.reveal-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--reveal-line-color), transparent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms var(--ease-out-expo);
+}
+.reveal-line.is-visible::after {
+  transform: scaleX(1);
+}
+
+/* Honor reduced-motion: instant reveal, no transforms/blurs */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .stagger-in > *,
+  .reveal-scale, .reveal-blur,
+  .reveal-left, .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .reveal-line::after {
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════

@@ -231,7 +231,7 @@ export default function BacktestPage() {
             </div>
             <div className="bt-hero-stat">
               <div className="bt-hero-stat-value">
-                <span className="accent-num">
+                <span className="accent-num is-green">
                   {overallWRAnim.toFixed(1)}<span style={{ fontSize: "0.6em" }}>%</span>
                 </span>
               </div>
@@ -248,7 +248,7 @@ export default function BacktestPage() {
             </div>
             <div className="bt-hero-stat">
               <div className="bt-hero-stat-value">
-                <span className="accent-num">+{topReturnAnim.toLocaleString()}<span style={{ fontSize: "0.6em" }}>%</span></span>
+                <span className="accent-num is-green">+{topReturnAnim.toLocaleString()}<span style={{ fontSize: "0.6em" }}>%</span></span>
               </div>
               <div className="bt-hero-stat-sub">{headline.topReturnCode} · 3 yr return</div>
               <div className="bt-hero-stat-label">Best Stock</div>
@@ -264,7 +264,7 @@ export default function BacktestPage() {
         <div className="docs-main" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
 
           {/* §1 Methodology */}
-          <section className="doc-section" id="methodology">
+          <section className="doc-section fade-up" id="methodology">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 01</span>
               <h2>How we tested</h2>
@@ -303,7 +303,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §2 Per-setup */}
-          <section className="doc-section" id="per-setup">
+          <section className="doc-section fade-up" id="per-setup">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 02</span>
               <h2>What each setup actually does</h2>
@@ -326,7 +326,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §3 Per-stock */}
-          <section className="doc-section" id="per-stock">
+          <section className="doc-section fade-up" id="per-stock">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 03</span>
               <h2>Every ticker, every trade</h2>
@@ -394,7 +394,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §4 Walkforward */}
-          <section className="doc-section" id="walkforward">
+          <section className="doc-section fade-up" id="walkforward">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 04</span>
               <h2>The hardest test we run</h2>
@@ -430,7 +430,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §5 Caveats */}
-          <section className="doc-section" id="caveats">
+          <section className="doc-section fade-up" id="caveats">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 05</span>
               <h2>What the numbers don&rsquo;t tell you</h2>
@@ -495,7 +495,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §6 FAQ */}
-          <section className="doc-section" id="faq">
+          <section className="doc-section fade-up" id="faq">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 06</span>
               <h2>Questions you should be asking</h2>
@@ -659,7 +659,7 @@ export default function BacktestPage() {
           </section>
 
           {/* §7 Sample Signal — alert + outcome */}
-          <section className="doc-section" id="sample-signal">
+          <section className="doc-section fade-up" id="sample-signal">
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 07</span>
               <h2>A signal we shipped</h2>

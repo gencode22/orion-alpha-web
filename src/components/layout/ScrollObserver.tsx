@@ -83,18 +83,31 @@ export default function ScrollObserver() {
 
           if (entry.target.classList.contains('stagger-in')) {
             const children = entry.target.children;
+            // Variable stagger: tight for first 6, gentler tail to keep total < 1s
             Array.from(children).forEach((child, index) => {
-              (child as HTMLElement).style.transitionDelay = `${index * 0.06}s`;
+              const delay = index < 6
+                ? index * 0.06
+                : 0.36 + (index - 6) * 0.035;
+              (child as HTMLElement).style.transitionDelay = `${delay}s`;
             });
           }
 
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
 
     const timer = setTimeout(() => {
-      document.querySelectorAll('.fade-up, .stagger-in').forEach(el => {
+      const revealSelectors = [
+        '.fade-up',
+        '.stagger-in',
+        '.reveal-scale',
+        '.reveal-blur',
+        '.reveal-left',
+        '.reveal-right',
+        '.reveal-line',
+      ].join(', ');
+      document.querySelectorAll(revealSelectors).forEach(el => {
         observer.observe(el);
       });
     }, 100);

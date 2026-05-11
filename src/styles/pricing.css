@@ -76,9 +76,9 @@
     .tier-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 64px;
-      padding-top: 24px; /* Space for ribbons */
+      gap: 16px;
+      margin-bottom: 48px;
+      padding-top: 20px; /* Space for ribbons */
     }
     .tier-card {
       position: relative;
@@ -87,7 +87,7 @@
       -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 40px 24px 24px;
+      padding: 28px 20px 22px;
       display: flex;
       flex-direction: column;
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -127,13 +127,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px; height: 40px;
+      width: 34px; height: 34px;
       border-radius: var(--radius-sm);
-      margin-bottom: var(--sp-4);
+      margin-bottom: var(--sp-3);
       background: var(--bg3);
       color: var(--text-muted);
     }
-    .tier-icon svg { width: 20px; height: 20px; }
+    .tier-icon svg { width: 18px; height: 18px; }
 
     .tier-card.is-highlight .tier-icon {
       background: rgba(6, 182, 212, 0.12);
@@ -145,18 +145,18 @@
     }
 
     .tier-name {
-      font-size: var(--fs-lg);
+      font-size: 16px;
       font-weight: 700;
       color: var(--text);
       letter-spacing: var(--ls-tight);
-      margin-bottom: var(--sp-2);
+      margin-bottom: var(--sp-1);
     }
     .tier-tagline {
       font-size: var(--fs-sm);
       color: var(--text-muted);
       line-height: var(--lh-normal);
-      margin-bottom: var(--sp-6);
-      min-height: 40px;
+      margin-bottom: var(--sp-4);
+      min-height: 32px;
     }
 
     .tier-price {
@@ -171,7 +171,7 @@
       color: var(--text-muted);
     }
     .tier-price .amount {
-      font-size: var(--fs-3xl);
+      font-size: clamp(26px, 3.4vw, 32px);
       font-weight: 800;
       color: var(--text);
       letter-spacing: var(--ls-tight);
@@ -185,29 +185,29 @@
     .tier-sub {
       font-size: var(--fs-sm);
       color: var(--text-muted);
-      margin-bottom: var(--sp-6);
+      margin-bottom: var(--sp-4);
       min-height: 20px;
     }
 
     .tier-divider {
       border: 0;
       border-top: 1px solid var(--border);
-      margin: 0 0 var(--sp-5);
+      margin: 0 0 var(--sp-3);
     }
 
     .tier-features {
       list-style: none;
       padding: 0;
-      margin: 0 0 var(--sp-6);
+      margin: 0 0 var(--sp-4);
       flex: 1;
     }
     .tier-features li {
       display: flex;
       align-items: flex-start;
       gap: var(--sp-3);
-      padding: 7px 0;
-      font-size: var(--fs-base);
-      line-height: var(--lh-normal);
+      padding: 5px 0;
+      font-size: 13.5px;
+      line-height: 1.55;
       color: var(--text);
     }
     .tier-features li.is-off { color: var(--muted); }
@@ -235,9 +235,9 @@
       align-items: center;
       justify-content: center;
       gap: var(--sp-2);
-      padding: 12px var(--sp-4);
+      padding: 10px var(--sp-4);
       border-radius: var(--radius-sm);
-      font-size: var(--fs-base);
+      font-size: 13.5px;
       font-weight: 600;
       text-decoration: none;
       text-align: center;
@@ -272,7 +272,7 @@
 
     /* ── Compare ───────────────────────────────────────────────────────── */
     .compare-section {
-      margin: var(--sp-16) 0 var(--sp-12);
+      margin: var(--sp-12) 0 var(--sp-8);
     }
     .section-head {
       text-align: center;
@@ -314,16 +314,16 @@
       width: 100%;
       border-collapse: collapse;
       min-width: 640px;
-      font-size: var(--fs-base);
+      font-size: 13px;
     }
     .compare-table thead th {
-      padding: var(--sp-4) var(--sp-4);
+      padding: 12px 14px;
       text-align: center;
       font-weight: 700;
       color: var(--text);
       background: var(--bg3);
       border-bottom: 1px solid var(--border);
-      font-size: var(--fs-base);
+      font-size: 12.5px;
     }
     .compare-table thead th:first-child { text-align: left; }
     .compare-table thead th.is-highlight {
@@ -340,7 +340,7 @@
     }
     .compare-table th small {
       display: block;
-      font-size: var(--fs-xs);
+      font-size: 10.5px;
       font-weight: 500;
       color: var(--text-muted);
       letter-spacing: var(--ls-normal);
@@ -349,10 +349,11 @@
     .compare-table thead th.is-highlight small { color: var(--cyan2); }
 
     .compare-table tbody td {
-      padding: var(--sp-3) var(--sp-4);
+      padding: 7px 12px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       color: var(--text2);
+      font-size: 13px;
     }
     .compare-table tbody td:first-child {
       text-align: left;
@@ -368,14 +369,14 @@
     .compare-table .check-icon { display: inline-flex; color: var(--green); }
     .compare-table .cross-icon { display: inline-flex; color: var(--dim); }
     .compare-table .check-icon svg,
-    .compare-table .cross-icon svg { width: 16px; height: 16px; }
+    .compare-table .cross-icon svg { width: 14px; height: 14px; }
 
     .compare-table tbody tr.cat-row td {
       background: transparent;
-      padding-top: var(--sp-5);
-      padding-bottom: var(--sp-2);
+      padding-top: 14px;
+      padding-bottom: 4px;
       border-bottom: none;
-      font-size: var(--fs-xs);
+      font-size: 10.5px;
       font-weight: 700;
       letter-spacing: var(--ls-wide);
       text-transform: uppercase;
@@ -406,8 +407,8 @@
       background: var(--bg2);
     }
     .faq-item summary {
-      padding: var(--sp-4) var(--sp-5);
-      font-size: var(--fs-md);
+      padding: 12px 16px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text);
       cursor: pointer;
@@ -415,7 +416,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: var(--sp-4);
+      gap: var(--sp-3);
       transition: color var(--transition);
     }
     .faq-item summary:hover { color: var(--cyan); }
@@ -431,9 +432,9 @@
       color: var(--cyan);
     }
     .faq-item .faq-body {
-      padding: 0 var(--sp-5) var(--sp-5);
-      font-size: var(--fs-base);
-      line-height: var(--lh-relaxed);
+      padding: 0 16px 14px;
+      font-size: 13.5px;
+      line-height: 1.65;
       color: var(--text2);
     }
     .faq-item .faq-body code {
@@ -567,9 +568,9 @@
     /* ── Final CTA ────────────────────────────────────────────────────── */
     .pricing-final {
       text-align: center;
-      padding: 72px 48px;
-      border-radius: 28px;
-      margin-bottom: 80px;
+      padding: 48px 32px;
+      border-radius: 18px;
+      margin-bottom: 56px;
     }
     .pricing-final h2 {
       font-size: clamp(22px, 2.5vw, 28px);

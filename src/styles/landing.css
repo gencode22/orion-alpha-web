@@ -1003,7 +1003,7 @@
     /* Final CTA — cleaner, less gradient */
     .final-cta {
       text-align: center;
-      padding: 64px 48px;
+      padding: 44px 32px;
       border-radius: 14px;
     }
     .final-cta::before {
