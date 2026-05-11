@@ -8,7 +8,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Detectors', items: ['VCP (Volatility Contraction Pattern)', 'Pullback-Uptrend', 'Pocket Pivot (Volume Signature)', 'Donchian Channel Breakouts', 'RS (Relative Strength) New Highs'] },
         { title: 'Filtration', items: ['Market regime filter (Bull/Bear check)', 'Relative strength vs IHSG index', 'Volume signature validation', 'Sector-group momentum'] }
       ],
-      cta: 'Explore showcase'
+      cta: 'View backtest'
     },
     confluence: {
       eyebrow: '02 · Technical · scoring',
@@ -18,7 +18,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Indicators evaluated', items: ['RSI (14) · MACD histogram', 'ATR (volatility) · ADX + DI', 'Supertrend · Parabolic SAR', 'OBV · MFI · CMF (Volume)'] },
         { title: 'Output', items: ['Score (0–100), Signal Label', '12-rule breakdown (Pass/Fail)', 'MTF Alignment data', 'Risk level warning'] }
       ],
-      cta: 'Explore showcase'
+      cta: 'View backtest'
     },
     ai: {
       eyebrow: '03 · AI · research',
@@ -78,7 +78,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Sources', items: ['Global: Reuters, Investing.com', 'Local: CNBC ID, Bisnis, Kontan', 'Per-stock: yfinance news API'] },
         { title: 'Features', items: ['Top 5 recent aggregator', 'Emiten-specific news filter', 'Dashboard news tab'] }
       ],
-      cta: 'Explore showcase'
+      cta: 'View backtest'
     },
     charts: {
       eyebrow: '09 · Visualisation · charts',
@@ -100,7 +100,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Detektor', items: ['VCP (Volatility Contraction Pattern)', 'Pullback-Uptrend', 'Pocket Pivot (Volume)', 'Breakout Donchian Channel', 'RS (Relative Strength) New Highs'] },
         { title: 'Filter', items: ['Filter kondisi market (Bull/Bear)', 'Kekuatan relatif vs indeks IHSG', 'Validasi tanda volume', 'Momentum grup sektor'] }
       ],
-      cta: 'Lihat showcase'
+      cta: 'Lihat backtest'
     },
     confluence: {
       eyebrow: '02 · Teknikal · skor',
@@ -110,7 +110,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Indikator dievaluasi', items: ['RSI (14) · MACD histogram', 'ATR (volatilitas) · ADX + DI', 'Supertrend · Parabolic SAR', 'OBV · MFI · CMF (Volume)'] },
         { title: 'Output', items: ['Skor (0–100), Label Sinyal', 'Rincian 12 aturan (Lolos/Gagal)', 'Data penyelarasan MTF', 'Peringatan level risiko'] }
       ],
-      cta: 'Lihat showcase'
+      cta: 'Lihat backtest'
     },
     ai: {
       eyebrow: '03 · AI · riset',
@@ -170,7 +170,7 @@ export const modalTranslations: Record<'en' | 'id', any> = {
         { title: 'Sumber', items: ['Global: Reuters, Investing.com', 'Lokal: CNBC ID, Bisnis, Kontan', 'Per-saham: yfinance news API'] },
         { title: 'Fitur', items: ['Agregator 5 berita terbaru', 'Filter berita spesifik emiten', 'Tab berita di dashboard'] }
       ],
-      cta: 'Lihat showcase'
+      cta: 'Lihat backtest'
     },
     charts: {
       eyebrow: '09 · Visualisasi · chart',

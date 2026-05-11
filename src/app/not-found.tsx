@@ -16,10 +16,10 @@ export default function NotFoundPage() {
           <p className="nf-sub">The page you&apos;re looking for doesn&apos;t exist or has been moved. Head back to a valid route below.</p>
           <div className="nf-links">
             <Link href="/" className="nf-primary">Back to Home</Link>
+            <Link href="/backtest" className="nf-secondary">Backtest</Link>
+            <Link href="/docs" className="nf-secondary">Docs</Link>
             <Link href="/pricing" className="nf-secondary">Pricing</Link>
-            <Link href="/showcase" className="nf-secondary">Showcase</Link>
             <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="nf-secondary">Telegram Bot</a>
-            <Link href="/privacy" className="nf-secondary">Privacy</Link>
           </div>
         </div>
 

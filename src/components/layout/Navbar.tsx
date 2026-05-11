@@ -17,7 +17,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('nav.home'), href: "/" },
-    { name: t('nav.showcase'), href: "/showcase" },
     { name: t('nav.pricing'), href: "/pricing" },
     { name: t('nav.docs'), href: "/docs" },
     { name: t('nav.backtest'), href: "/backtest" },

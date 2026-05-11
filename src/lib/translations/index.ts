@@ -12,7 +12,6 @@ export const translations: Record<'en' | 'id', any> = {
     },
     nav: {
       home: 'Home',
-      showcase: 'Showcase',
       about: 'About',
       pricing: 'Pricing',
       docs: 'Docs',
@@ -31,8 +30,9 @@ export const translations: Record<'en' | 'id', any> = {
       },
       ctas: {
         telegram: 'Open Telegram Bot',
-        showcase: 'Live Showcase',
-        hint: 'Interactive preview — no signup'
+        docs: 'Documentation',
+        backtest: 'View Backtest',
+        hint: '3,240 trades audited · No signup'
       },
       micro: '3 signals/day free · No credit card · No expiry',
       panel_title: 'Analysis Engine',
@@ -185,7 +185,6 @@ export const translations: Record<'en' | 'id', any> = {
     },
     nav: {
       home: 'Beranda',
-      showcase: 'Showcase',
       about: 'Tentang',
       pricing: 'Harga',
       docs: 'Docs',
@@ -198,8 +197,9 @@ export const translations: Record<'en' | 'id', any> = {
       desc: 'Berhenti menebak saham IDX mana yang harus dibeli hari ini. Orion memindai semuanya berdasarkan <span class="kw">15 setup swing tervalidasi walkforward</span> — dan memberi tahu Anda <span class="kw">kapan harus masuk</span>, di mana harus stop, dan kapan harus take profit.',
       ctas: {
         telegram: 'Buka Bot Telegram',
-        showcase: 'Showcase Live',
-        hint: 'Pratinjau interaktif — tanpa daftar'
+        docs: 'Dokumentasi',
+        backtest: 'Lihat Backtest',
+        hint: '3.240 trade teraudit · Tanpa daftar'
       },
       micro: '3 sinyal/hari gratis · Tanpa kartu kredit · Tanpa batas waktu',
       panel_title: 'Mesin Analisis',

@@ -9,8 +9,9 @@ export default function Footer() {
 
   const footerLinks = [
     { name: t('nav.pricing'), href: "/pricing" },
+    { name: t('nav.docs'), href: "/docs" },
+    { name: t('nav.backtest'), href: "/backtest" },
     { name: t('nav.about'), href: "/about" },
-    { name: t('nav.showcase'), href: "/showcase" },
     { name: "Telegram", href: "https://t.me/orion_idx_bot", external: true },
     { name: "Discord", href: "https://discord.gg/rSAPFDgewe", external: true },
     { name: t('footer.links.privacy'), href: "/privacy" },

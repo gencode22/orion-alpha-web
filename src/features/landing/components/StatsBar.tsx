@@ -50,7 +50,7 @@ export default function StatsBar() {
 
   const stats = [
     { label: t('stats.tickers'), value: "800+" },
-    { label: t('stats.setups'), value: "20" },
+    { label: t('stats.setups'), value: "15" },
     { label: t('stats.indicators'), value: "12" },
     { label: t('stats.rating'), value: "A" },
   ];

@@ -23,7 +23,7 @@ export const FEATURE_MODALS: Record<string, any> = {
         'risk_level + risk_factors warnings'
       ]}
     ],
-    cta: { label: 'Explore showcase', href: '/showcase' }
+    cta: { label: 'View backtest', href: '/backtest' }
   },
   ai: {
     eyebrow: '03 · AI · research',
@@ -159,7 +159,7 @@ export const FEATURE_MODALS: Record<string, any> = {
         'News tab on dashboard with filter chips'
       ]}
     ],
-    cta: { label: 'Explore showcase', href: '/showcase' }
+    cta: { label: 'View backtest', href: '/backtest' }
   },
   charts: {
     eyebrow: '09 · Visualisation · charts',

@@ -19,11 +19,11 @@ export default function PricingFinalCTA() {
           </svg>
           {final.telegram}
         </a>
-        <Link href="/showcase" className="btn btn-secondary">
-          {final.showcase}
+        <Link href="/backtest" className="btn btn-secondary">
+          {final.backtest}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m9 11 2 2 4-4"/>
+            <path d="M3 3v18h18"/>
+            <path d="M7 14l3-3 4 4 5-6"/>
           </svg>
         </Link>
       </div>

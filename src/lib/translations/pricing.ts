@@ -172,7 +172,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         },
         {
           q: 'Can I use this on Discord or the web?',
-          a: 'Paid plans are currently active on Telegram only. Discord runs in demo mode (5 popular stocks for technical commands; backtest/FA/scan blocked). The web dashboard (<a href="/showcase">/showcase</a>) also runs in demo mode. Cross-platform tier integration is on the roadmap.',
+          a: 'Paid plans are currently active on Telegram only. Discord runs in demo mode (5 popular stocks for technical commands; backtest/FA/scan blocked). Cross-platform tier integration is on the roadmap.',
         },
       ],
     },
@@ -185,7 +185,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
       title: 'Your edge in IDX is one click away.',
       desc: "Start with Free — 3 signals/day, full market scan, regime read. No credit card. No expiry. Upgrade only when you're ready.",
       telegram: 'Open Telegram Bot',
-      showcase: 'Live Showcase',
+      backtest: 'See the Backtest',
     },
   },
   id: {
@@ -360,7 +360,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         },
         {
           q: 'Bisa pakai di Discord atau web?',
-          a: 'Paket berbayar saat ini hanya aktif di Telegram. Discord jalan dalam mode demo (5 saham populer untuk command teknis; backtest/FA/scan diblokir). Web dashboard (<a href="/showcase">/showcase</a>) juga mode demo. Integrasi tier cross-platform ada di roadmap.',
+          a: 'Paket berbayar saat ini hanya aktif di Telegram. Discord jalan dalam mode demo (5 saham populer untuk command teknis; backtest/FA/scan diblokir). Integrasi tier cross-platform ada di roadmap.',
         },
       ],
     },
@@ -373,7 +373,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
       title: 'Edge Anda di IDX hanya satu klik lagi.',
       desc: 'Mulai dengan Free — 3 sinyal/hari, scan seluruh market, pembacaan regime. Tanpa kartu kredit. Tanpa batas waktu. Upgrade hanya saat Anda siap.',
       telegram: 'Buka Bot Telegram',
-      showcase: 'Showcase Live',
+      backtest: 'Lihat Backtest',
     },
   },
 };

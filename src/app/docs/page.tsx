@@ -370,73 +370,43 @@ function ChapterBacktest() {
       <div className="doc-section-header">
         <span className="section-eyebrow">Chapter 7</span>
         <h2>Backtest Evidence</h2>
+        <p>The full audit lives on its own page — with the canonical engine v9 numbers, interactive charts, and walkforward verdicts.</p>
       </div>
       <div className="doc-content">
-        <div className="doc-callout warning">
-          <strong>Historical record · pre-v9 snapshot.</strong> The tables below reflect an earlier engine version during the 20→15 transition (1,203 / 1,137 trades, 59–62 stocks). The <strong>canonical current backtest</strong> with 3,240 trades across 96 unique stocks lives at <a href="/backtest" style={{ color: 'var(--cyan)' }}>/backtest</a>. Kept here for historical context.
+        <div className="docs-bt-link-card">
+          <div className="docs-bt-link-stats">
+            <div className="docs-bt-link-stat">
+              <span className="docs-bt-link-stat-val">3,240</span>
+              <span className="docs-bt-link-stat-lbl">Trades audited</span>
+            </div>
+            <div className="docs-bt-link-stat">
+              <span className="docs-bt-link-stat-val">53.5<span style={{ fontSize: '0.6em' }}>%</span></span>
+              <span className="docs-bt-link-stat-lbl">Aggregate winrate</span>
+            </div>
+            <div className="docs-bt-link-stat">
+              <span className="docs-bt-link-stat-val">7<span style={{ opacity: 0.4, fontSize: '0.65em' }}> / 15</span></span>
+              <span className="docs-bt-link-stat-lbl">Walkforward-proven</span>
+            </div>
+            <div className="docs-bt-link-stat">
+              <span className="docs-bt-link-stat-val">96</span>
+              <span className="docs-bt-link-stat-lbl">Unique stocks</span>
+            </div>
+          </div>
+          <p className="docs-bt-link-body">
+            Three years of replay across 96 IDX tickers, validated on 24 months of out-of-sample data the engine never saw during tuning. Per-setup tables, per-stock results, walkforward verdicts, and a real signal walkthrough — all on one page.
+          </p>
+          <a href="/backtest" className="docs-bt-link-cta">
+            Open the Audit Report
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
         </div>
-        <h3>Aggregate: 62 Stocks x 3 Years</h3>
-        <div className="backtest-highlights">
-          <div className="backtest-highlight"><div className="backtest-highlight-value cyan">1,203</div><div className="backtest-highlight-label">Total Trades</div></div>
-          <div className="backtest-highlight"><div className="backtest-highlight-value green">53.2%</div><div className="backtest-highlight-label">Win Rate</div></div>
-          <div className="backtest-highlight"><div className="backtest-highlight-value">3-4x</div><div className="backtest-highlight-label">Avg Win / Avg Loss</div></div>
+
+        <div className="doc-callout success" style={{ marginTop: 24 }}>
+          <strong>Bottom line.</strong> Walkforward validation confirms <strong>7 of 15 setups CONSISTENT</strong> across 4 independent OOS periods. Edge is real, but driven by asymmetric payoff (avg win 3–5× loss), not high winrate.
         </div>
-        <div className="doc-callout info"><strong>Method:</strong> Bar-by-bar replay of detect_swing_setup() with 3-phase trailing stop. 62 IDX stocks, 3 years. No weekly MTF. Regime = UNKNOWN.</div>
-        <h3>Per-Setup Breakdown</h3>
-        <div className="doc-table-wrap">
-          <table className="doc-table">
-            <thead><tr><th>Setup</th><th>N</th><th>Stk</th><th>WR%</th><th>AvgW%</th><th>AvgL%</th><th>Exp</th><th>PF</th></tr></thead>
-            <tbody>
-              <tr><td>EMA200-Bounce</td><td>364</td><td>59</td><td>49.7</td><td>+16.12</td><td>-4.14</td><td>+5.93</td><td>3.85</td></tr>
-              <tr><td>Ichimoku-Break</td><td>335</td><td>61</td><td>53.7</td><td>+16.09</td><td>-5.99</td><td>+5.87</td><td>3.12</td></tr>
-              <tr><td>Accumul-Zone</td><td>124</td><td>49</td><td>51.6</td><td>+14.25</td><td>-3.09</td><td>+5.86</td><td>4.92</td></tr>
-              <tr><td>Inside-Bar-Brk</td><td>120</td><td>52</td><td>55.0</td><td>+17.59</td><td>-4.47</td><td>+7.66</td><td>4.81</td></tr>
-              <tr><td>VCP</td><td>81</td><td>45</td><td>59.3</td><td>+7.78</td><td>-3.77</td><td>+3.08</td><td>3.00</td></tr>
-              <tr><td>Donchian-Break</td><td>53</td><td>38</td><td>52.8</td><td>+10.20</td><td>-4.72</td><td>+3.16</td><td>2.42</td></tr>
-              <tr><td>Golden-Cross</td><td>40</td><td>27</td><td>45.0</td><td>+33.02</td><td>-2.33</td><td>+13.58</td><td>11.61</td></tr>
-              <tr><td>Breakout-Vol</td><td>26</td><td>20</td><td>65.4</td><td>+4.93</td><td>-4.12</td><td>+1.80</td><td>2.26</td></tr>
-              <tr><td>Weakness-Recov</td><td>15</td><td>14</td><td>86.7</td><td>+3.75</td><td>-1.81</td><td>+3.01</td><td>13.51</td></tr>
-              <tr><td>Supertrend-Flip</td><td>12</td><td>12</td><td>50.0</td><td>+40.59</td><td>-1.57</td><td>+19.51</td><td>25.83</td></tr>
-              <tr><td>BB-Squeeze-Brk</td><td>10</td><td>8</td><td>50.0</td><td>+5.20</td><td>-4.45</td><td>+0.38</td><td>1.17</td></tr>
-              <tr><td>CupHandle</td><td>9</td><td>9</td><td>44.4</td><td>+15.19</td><td>-4.25</td><td>+4.38</td><td>2.86</td></tr>
-              <tr><td>Flag-Cont</td><td>8</td><td>7</td><td>75.0</td><td>+11.53</td><td>-4.00</td><td>+7.65</td><td>8.65</td></tr>
-              <tr><td>52W-High-Brk</td><td>4</td><td>4</td><td>75.0</td><td>+10.74</td><td>-2.75</td><td>+7.37</td><td>11.72</td></tr>
-              <tr><td>Flat-Base</td><td>2</td><td>2</td><td>50.0</td><td>+0.00</td><td>-2.17</td><td>-1.08</td><td>0.00</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <h3>Walk-Forward Validation (4 Folds x 6 Months)</h3>
-        <div className="doc-callout info"><strong>Method:</strong> 59 stocks, 36 months (May 2023 - Apr 2026), 12-month warmup, 4 x 6-month test folds, 1,137 total out-of-sample trades.</div>
-        <div className="doc-table-wrap">
-          <table className="doc-table">
-            <thead><tr><th>Setup</th><th>N</th><th>Folds</th><th>WR%</th><th>Exp</th><th>PF</th><th>Verdict</th></tr></thead>
-            <tbody>
-              <tr><td>EMA200-Bounce</td><td>348</td><td>4/4</td><td>54.3</td><td>+5.43</td><td>3.82</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Ichimoku-Break</td><td>321</td><td>4/4</td><td>50.2</td><td>+5.28</td><td>2.93</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Inside-Bar-Brk</td><td>102</td><td>4/4</td><td>56.9</td><td>+6.04</td><td>4.12</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Donchian-Break</td><td>50</td><td>4/4</td><td>68.0</td><td>+6.56</td><td>5.92</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Golden-Cross</td><td>42</td><td>4/4</td><td>52.4</td><td>+3.98</td><td>4.43</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Weakness-Recov</td><td>15</td><td>4/4</td><td>73.3</td><td>+3.48</td><td>11.32</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Flag-Cont</td><td>7</td><td>2/4</td><td>71.4</td><td>+7.00</td><td>7.12</td><td><span className="verdict-consistent">CONSISTENT</span></td></tr>
-              <tr><td>Accumul-Zone</td><td>122</td><td>4/4</td><td>53.3</td><td>+8.55</td><td>6.56</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>VCP</td><td>80</td><td>4/4</td><td>60.0</td><td>+5.34</td><td>4.67</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>Supertrend-Flip</td><td>11</td><td>3/4</td><td>54.5</td><td>+9.84</td><td>14.25</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>BB-Squeeze-Brk</td><td>11</td><td>4/4</td><td>63.6</td><td>+4.89</td><td>4.63</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>CupHandle</td><td>4</td><td>3/4</td><td>50.0</td><td>+1.11</td><td>1.49</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>52W-High-Brk</td><td>3</td><td>2/4</td><td>66.7</td><td>+2.07</td><td>2.82</td><td><span className="verdict-volatile">VOLATILE</span></td></tr>
-              <tr><td>Breakout-Vol</td><td>19</td><td>4/4</td><td>57.9</td><td>-0.05</td><td>0.97</td><td><span className="verdict-negative">NEGATIVE</span></td></tr>
-              <tr><td>Flat-Base</td><td>2</td><td>1/4</td><td>50.0</td><td>-0.07</td><td>0.00</td><td><span className="verdict-insufficient">INSUFFICIENT</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <h3>Verdict Definitions</h3>
-        <ul>
-          <li><strong>CONSISTENT:</strong> Positive expectancy across folds AND std dev &lt; |mean|. Edge holds through different market conditions.</li>
-          <li><strong>VOLATILE:</strong> Positive expectancy overall, but high variance across folds. Edge real but unreliable.</li>
-          <li><strong>NEGATIVE:</strong> Aggregate expectancy &le; 0. No edge detected.</li>
-          <li><strong>INSUFFICIENT:</strong> Appeared in &lt; 2 folds. Too few data points.</li>
-        </ul>
-        <div className="doc-callout success"><strong>Bottom Line:</strong> Walk-forward validation confirms 7/15 setups CONSISTENT across 4 independent OOS periods (1,137 trades, 54.7% WR). Edge is real but driven by asymmetric payoff (avg win 3-4x loss), not high WR.</div>
       </div>
     </section>
   );
@@ -533,10 +503,10 @@ export default function DocsPage() {
             confluence scoring, market regimes, and walk-forward validated backtest evidence.
           </p>
           <div className="docs-stats">
-            <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">20</span></div><div className="docs-stat-label">Swing Setups</div></div>
+            <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">15</span></div><div className="docs-stat-label">Swing Setups</div></div>
             <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">12</span></div><div className="docs-stat-label">Confluence Points</div></div>
             <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">4</span></div><div className="docs-stat-label">Market Regimes</div></div>
-            <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">1,137</span></div><div className="docs-stat-label">OOS Trades</div></div>
+            <div className="docs-stat"><div className="docs-stat-value"><span className="accent-num">3,240</span></div><div className="docs-stat-label">Trades Audited</div></div>
           </div>
           <p className="docs-version">v2.5.3 &middot; Educational purpose only &middot; Not investment advice</p>
         </section>
