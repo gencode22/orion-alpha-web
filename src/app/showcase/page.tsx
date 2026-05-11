@@ -83,7 +83,7 @@ export default function IndexPromoPage() {
       </div>
     </div>
     <h1 className="display-text">Find the Setup.<br /><span className="accent">Execute with Edge.</span></h1>
-    <p className="lede">Stop guessing which IDX stock to buy today. Orion scans all of them against 20 proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.</p>
+    <p className="lede">Stop guessing which IDX stock to buy today. Orion scans all of them against 15 walkforward-proven swing setups — and tells you exactly when to enter, where to stop, and when to take profit.</p>
   </div>
 
   {/*  ── Live Market Ticker ──  */}
@@ -115,7 +115,7 @@ export default function IndexPromoPage() {
         <div className="stat-lbl">Coverage</div>
       </div>
       <div className="stat-cell" role="listitem">
-        <div className="stat-val"><span className="accent"><AnimatedCounter value={20} /></span> swing setups</div>
+        <div className="stat-val"><span className="accent"><AnimatedCounter value={15} /></span> swing setups</div>
         <div className="stat-lbl">Detectors</div>
       </div>
       <div className="stat-cell" role="listitem">
@@ -566,8 +566,8 @@ export default function IndexPromoPage() {
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
           </div>
           <div>
-            <div className="feat-title">20 Swing-Setup Detectors</div>
-            <div className="feat-desc">VCP, Cup &amp; Handle, Breakout, Pullback, EMA200 Bounce, Supertrend Flip — ATR-anchored stops, 3-phase trailing.</div>
+            <div className="feat-title">15 Swing-Setup Detectors</div>
+            <div className="feat-desc">VCP, Pullback-Uptrend, EMA200-Bounce, Ichimoku-Break, Wyckoff-Spring, Donchian-Break — ATR-anchored stops, 3-phase trailing.</div>
             <span className="feat-tag starter">Starter+</span>
           </div>
         </div>
@@ -618,7 +618,7 @@ export default function IndexPromoPage() {
       {isDemoLoading && (
         <div id="demo-loading" className="demo-loading">
           <div className="spinner"></div>
-          <span>Orion Engine is scanning 20 setups...</span>
+          <span>Orion Engine is scanning 15 setups...</span>
         </div>
       )}
       

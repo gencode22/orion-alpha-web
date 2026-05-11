@@ -22,7 +22,7 @@ export const translations: Record<'en' | 'id', any> = {
       badge: 'Swing Trading Engine · IDX',
       title: 'Find the Setup.',
       title_accent: 'Execute with Edge.',
-      desc: 'Stop guessing which IDX stock to buy today. Orion scans all of them against <span class="kw">20 proven swing setups</span> — and tells you <span class="kw">exactly when to enter</span>, where to stop, and when to take profit.',
+      desc: 'Stop guessing which IDX stock to buy today. Orion scans all of them against <span class="kw">15 walkforward-proven swing setups</span> — and tells you <span class="kw">exactly when to enter</span>, where to stop, and when to take profit.',
       stats: {
         setups: 'Swing Setups',
         indicators: 'Indicators',
@@ -45,7 +45,7 @@ export const translations: Record<'en' | 'id', any> = {
       also_included: 'Also included:',
       desc: 'Nine modules — setup detection, confluence scoring, risk sizing, fundamentals, and alerts — working together so you always know what the data is saying.',
       cards: {
-        setups: { title: '20+ Swing Setup Detectors', desc: '<span class="kw">VCP, Pullback, Breakout-Volume</span>, Donchian, Cup-Handle, Flag — each scored 0–100 with regime-aware filter.' },
+        setups: { title: '15 Swing Setup Detectors', desc: '<span class="kw">VCP, Pullback-Uptrend, EMA200-Bounce</span>, Donchian-Break, Wyckoff-Spring, Ichimoku-Break — each scored 0–100 with regime-aware filter.' },
         confluence: { title: 'Multi-TF Confluence Scoring', desc: '12-indicator weighted vote across <span class="kw">Daily, Weekly, 4H</span>. Final 0–100 score with regime-adaptive weights.' },
         ai: { title: 'AI Research Assistant', desc: '<span class="kw">Gemini 2.5 Flash</span> primary, local Qwen 2.5 3B fallback. Tool-augmented natural-language queries on live data.' },
         fundamental: { title: 'Fundamental Analysis', desc: '4-pillar 0–100 scoring: valuation, profitability, health, growth. <span class="kw">Graham Number</span> with margin-of-safety.' },
@@ -107,7 +107,7 @@ export const translations: Record<'en' | 'id', any> = {
         { title: 'Data Ingestion', desc: 'OHLCV from yfinance (15 min delayed) with retry + IHSG last-candle patch. RSS news from 6 publishers.' },
         { title: 'Indicator Computation', desc: '12 indicators across Daily / Weekly / 4H — RSI, MACD, BB, ATR, ADX, Supertrend, PSAR, OBV, MFI, CMF, Stoch, Ichimoku.' },
         { title: 'Confluence + Regime', desc: 'Detect IHSG regime (Bull / Bear / Sideways), apply adaptive weights, aggregate to 0–100 score with 0–12 confluence.' },
-        { title: 'Setup + Risk', desc: 'Match against 20 named setups (VCP, Donchian, Pullback…). Compute Entry/SL/TP with ATR-anchored stops, R:R guard.' }
+        { title: 'Setup + Risk', desc: 'Match against 15 named setups (VCP, Donchian-Break, Pullback-Uptrend…). Compute Entry/SL/TP with ATR-anchored stops, R:R guard.' }
       ]
     },
     final_cta: {
@@ -148,7 +148,7 @@ export const translations: Record<'en' | 'id', any> = {
         price: 'Rp 49K',
         period: '/month',
         badge: 'Most Popular',
-        features: ['Unlimited /signal', '/chart full indicators + patterns', '/swing — 20 setup detectors', '/fa + /fascan screener', '/sizing + /calculator', '/scan across all IDX sectors'],
+        features: ['Unlimited /signal', '/chart full indicators + patterns', '/swing — 15 setup detectors', '/fa + /fascan screener', '/sizing + /calculator', '/scan across all IDX sectors'],
         cta: 'Upgrade to Starter',
         pro_hint: 'Need backtest, alerts & watchlist? See Pro plan →'
       }
@@ -195,7 +195,7 @@ export const translations: Record<'en' | 'id', any> = {
       badge: 'Swing Trading Engine · IDX',
       title: 'Find the Setup.',
       title_accent: 'Execute with Edge.',
-      desc: 'Berhenti menebak saham IDX mana yang harus dibeli hari ini. Orion memindai semuanya berdasarkan <span class="kw">20 setup swing teruji</span> — dan memberi tahu Anda <span class="kw">kapan harus masuk</span>, di mana harus stop, dan kapan harus take profit.',
+      desc: 'Berhenti menebak saham IDX mana yang harus dibeli hari ini. Orion memindai semuanya berdasarkan <span class="kw">15 setup swing tervalidasi walkforward</span> — dan memberi tahu Anda <span class="kw">kapan harus masuk</span>, di mana harus stop, dan kapan harus take profit.',
       ctas: {
         telegram: 'Buka Bot Telegram',
         showcase: 'Showcase Live',
@@ -218,7 +218,7 @@ export const translations: Record<'en' | 'id', any> = {
       also_included: 'Juga termasuk:',
       desc: 'Sembilan modul — deteksi setup, skor confluence, manajemen risiko, fundamental, dan notifikasi — bekerja bersama agar Anda selalu tahu apa yang dikatakan data.',
       cards: {
-        setups: { title: '20+ Detektor Swing Setup', desc: '<span class="kw">VCP, Pullback, Breakout</span>, Cup-Handle, Flag — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
+        setups: { title: '15 Detektor Swing Setup', desc: '<span class="kw">VCP, Pullback-Uptrend, EMA200-Bounce</span>, Wyckoff-Spring, Ichimoku-Break, Donchian-Break — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
         confluence: { title: 'Skor Konfluensi Multi-TF', desc: 'Evaluasi 12 indikator di <span class="kw">Daily, Weekly, 4H</span>. Skor akhir 0–100 yang adaptif terhadap kondisi market.' },
         ai: { title: 'Asisten Riset AI', desc: '<span class="kw">Gemini 2.5 Flash</span> sebagai otak utama. Tanya jawab seputar data saham secara real-time dengan bahasa natural.' },
         fundamental: { title: 'Analisis Fundamental', desc: 'Penilaian 0–100 dari 4 pilar: valuasi, profitabilitas, kesehatan, dan pertumbuhan. Termasuk <span class="kw">Graham Number</span>.' },
@@ -280,7 +280,7 @@ export const translations: Record<'en' | 'id', any> = {
         { title: 'Pengumpulan Data', desc: 'OHLCV dari yfinance (tunda 15 mnt) dengan retry otomatis. Berita RSS dari 6 penerbit lokal dan global.' },
         { title: 'Komputasi Indikator', desc: '12 indikator di Daily / Weekly / 4H — RSI, MACD, BB, ATR, ADX, Supertrend, PSAR, OBV, MFI, CMF, Stoch, Ichimoku.' },
         { title: 'Konfluensi + Regime', desc: 'Deteksi kondisi IHSG (Bull / Bear / Sideways), terapkan bobot adaptif, gabungkan menjadi skor 0–100.' },
-        { title: 'Setup + Risiko', desc: 'Cocokkan dengan 20 setup (VCP, Donchian, Pullback…). Hitung Entry/SL/TP dengan stop berbasis ATR.' }
+        { title: 'Setup + Risiko', desc: 'Cocokkan dengan 15 setup (VCP, Donchian-Break, Pullback-Uptrend…). Hitung Entry/SL/TP dengan stop berbasis ATR.' }
       ]
     },
     final_cta: {
@@ -322,7 +322,7 @@ export const translations: Record<'en' | 'id', any> = {
         price: 'Rp 49K',
         period: '/bulan',
         badge: 'Paling Populer',
-        features: ['Sinyal tanpa batas (/signal)', '/chart indikator & pola lengkap', '/swing — 20 detektor setup', '/fa + /fascan screener', '/sizing + /calculator', '/scan seluruh sektor IDX'],
+        features: ['Sinyal tanpa batas (/signal)', '/chart indikator & pola lengkap', '/swing — 15 detektor setup', '/fa + /fascan screener', '/sizing + /calculator', '/scan seluruh sektor IDX'],
         cta: 'Upgrade ke Starter',
         pro_hint: 'Butuh backtest, alert & watchlist? Lihat paket Pro →'
       }

@@ -49,7 +49,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
           },
           {
             title: 'Hours of charting back',
-            body: 'Three hours of manual TA, every day — gone. Orion scans every IDX stock against 20 setups in seconds. You spend time deciding, not searching.',
+            body: 'Three hours of manual TA, every day — gone. Orion scans every IDX stock against 15 setups in seconds. You spend time deciding, not searching.',
           },
           {
             title: 'A measurable, repeatable edge',
@@ -79,7 +79,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
       },
       stats: [
         { val_pre: '', val_accent: 'All', val_post: ' IDX stocks', label: 'Coverage' },
-        { val_pre: '', val_accent: '20', val_post: ' swing setups', label: 'Detectors' },
+        { val_pre: '', val_accent: '15', val_post: ' swing setups', label: 'Detectors' },
         { val_pre: 'Walk-forward ', val_accent: 'A', val_post: '', label: 'Robustness' },
         { val_pre: '', val_accent: '< 60s', val_post: ' to start', label: 'Onboarding' },
       ],
@@ -206,7 +206,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
           },
           {
             title: 'Jam-jam charting kembali',
-            body: 'Tiga jam TA manual setiap hari — hilang. Orion scan setiap saham IDX dengan 20 setup dalam hitungan detik. Anda habiskan waktu untuk memutuskan, bukan mencari.',
+            body: 'Tiga jam TA manual setiap hari — hilang. Orion scan setiap saham IDX dengan 15 setup dalam hitungan detik. Anda habiskan waktu untuk memutuskan, bukan mencari.',
           },
           {
             title: 'Edge yang terukur dan bisa direplikasi',
@@ -236,7 +236,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
       },
       stats: [
         { val_pre: '', val_accent: 'Semua', val_post: ' saham IDX', label: 'Cakupan' },
-        { val_pre: '', val_accent: '20', val_post: ' swing setup', label: 'Detektor' },
+        { val_pre: '', val_accent: '15', val_post: ' swing setup', label: 'Detektor' },
         { val_pre: 'Walk-forward ', val_accent: 'A', val_post: '', label: 'Ketangguhan' },
         { val_pre: '', val_accent: '< 60d', val_post: ' untuk mulai', label: 'Onboarding' },
       ],

@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import {
@@ -267,26 +268,37 @@ export default function BacktestPage() {
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 01</span>
               <h2>How we tested</h2>
-              <p>If you can&rsquo;t see the methodology, you can&rsquo;t trust the result. Here&rsquo;s exactly how the numbers below were produced.</p>
+              <p>Methodology you can audit — not a black box.</p>
             </div>
             <div className="doc-content">
-              <h3>The setups doing the work</h3>
-              <ul>
-                <li><strong>15 battle-tested detectors.</strong> Started with 20. Cut 5 that didn&rsquo;t earn their keep on out-of-sample data. Added 5 more after they survived independent validation. What you see today is what made the cut.</li>
-                <li><strong>3-phase chandelier trail.</strong> SL moves to breakeven after TP1, then trails 2×ATR below the running high. Winners get room to run; losers get cut at fixed risk.</li>
-                <li><strong>Per-setup MAX_HOLD.</strong> Each detector has a maximum holding window tuned to its character — Stage2-Breakout 90d, Pullback-Uptrend 15d, and so on. No setup overstays its welcome.</li>
-                <li><strong>Production-identical replay.</strong> Weekly resample for MTF confluence + per-bar IHSG regime simulation. The backtest doesn&rsquo;t see anything the live engine doesn&rsquo;t.</li>
-                <li><strong>Universal SL/TP guardrails.</strong> SL must sit below entry, TP2 must exceed TP1, fallback to 2.5R when raw swing levels are invalid. No way to fake a profitable trade with broken levels.</li>
-              </ul>
-              <h3>How we know it&rsquo;s not curve-fitting</h3>
-              <ul>
-                <li><strong>Plain backtest.</strong> Every stock, every bar, 3 years. The base layer.</li>
-                <li><strong>Walkforward (rolling OOS).</strong> 4 disjoint 6-month windows after a 12-month warmup. The engine is tuned on the warmup, then released into windows it has never seen. Trades filtered by entry date so warmup logic can&rsquo;t leak into test results. This is the test that separates real edge from data-mined illusion.</li>
-                <li><strong>Data source.</strong> yfinance daily snapshots, 2023-05 → 2026-04. Same source you&rsquo;d hit if you wanted to reproduce these numbers yourself.</li>
-              </ul>
               <div className="doc-callout info">
-                <strong>{headline.uniqueStocks} unique stocks. Every trade counted once.</strong> The watchlist spans LQ45 blue chips and momentum/bandar names. Overlapping tickers between profiles are deduplicated — no double-counting, no inflated trade counts. The math on this page is the math we&rsquo;d quote in court.
+                <strong>{headline.uniqueStocks} unique stocks. Every trade counted once.</strong> Watchlist spans LQ45 + bandar names; overlapping tickers deduplicated. The math on this page is the math we&rsquo;d quote in court.
               </div>
+
+              <details className="bt-faq-card" style={{ marginTop: 16 }}>
+                <summary>
+                  <span className="bt-faq-q">Engine state &amp; test framework</span>
+                  <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <div className="bt-faq-a">
+                  <h4 className="bt-collapse-h">Setups doing the work</h4>
+                  <ul className="bt-tight-list">
+                    <li><strong>15 battle-tested detectors.</strong> Started with 20. Cut 5 that failed OOS. Added 5 that survived independent validation.</li>
+                    <li><strong>3-phase chandelier trail.</strong> SL → breakeven after TP1, then trails 2×ATR below running high.</li>
+                    <li><strong>Per-setup MAX_HOLD.</strong> Each detector has a hold-window tuned to its character (Stage2-Breakout 90d, Pullback-Uptrend 15d, etc).</li>
+                    <li><strong>Production-identical replay.</strong> Weekly MTF resample + per-bar IHSG regime simulation. Backtest sees nothing the live engine doesn&rsquo;t.</li>
+                    <li><strong>Universal SL/TP guards.</strong> SL must sit below entry, TP2 must exceed TP1, fallback 2.5R on invalid swing levels.</li>
+                  </ul>
+                  <h4 className="bt-collapse-h">How we know it&rsquo;s not curve-fitting</h4>
+                  <ul className="bt-tight-list">
+                    <li><strong>Plain backtest.</strong> Every stock, every bar, 3 years.</li>
+                    <li><strong>Walkforward.</strong> 4 disjoint 6-month windows after 12-month warmup. Trades filtered by entry date — no warmup leakage.</li>
+                    <li><strong>Data source.</strong> yfinance daily snapshots, 2023-05 → 2026-04. Reproducible.</li>
+                  </ul>
+                </div>
+              </details>
             </div>
           </section>
 
@@ -295,23 +307,20 @@ export default function BacktestPage() {
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 02</span>
               <h2>What each setup actually does</h2>
-              <p>
-                The 15 setups, ranked by trade count. Workhorses up top — these are the ones doing the heavy lifting,
-                fired hundreds of times across 3 years, expectancy positive on every one. The long tail at the bottom
-                fires rarer but punches above its weight when it does.
-              </p>
+              <p>15 setups, ranked by trade count. Workhorses top, specialists tail.</p>
             </div>
             <div className="doc-content">
               <PerSetupChart metric="exp" />
               <PerSetupChart metric="wr" />
               <SetupTable rows={setupRows} />
-              <div className="doc-callout success" style={{ marginTop: 16 }}>
-                <strong>Why a 50% winrate is fine — actually, ideal.</strong> The number most traders chase
-                (winrate) isn&rsquo;t the one that builds equity. The one that does is <em>expectancy</em>:
-                AvgWin × WR − AvgLoss × (1−WR). The engine&rsquo;s average winner runs <em>3–5× the average loser</em>.
-                That asymmetry means you can lose 2 out of 3 trades and still compound — the few that work
-                cover the many that don&rsquo;t, with room to spare. Tightening stops to crank winrate above 65%
-                cuts runners early and collapses expectancy. We&rsquo;ve tested it. It does.
+              <div className="doc-callout success bt-formula-callout" style={{ marginTop: 16 }}>
+                <strong>50% winrate is fine — actually ideal.</strong>
+                <div className="bt-formula">
+                  Expectancy = <em>AvgWin × WR − AvgLoss × (1−WR)</em>
+                </div>
+                <span className="bt-formula-takeaway">
+                  Avg winner runs <strong>3–5×</strong> avg loser. Lose 2 of 3 and still compound.
+                </span>
               </div>
             </div>
           </section>
@@ -322,11 +331,7 @@ export default function BacktestPage() {
               <span className="section-eyebrow">Section 03</span>
               <h2>Every ticker, every trade</h2>
               <p>
-                All {headline.uniqueStocks} stocks the engine touched, ranked by 3-year total return.
-                The top names crushed it — <strong>{headline.topReturnCode} returned +{headline.topReturn.toLocaleString()}%</strong> on
-                the setups firing. The bottom names cost a small amount. That power-law spread isn&rsquo;t a flaw —
-                it&rsquo;s the fingerprint of trend-following: most upside concentrates in a few strong trends,
-                and the system is engineered to ride them without bleeding capital on the rest.
+                All {headline.uniqueStocks} stocks ranked by 3y return. Top: <strong>{headline.topReturnCode} +{headline.topReturn.toLocaleString()}%</strong>. Power-law spread is the trend-following fingerprint — most upside in a few trends, no bleed on the rest.
               </p>
             </div>
             <div className="doc-content">
@@ -394,11 +399,8 @@ export default function BacktestPage() {
               <span className="section-eyebrow">Section 04</span>
               <h2>The hardest test we run</h2>
               <p>
-                Anyone can produce a backtest that looks good in hindsight. The real test is whether the edge
-                survives on data the engine has never seen. We tune on the first 12 months, then turn the engine
-                loose on 4 independent 6-month windows. A setup earns the <strong>CONSISTENT</strong> badge only
-                when its fold-to-fold variance is <em>smaller</em> than its mean expectancy — every window earned
-                its keep, not just the lucky ones. That&rsquo;s the line between an edge and a fluke.
+                Tuned on month 0–12, tested on 4 independent unseen 6-month windows.
+                <strong> CONSISTENT</strong> = edge survives all 4. The line between real edge and lucky window.
               </p>
             </div>
             <div className="doc-content">
@@ -422,11 +424,7 @@ export default function BacktestPage() {
               </div>
               <WalkforwardTable rows={walkRows} />
               <div className="doc-callout info" style={{ marginTop: 16 }}>
-                <strong>VOLATILE doesn&rsquo;t mean broken.</strong> A VOLATILE setup has positive expectancy
-                across all 4 windows but swings hard between them — it works, just lumpier. We keep these
-                running because the edge is real; the signals are sized smaller and treated as opportunistic
-                rather than core. Honest labeling means you know what you&rsquo;re getting before the trade,
-                not after.
+                <strong>VOLATILE ≠ broken.</strong> Positive expectancy across all 4 windows, just lumpier. Sized smaller in production. Honest labeling so you know before the trade, not after.
               </div>
             </div>
           </section>
@@ -436,24 +434,349 @@ export default function BacktestPage() {
             <div className="doc-section-header">
               <span className="section-eyebrow">Section 05</span>
               <h2>What the numbers don&rsquo;t tell you</h2>
-              <p>
-                Anyone who hides limitations is selling you something. Here&rsquo;s what these numbers
-                <em> aren&rsquo;t</em> — so you can size your expectations honestly.
-              </p>
+              <p>Anyone who hides limitations is selling you something. Here&rsquo;s ours.</p>
             </div>
             <div className="doc-content">
-              <ul>
-                <li><strong>Gross, not net of fees.</strong> Real broker fees run ~0.15% each way. The <code>/portfolio</code> tracker accounts for them in live tracking; the backtest math here doesn&rsquo;t. Expectancy on smaller-edge setups drops a touch once fees are in.</li>
-                <li><strong>yfinance has ~15 min lag.</strong> Live entries can differ from backtest entries by 1–2% on fast movers. We won&rsquo;t pretend otherwise.</li>
-                <li><strong>Recent IPOs excluded from walkforward.</strong> Tickers like CDIA and FORE don&rsquo;t have enough warmup history yet. They&rsquo;ll join the OOS pool once they do.</li>
-                <li><strong>Survivorship bias.</strong> The watchlist is what exists today. Stocks delisted between 2023–2026 aren&rsquo;t in the test set. This is an honest blind spot.</li>
-                <li><strong>Per-stock, not portfolio-level.</strong> No correlation modeling, no max concurrent positions, no capital allocation logic. Your account return depends on your sizing decisions — these numbers tell you the edge per signal, not how to deploy capital.</li>
-                <li><strong>One IDX cycle.</strong> 3 years is enough to validate short-term edge. It&rsquo;s not enough to claim multi-cycle (10y+) robustness, and we won&rsquo;t.</li>
-                <li><strong>Engine v9 snapshot.</strong> The numbers above match the engine version currently in production. Every engine update triggers a full re-run via <code>python scripts/generate_backtest_md.py</code>.</li>
-              </ul>
+              <div className="bt-caveat-grid">
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">Gross of fees</span>
+                  <span className="bt-caveat-line">Real round-trip ~0.30%. Shave 5–10% off expectancy.</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">~15 min data lag</span>
+                  <span className="bt-caveat-line">yfinance delay. Live entry can differ 1–2% on fast movers.</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">Recent IPOs excluded</span>
+                  <span className="bt-caveat-line">CDIA, FORE, etc. — not enough warmup yet.</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">Survivorship bias</span>
+                  <span className="bt-caveat-line">Delisted 2023–2026 names absent from test set.</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">Per-trade, not portfolio</span>
+                  <span className="bt-caveat-line">No correlation, sizing, or concurrent-position modeling.</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">One IDX cycle</span>
+                  <span className="bt-caveat-line">3 years validates short-term, not multi-cycle (10y+).</span>
+                </div>
+                <div className="bt-caveat-chip">
+                  <span className="bt-caveat-title">v9 snapshot</span>
+                  <span className="bt-caveat-line">Matches engine in production. Re-runs on every update.</span>
+                </div>
+              </div>
+
+              <details className="bt-faq-card" style={{ marginTop: 16 }}>
+                <summary>
+                  <span className="bt-faq-q">Full notes on each caveat</span>
+                  <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <div className="bt-faq-a">
+                  <ul className="bt-tight-list">
+                    <li><strong>Gross, not net of fees.</strong> Real broker fees run ~0.15% each way (~0.30% round-trip). The <code>/portfolio</code> tracker accounts for them in live tracking; the backtest math here doesn&rsquo;t. Expectancy on smaller-edge setups drops once fees are in.</li>
+                    <li><strong>yfinance has ~15 min lag.</strong> Live entries can differ from backtest entries by 1–2% on fast movers.</li>
+                    <li><strong>Recent IPOs excluded from walkforward.</strong> Tickers like CDIA and FORE don&rsquo;t have enough warmup history yet. They&rsquo;ll join the OOS pool once they do.</li>
+                    <li><strong>Survivorship bias.</strong> The watchlist is what exists today. Stocks delisted between 2023–2026 aren&rsquo;t in the test set.</li>
+                    <li><strong>Per-stock, not portfolio-level.</strong> No correlation modeling, no max concurrent positions, no capital allocation logic. Your account return depends on your sizing decisions.</li>
+                    <li><strong>One IDX cycle.</strong> 3 years is enough to validate short-term edge. Not enough to claim multi-cycle (10y+) robustness.</li>
+                    <li><strong>Engine v9 snapshot.</strong> Numbers match the engine version currently in production. Every engine update triggers a full re-run via <code>python scripts/generate_backtest_md.py</code>.</li>
+                  </ul>
+                </div>
+              </details>
+
               <div className="doc-callout warning" style={{ marginTop: 16 }}>
-                <strong>Educational purpose only. Not investment advice.</strong> Past performance does not guarantee future results.
-                Do your own research, size positions you can afford to lose, and never trade on a signal you don&rsquo;t understand.
+                <strong>Educational purpose only. Not investment advice.</strong> Past performance does not guarantee future results. Size positions you can afford to lose. Never trade a signal you don&rsquo;t understand.
+              </div>
+            </div>
+          </section>
+
+          {/* §6 FAQ */}
+          <section className="doc-section" id="faq">
+            <div className="doc-section-header">
+              <span className="section-eyebrow">Section 06</span>
+              <h2>Questions you should be asking</h2>
+              <p>Skepticism is a feature. 7 questions, honest answers.</p>
+            </div>
+            <div className="doc-content">
+              <div className="bt-faq-list">
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">How do you know this isn&rsquo;t curve-fitting?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      We tune the engine on the first 12 months of data, then test it on 4 independent
+                      6-month windows it has never seen. A setup only earns the <strong>CONSISTENT</strong> label
+                      if its edge holds steady across all 4 — fold-to-fold variance smaller than mean expectancy.
+                    </p>
+                    <p>
+                      Curve-fitted edges fail this test. They look great on the data they were tuned on,
+                      then collapse the moment the regime shifts. <strong>7 of our 15 setups passed.</strong> The
+                      other 8 are still positive in aggregate but lumpy across windows — we keep them
+                      running with smaller position sizing and call them VOLATILE in §4. No hiding.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">Why only 7 of 15 setups CONSISTENT?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      No. VOLATILE means &ldquo;positive expectancy overall, but lumpy fold-to-fold&rdquo; — the edge
+                      is real, it just doesn&rsquo;t arrive on a predictable schedule. Look at the walkforward
+                      table: every VOLATILE setup still has positive aggregate expectancy and PF &gt; 1.
+                    </p>
+                    <p>
+                      We sized these setups smaller in production and treat their signals as opportunistic
+                      rather than core. The strict labeling exists so you know what you&rsquo;re buying
+                      <em> before</em> the trade, not after. Most retail signal services would call these
+                      &ldquo;our top performers.&rdquo; We call them what they are.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">What about bear markets or major regime changes?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      The engine reads IHSG regime on every bar and adjusts setup weights and quality thresholds
+                      accordingly. In the tested window (2023–2026) IHSG had two distinct drawdown phases
+                      (Q3 2023, Q1 2024) — signal frequency dropped automatically during both.
+                    </p>
+                    <p>
+                      Honest take: <strong>trend-following systems underperform in chop.</strong> You should expect
+                      lower returns during prolonged sideways or bear markets. The system shouldn&rsquo;t blow up,
+                      but it won&rsquo;t print money in a 70%-of-the-year sideways grind. We have 3 years of data —
+                      not enough to claim multi-cycle robustness. We&rsquo;d be lying if we did.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">Will my real account match these numbers?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      <strong>No, and you shouldn&rsquo;t expect them to.</strong> The backtest is gross of fees
+                      (real round-trip is ~0.30%), assumes you take every signal (you won&rsquo;t — you&rsquo;ll skip
+                      some, miss some, hesitate on others), and doesn&rsquo;t model partial fills or slippage.
+                    </p>
+                    <p>
+                      Realistic adjustment: shave <strong>~5–10% off per-setup expectancy</strong> for fees + slippage.
+                      The workhorse setups (Pullback-Uptrend, EMA200-Bounce, Ichimoku-Break, etc.) still
+                      print after that haircut. The marginal setups don&rsquo;t. That&rsquo;s your filter.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">What&rsquo;s the worst case I should plan for?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      Per-trade worst case: a single position going against entry hard enough to hit
+                      MaxDD before SL triggers. We&rsquo;ve seen <strong>−57% on LEAD</strong> as the deepest
+                      single-position drawdown. That&rsquo;s the depth, not the loss — SL caught it eventually.
+                    </p>
+                    <p>
+                      Portfolio-level: depends entirely on your sizing. <strong>Size every signal so a single
+                      −50% per-position drawdown wouldn&rsquo;t break you.</strong> The engine doesn&rsquo;t model your
+                      portfolio for you — that&rsquo;s your judgment call, and the most important one.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">Can I try the signals before subscribing?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      Yes. The free plan delivers <strong>3 signals/day</strong> from the same engine and the same
+                      15 setups you just audited. No credit card. No trial period. No expiry.
+                    </p>
+                    <p>
+                      Paper-trade them for as long as you want before deciding whether to upgrade.
+                      The expectancy on these signals is in §2 of this page — you already know what to expect
+                      before you start.
+                    </p>
+                  </div>
+                </details>
+
+                <details className="bt-faq-card">
+                  <summary>
+                    <span className="bt-faq-q">What if my position hits ARA / ARB?</span>
+                    <svg className="bt-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="bt-faq-a">
+                    <p>
+                      The engine sees end-of-day bars. If a stock hits ARB (auto-reject bawah) mid-session,
+                      you physically can&rsquo;t exit at SL until next session — that&rsquo;s an IDX rule, not an
+                      engine choice. The backtest mirrors this: it executes at EOD only.
+                    </p>
+                    <p>
+                      In other words, the backtest <em>already accounts for</em> the ARA/ARB constraint by
+                      default. The number you see in §3 includes trades where SL was breached intraday
+                      but execution happened at the next-day open. <strong>It&rsquo;s not a hidden risk — it&rsquo;s
+                      baked into the math.</strong>
+                    </p>
+                  </div>
+                </details>
+
+              </div>
+            </div>
+          </section>
+
+          {/* §7 Sample Signal — alert + outcome */}
+          <section className="doc-section" id="sample-signal">
+            <div className="doc-section-header">
+              <span className="section-eyebrow">Section 07</span>
+              <h2>A signal we shipped</h2>
+              <p>The alert subscribers received. What the stock did that session.</p>
+            </div>
+            <div className="doc-content">
+              <div className="bt-sample">
+                <div className="bt-sample-grid">
+
+                  {/* Telegram alert mockup */}
+                  <div className="bt-sample-side">
+                    <div className="bt-sample-side-label">
+                      <span className="bt-sample-side-tag">Alert · 09:00 WIB</span>
+                      <span className="bt-sample-side-source">Telegram</span>
+                    </div>
+                    <div className="bt-tg-bubble">
+                      <div className="bt-tg-header">
+                        <span className="bt-tg-bell" aria-hidden="true">🔔</span>
+                        <strong>Swing Alert — MAPI</strong>
+                      </div>
+                      <div className="bt-tg-date">08 May 2026 09:00 WIB</div>
+                      <div className="bt-tg-setup">
+                        <span aria-hidden="true">🟢</span>
+                        <strong>Pullback-Uptrend</strong>
+                        <span className="bt-tg-pipe">|</span>
+                        <span>Quality: <strong>65/100</strong></span>
+                      </div>
+                      <div className="bt-tg-price">
+                        <span aria-hidden="true">💰</span>
+                        Harga: <strong>Rp 1.295</strong>
+                      </div>
+                      <ul className="bt-tg-levels">
+                        <li>
+                          <span aria-hidden="true">🎯</span>
+                          Entry: <strong>Rp 1.295</strong>
+                        </li>
+                        <li>
+                          <span aria-hidden="true">🛑</span>
+                          SL: <strong>Rp 1.217</strong>
+                          <span className="bt-tg-pct neg">(-6.02%)</span>
+                        </li>
+                        <li>
+                          <span aria-hidden="true">✅</span>
+                          TP1: <strong>Rp 1.451</strong>
+                          <span className="bt-tg-pct pos">(+12.0%)</span>
+                        </li>
+                        <li>
+                          <span aria-hidden="true">⚖️</span>
+                          R:R <strong>1:2.0</strong>
+                        </li>
+                        <li>
+                          <span aria-hidden="true">⏱</span>
+                          Holding: <strong>8–25 hari</strong>
+                        </li>
+                      </ul>
+                      <div className="bt-tg-disclaimer">
+                        <span aria-hidden="true">⚠️</span>
+                        <em>Bukan rekomendasi investasi. DYOR. Gunakan <span className="bt-tg-cmd">/swing</span> untuk analisis lengkap.</em>
+                      </div>
+                      <div className="bt-tg-buttons" aria-hidden="true">
+                        <span className="bt-tg-btn">🤔 Reason</span>
+                        <span className="bt-tg-btn">📊 Swing</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bridge */}
+                  <div className="bt-sample-bridge" aria-hidden="true">
+                    <svg className="bt-sample-arrow" viewBox="0 0 80 24" fill="none">
+                      <path d="M4 12 L72 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      <path d="M64 6 L74 12 L64 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    </svg>
+                    <div className="bt-sample-bridge-text">
+                      <strong className="bt-sample-result">TP1 hit</strong>
+                      <span className="bt-sample-result-pct">+12.36%</span>
+                      <span className="bt-sample-result-when">same session</span>
+                    </div>
+                  </div>
+
+                  {/* Stockbit result */}
+                  <div className="bt-sample-side">
+                    <div className="bt-sample-side-label">
+                      <span className="bt-sample-side-tag">Result · close 08 May</span>
+                      <span className="bt-sample-side-source">Stockbit</span>
+                    </div>
+                    <div className="bt-stockbit-frame">
+                      <Image
+                        src="/backtest/mapi-stockbit-20260508.jpg"
+                        alt="Stockbit chart of MAPI on 08 May 2026 — intraday low 1,295 climbing to 1,455 (+12.36%)"
+                        width={980}
+                        height={970}
+                        className="bt-stockbit-image"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="bt-sample-timeline">
+                  <div className="bt-sample-step">
+                    <span className="bt-sample-step-time">09:00 WIB</span>
+                    <span className="bt-sample-step-event">Engine fires Pullback-Uptrend signal at <strong>Rp 1.295</strong>.</span>
+                  </div>
+                  <div className="bt-sample-step">
+                    <span className="bt-sample-step-time">Intraday</span>
+                    <span className="bt-sample-step-event">MAPI climbs to session high <strong>Rp 1.455</strong> — TP1 (<strong>Rp 1.451</strong>) breached.</span>
+                  </div>
+                  <div className="bt-sample-step">
+                    <span className="bt-sample-step-time">EOD 08 May</span>
+                    <span className="bt-sample-step-event">Close <strong>Rp 1.455</strong> · session return <strong className="bt-num-pos-inline">+12.36%</strong> vs alert entry. R:R 1:2 target achieved on Day 1.</span>
+                  </div>
+                </div>
+
+                <p className="bt-sample-caption">
+                  One signal, one outcome — not the rule. Same-session TP1 compression is rare; same Entry/SL/TP discipline is not.
+                </p>
               </div>
             </div>
           </section>

@@ -25,7 +25,7 @@ export default function SignalPreview() {
             <div className="flex flex-col gap-4 text-sm text-muted">
               <div className="flex items-center gap-3 justify-center lg:justify-start">
                 <div className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#00b4c4]" />
-                <span>20 proven swing setups tracked</span>
+                <span>15 walkforward-proven swing setups tracked</span>
               </div>
               <div className="flex items-center gap-3 justify-center lg:justify-start">
                 <div className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_#00b4c4]" />

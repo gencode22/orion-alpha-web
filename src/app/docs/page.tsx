@@ -49,7 +49,7 @@ function ReqTable({ rows }: { rows: [string, 'Hard' | 'Soft', string][] }) {
 /* ── TOC Data ── */
 const tocItems = [
   { id: 'philosophy', num: '01', label: 'Philosophy' },
-  { id: 'setups', num: '02', label: '20 Swing Setups' },
+  { id: 'setups', num: '02', label: '15 Active Setups' },
   { id: 'confluence', num: '03', label: 'Signal Scoring' },
   { id: 'regime', num: '04', label: 'Market Regime' },
   { id: 'risk', num: '05', label: 'Risk Management' },
@@ -68,7 +68,7 @@ function ChapterPhilosophy() {
       <div className="doc-section-header">
         <span className="section-eyebrow">Chapter 1</span>
         <h2>Philosophy & Approach</h2>
-        <p>Orion Alpha is a trend-following swing trading system for the Indonesian stock market (Bursa Efek Indonesia / IDX). It scans 62+ stocks across 9 sectors and identifies actionable setups with defined entry, stop-loss, and take-profit levels.</p>
+        <p>Orion Alpha is a trend-following swing trading system for the Indonesian stock market (Bursa Efek Indonesia / IDX). It scans 100+ stocks across LQ45 + momentum names and identifies actionable setups with defined entry, stop-loss, and take-profit levels.</p>
       </div>
       <div className="doc-content">
         <h3>Core Principles</h3>
@@ -76,12 +76,12 @@ function ChapterPhilosophy() {
           <li><strong>Trend-following bias:</strong> prioritize buying in established uptrends or at trend initiation. Mean-reversion is secondary.</li>
           <li><strong>Swing timeframe:</strong> 5-45 day holding, adapted per-stock based on historical trend episode length.</li>
           <li><strong>Long-only:</strong> IDX has no retail short selling. Bearish detectors exist in code but are disabled in the live dispatcher.</li>
-          <li><strong>20 diverse setups:</strong> different market conditions favor different entry patterns. The engine runs all detectors and picks the highest-quality match.</li>
+          <li><strong>15 diverse setups:</strong> different market conditions favor different entry patterns. The engine runs all detectors and picks the highest-quality match.</li>
           <li><strong>Checklist-based quality:</strong> each setup has 7-11 binary items. Quality = (passed / total) x 100. Hard requirements gate entry.</li>
           <li><strong>Regime-aware:</strong> IHSG market regime modulates indicator weights, setup selection, and quality thresholds.</li>
         </ul>
-        <h3>Why 20 Setups?</h3>
-        <p>A single setup works in some conditions and fails in others. By maintaining 20 detectors spanning trend continuation, breakout, momentum shift, pattern recognition, and accumulation, the system finds opportunities across all market conditions &mdash; from strong trends to post-consolidation expansions, direction changes, and institutional support zones.</p>
+        <h3>Why 15 Setups?</h3>
+        <p>A single setup works in some conditions and fails in others. By maintaining 15 detectors spanning trend continuation, breakout, momentum shift, pattern recognition, and accumulation, the system finds opportunities across all market conditions &mdash; from strong trends to post-consolidation expansions, direction changes, and institutional support zones.</p>
       </div>
     </section>
   );
@@ -92,10 +92,14 @@ function ChapterSetups() {
     <section className="doc-section">
       <div className="doc-section-header">
         <span className="section-eyebrow">Chapter 2</span>
-        <h2>The 20 Swing Setups</h2>
+        <h2>The 15 Active Swing Setups</h2>
         <p>Each setup has <strong>Hard</strong> requirements (must-pass gates) and <strong>Soft</strong> requirements (quality score contributors). Click any setup to expand its checklist.</p>
       </div>
       <div className="doc-content">
+        <div className="doc-callout info">
+          <strong>Engine v9 note.</strong> This chapter documents the 20-setup original design. Engine v9 currently runs <strong>15 active setups</strong> — 5 were retired after walkforward review; 5 new ones (Pocket-Pivot, Wyckoff-Spring, Stage2-Breakout, HL-Reversal, High-Tight-Flag) were added but their detailed criteria docs are pending. See <a href="/backtest" style={{ color: 'var(--cyan)' }}>/backtest §1</a> for the canonical active list with current stats.
+        </div>
+
         {/* Group A */}
         <div className="setup-group">
           <div className="setup-group-title">Group A: Trend Continuation</div>
@@ -368,6 +372,9 @@ function ChapterBacktest() {
         <h2>Backtest Evidence</h2>
       </div>
       <div className="doc-content">
+        <div className="doc-callout warning">
+          <strong>Historical record · pre-v9 snapshot.</strong> The tables below reflect an earlier engine version during the 20→15 transition (1,203 / 1,137 trades, 59–62 stocks). The <strong>canonical current backtest</strong> with 3,240 trades across 96 unique stocks lives at <a href="/backtest" style={{ color: 'var(--cyan)' }}>/backtest</a>. Kept here for historical context.
+        </div>
         <h3>Aggregate: 62 Stocks x 3 Years</h3>
         <div className="backtest-highlights">
           <div className="backtest-highlight"><div className="backtest-highlight-value cyan">1,203</div><div className="backtest-highlight-label">Total Trades</div></div>

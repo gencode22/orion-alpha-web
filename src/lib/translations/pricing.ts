@@ -41,7 +41,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         on: [
           '<strong>Unlimited</strong> <code>/signal</code>',
           '<code>/chart</code> full indicators + patterns',
-          '<code>/swing</code> — 20 setup detectors',
+          '<code>/swing</code> — 15 setup detectors',
           '<code>/fa</code> + <code>/fascan</code> screener',
           '<code>/sizing</code> + <code>/calculator</code>',
           '<code>/scan</code> across all IDX sectors',
@@ -168,7 +168,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         },
         {
           q: 'Where does the signal data come from?',
-          a: 'OHLCV from Yahoo Finance (~15 min delay). Signals are generated in real-time on request — 12 technical indicators (RSI, MACD, Bollinger, Supertrend, etc.) + 20 setup detectors. Pure analysis, <strong>not investment advice. DYOR.</strong>',
+          a: 'OHLCV from Yahoo Finance (~15 min delay). Signals are generated in real-time on request — 12 technical indicators (RSI, MACD, Bollinger, Supertrend, etc.) + 15 setup detectors. Pure analysis, <strong>not investment advice. DYOR.</strong>',
         },
         {
           q: 'Can I use this on Discord or the web?',
@@ -230,7 +230,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         on: [
           '<strong>Tanpa batas</strong> <code>/signal</code>',
           '<code>/chart</code> indikator & pola lengkap',
-          '<code>/swing</code> — 20 detektor setup',
+          '<code>/swing</code> — 15 detektor setup',
           '<code>/fa</code> + <code>/fascan</code> screener',
           '<code>/sizing</code> + <code>/calculator</code>',
           '<code>/scan</code> seluruh sektor IDX',
@@ -356,7 +356,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
         },
         {
           q: 'Data sinyal dari mana?',
-          a: 'OHLCV dari Yahoo Finance (delay ~15 menit). Sinyal di-generate real-time per request — 12 indikator teknikal (RSI, MACD, Bollinger, Supertrend, dll.) + 20 detektor setup. Murni analisis, <strong>bukan nasihat investasi. DYOR.</strong>',
+          a: 'OHLCV dari Yahoo Finance (delay ~15 menit). Sinyal di-generate real-time per request — 12 indikator teknikal (RSI, MACD, Bollinger, Supertrend, dll.) + 15 detektor setup. Murni analisis, <strong>bukan nasihat investasi. DYOR.</strong>',
         },
         {
           q: 'Bisa pakai di Discord atau web?',

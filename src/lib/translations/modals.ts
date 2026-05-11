@@ -2,10 +2,10 @@ export const modalTranslations: Record<'en' | 'id', any> = {
   en: {
     setups: {
       eyebrow: '01 · Signal · setups',
-      title: '20+ Swing Setup Detectors',
+      title: '15 Swing Setup Detectors',
       intro: 'Proprietary pattern recognition engine scanning the entire IDX market every 15 minutes. From classic VCP to volatility-anchored breakouts.',
       sections: [
-        { title: 'Detectors', items: ['VCP (Volatility Contraction Pattern)', 'Bull Flag & Pennant', 'Pocket Pivot (Volume Signature)', 'Donchian Channel Breakouts', 'RS (Relative Strength) New Highs'] },
+        { title: 'Detectors', items: ['VCP (Volatility Contraction Pattern)', 'Pullback-Uptrend', 'Pocket Pivot (Volume Signature)', 'Donchian Channel Breakouts', 'RS (Relative Strength) New Highs'] },
         { title: 'Filtration', items: ['Market regime filter (Bull/Bear check)', 'Relative strength vs IHSG index', 'Volume signature validation', 'Sector-group momentum'] }
       ],
       cta: 'Explore showcase'
@@ -94,10 +94,10 @@ export const modalTranslations: Record<'en' | 'id', any> = {
   id: {
     setups: {
       eyebrow: '01 · Signal · setup',
-      title: '20+ Detektor Swing Setup',
+      title: '15 Detektor Swing Setup',
       intro: 'Engine pengenal pola eksklusif yang memindai seluruh pasar IDX setiap 15 menit. Dari VCP klasik hingga breakout berbasis volatilitas.',
       sections: [
-        { title: 'Detektor', items: ['VCP (Volatility Contraction Pattern)', 'Bull Flag & Pennant', 'Pocket Pivot (Volume)', 'Breakout Donchian Channel', 'RS (Relative Strength) New Highs'] },
+        { title: 'Detektor', items: ['VCP (Volatility Contraction Pattern)', 'Pullback-Uptrend', 'Pocket Pivot (Volume)', 'Breakout Donchian Channel', 'RS (Relative Strength) New Highs'] },
         { title: 'Filter', items: ['Filter kondisi market (Bull/Bear)', 'Kekuatan relatif vs indeks IHSG', 'Validasi tanda volume', 'Momentum grup sektor'] }
       ],
       cta: 'Lihat showcase'
