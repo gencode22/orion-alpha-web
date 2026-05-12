@@ -16,7 +16,6 @@ export default function AboutPage() {
   const about = t('about');
   const principles: { num: string; title: string; body: string }[] = about.principles?.items || [];
   const outcomes: { title: string; body: string }[] = about.outcomes?.items || [];
-  const trust: string[] = about.trust || [];
 
   return (
     <div className="landing">
@@ -108,18 +107,6 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-
-        {/*  ── Trust strip ──  */}
-        <div className="trust-strip-about fade-up" role="list">
-          {trust.map((label, i) => (
-            <span key={i} className="trust-pill" role="listitem">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              {label}
-            </span>
-          ))}
-        </div>
 
         {/*  ── CTA ──  */}
         <section className="about-cta fade-up glass-card">

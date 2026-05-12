@@ -17,7 +17,6 @@ export default function Navbar() {
   const toggleLang = () => setLang(lang === 'en' ? 'id' : 'en');
 
   const navLinks = [
-    { name: t('nav.home'), href: "/" },
     { name: t('nav.pricing'), href: "/pricing" },
     { name: t('nav.docs'), href: "/docs" },
     { name: t('nav.backtest'), href: "/backtest" },

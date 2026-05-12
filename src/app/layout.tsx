@@ -41,6 +41,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://orion-alpha-web.vercel.app"),
   title: "Orion Alpha — Sinyal Swing Trading Saham IDX & BEI",
   description: "Dapatkan sinyal trading saham IDX (BEI) yang sistematis dan terukur. Orion Alpha membantu trader menemukan setup swing trading terbaik melalui bot Telegram & Discord.",
   keywords: ["saham idx", "sinyal saham", "bot saham telegram", "swing trading indonesia", "analisa teknikal bei", "trading sistematis"],

@@ -54,7 +54,7 @@
     /* Compact intro above features (no big hero logo) */
     .intro {
       text-align: center;
-      margin-bottom: 88px;
+      margin-bottom: 120px;
       padding: 24px 0 8px;
       position: relative;
       overflow: hidden;
@@ -441,14 +441,11 @@
       stroke: var(--cyan);
       stroke-dasharray: 87.96;
       stroke-dashoffset: 87.96;
-      animation: hero-q-fill 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+      transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1);
       filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.4));
     }
-    @keyframes hero-q-fill {
-      to { stroke-dashoffset: 24.63; }
-    }
     @media (prefers-reduced-motion: reduce) {
-      .hero-preview-q-ring-fill { stroke-dashoffset: 24.63; animation: none; }
+      .hero-preview-q-ring-fill { transition: none; }
     }
     .hero-preview-q-num {
       position: relative;
@@ -508,6 +505,7 @@
     .hero-preview-pct.pos { color: var(--green2); }
     .hero-preview-pct.neg { color: var(--red2); }
     .hero-preview-row.is-tp .hero-preview-val { color: var(--green2); }
+    .hero-preview-row.is-sl .hero-preview-val { color: var(--red2); }
     .hero-preview-footnote {
       margin-top: 18px;
       padding-top: 14px;
@@ -518,44 +516,20 @@
       color: var(--muted);
       font-family: var(--mono, 'JetBrains Mono', monospace);
     }
+    /* Fade-in transition between auto-cycled signals */
+    .hero-preview-content {
+      animation: hero-preview-cycle-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes hero-preview-cycle-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-preview-content { animation: none; }
+    }
     /* Cascade delay for preview card */
     .hero-cascade [data-cascade="4"] { animation-delay: 520ms; }
 
-    /* Hero scroll-cue indicator (mouse-style pill with bouncing dot) */
-    .hero-scroll-cue {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 22px;
-      height: 36px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      display: flex;
-      justify-content: center;
-      padding-top: 7px;
-      pointer-events: none;
-      opacity: 0.65;
-      transition: opacity 200ms ease;
-      z-index: 2;
-    }
-    .hero-scroll-cue-line {
-      width: 2px;
-      height: 7px;
-      background: var(--cyan);
-      border-radius: 1px;
-      animation: hero-scroll-bounce 1.9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-    }
-    @keyframes hero-scroll-bounce {
-      0%, 100% { transform: translateY(0); opacity: 0.4; }
-      50%      { transform: translateY(10px); opacity: 1; }
-    }
-    @media (max-width: 880px) {
-      .hero-scroll-cue { display: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-scroll-cue-line { animation: none; }
-    }
 
     /* Stack on tablet/mobile */
     @media (max-width: 880px) {
@@ -574,7 +548,7 @@
 
     /* ── Live signal ticker (marquee) ── */
     .signal-ticker {
-      margin: -24px -32px 64px;
+      margin: -24px -32px 88px;
       padding: 16px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -635,7 +609,7 @@
 
     /* ── Stats Bar ── */
     .stats-bar {
-      margin-bottom: 56px;
+      margin-bottom: 80px;
       padding: 32px 0;
       border-top: 1px solid var(--glass-border);
       border-bottom: 1px solid var(--glass-border);
@@ -647,7 +621,7 @@
       flex-direction: column;
       align-items: center;
       gap: 14px;
-      margin: 0 auto 88px;
+      margin: 0 auto 112px;
       padding: 0 24px;
     }
     .built-on-label {
@@ -786,15 +760,6 @@
       text-align: center;
       margin-bottom: 44px;
     }
-    /* Decorative gradient line above every section heading */
-    .section-head::before {
-      content: '';
-      display: block;
-      width: 44px;
-      height: 1px;
-      margin: 0 auto 22px;
-      background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);
-    }
     .section-head .eyebrow {
       display: inline-block;
       font-size: 11px;
@@ -828,7 +793,7 @@
 
     /* Feature grid — bento layout (Setups wide + Confluence tall + 2 small) */
     .features {
-      margin-bottom: 88px;
+      margin-bottom: 120px;
     }
     .feature-grid {
       display: grid;
@@ -1010,7 +975,7 @@
     }
     /* ── Pricing Inline (Free vs Pro side-by-side) ── */
     .pricing-inline {
-      margin-bottom: 88px;
+      margin-bottom: 120px;
     }
     .pricing-inline-grid {
       display: grid;
@@ -1392,7 +1357,7 @@
 
     /* ── How It Works pipeline ────────────────────────────────────────────── */
     .pipeline {
-      margin-bottom: 88px;
+      margin-bottom: 120px;
       content-visibility: auto;
       contain-intrinsic-size: auto 400px;
     }
@@ -1883,9 +1848,19 @@
     }
 
     @media (max-width: 400px) {
-      .intro h1 { font-size: 26px; }
+      .intro h1 { font-size: 30px; letter-spacing: -0.035em; }
       .feature-grid { grid-template-columns: 1fr; }
-      .topbar-nav a.is-cta { font-size: 13px; }
+      .topbar-nav a.is-cta { font-size: 13px; padding: 6px 12px; }
+      .topbar-wrap { margin: 10px 10px 0; }
+      .landing-topbar { padding: 8px 10px 8px 14px; gap: 10px; }
+      .landing-brand span { font-size: 14px; }
+      .landing-brand img { width: 24px; height: 24px; }
+      .hero-preview-card { padding: 18px 18px 14px; }
+      .hero-preview-ticker { font-size: 32px; }
+      .signal-ticker-item { font-size: 10.5px; }
+      .signal-ticker-track { gap: 24px; }
+      .built-on-row { gap: 14px 20px; }
+      .built-on-item { font-size: 12.5px; }
     }
 
     /* ── Safe area for notched devices ── */

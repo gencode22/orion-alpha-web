@@ -99,10 +99,23 @@
     }
 
     .tier-card.is-highlight {
+      position: relative;
       border-color: var(--cyan);
       background: linear-gradient(180deg, rgba(6, 182, 212, 0.08) 0%, transparent 40%), var(--glass-bg);
       box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
-      animation: float 4s ease-in-out infinite;
+    }
+    /* Glass refraction edge — top specular highlight on featured tier */
+    .tier-card.is-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 14%;
+      right: 14%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);
+      pointer-events: none;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
     }
     .tier-ribbon {
       position: absolute;
@@ -317,13 +330,13 @@
       font-size: 13px;
     }
     .compare-table thead th {
-      padding: 12px 14px;
+      padding: 9px 14px 8px;
       text-align: center;
       font-weight: 700;
       color: var(--text);
       background: var(--bg3);
       border-bottom: 1px solid var(--border);
-      font-size: 12.5px;
+      font-size: 12px;
     }
     .compare-table thead th:first-child { text-align: left; }
     .compare-table thead th.is-highlight {
@@ -340,20 +353,21 @@
     }
     .compare-table th small {
       display: block;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 500;
       color: var(--text-muted);
       letter-spacing: var(--ls-normal);
-      margin-top: 2px;
+      margin-top: 1px;
     }
     .compare-table thead th.is-highlight small { color: var(--cyan2); }
 
     .compare-table tbody td {
-      padding: 7px 12px;
+      padding: 5px 12px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       color: var(--text2);
-      font-size: 13px;
+      font-size: 12.5px;
+      line-height: 1.4;
     }
     .compare-table tbody td:first-child {
       text-align: left;
@@ -369,14 +383,14 @@
     .compare-table .check-icon { display: inline-flex; color: var(--green); }
     .compare-table .cross-icon { display: inline-flex; color: var(--dim); }
     .compare-table .check-icon svg,
-    .compare-table .cross-icon svg { width: 14px; height: 14px; }
+    .compare-table .cross-icon svg { width: 13px; height: 13px; }
 
     .compare-table tbody tr.cat-row td {
       background: transparent;
-      padding-top: 14px;
-      padding-bottom: 4px;
+      padding-top: 10px;
+      padding-bottom: 2px;
       border-bottom: none;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: var(--ls-wide);
       text-transform: uppercase;

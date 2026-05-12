@@ -596,7 +596,7 @@
 /* ── Home section wrapper for SampleSignals (variant="home") ── */
 .sample-signal-home {
   max-width: 1100px;
-  margin: 0 auto 96px;
+  margin: 0 auto 120px;
   padding: 0 24px;
 }
 .sample-signal-home .section-head {
