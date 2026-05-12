@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/store/LanguageContext";
+import MarketStatusPill from "@/components/layout/MarketStatusPill";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,6 +50,7 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          <MarketStatusPill />
           <button
             type="button"
             className="lang-switch"

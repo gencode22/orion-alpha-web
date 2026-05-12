@@ -22,9 +22,9 @@ export default function Pipeline() {
             </div>
             {idx < 3 && (
               <div className="pipeline-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
+                <span className="pipeline-arrow-track">
+                  <span className="pipeline-arrow-dot" />
+                </span>
               </div>
             )}
           </React.Fragment>

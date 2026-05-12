@@ -67,6 +67,14 @@ export default function StatsBar() {
             viewport={{ once: true }}
             className="stats-bar-item"
           >
+            <motion.span
+              className="stats-bar-flash"
+              aria-hidden="true"
+              initial={{ opacity: 0, scale: 0.6 }}
+              whileInView={{ opacity: [0, 0.85, 0], scale: [0.6, 1.15, 1.4] }}
+              transition={{ delay: i * 0.08 + 0.2, duration: 1.4, ease: "easeOut" }}
+              viewport={{ once: true }}
+            />
             <div className="stats-bar-val">
               <Counter value={stat.value} />
             </div>

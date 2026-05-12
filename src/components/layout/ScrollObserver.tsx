@@ -39,7 +39,7 @@ export default function ScrollObserver() {
       rafId = requestAnimationFrame(() => {
         rafId = null;
 
-        // Card glow — only update cards near the cursor
+        // Card glow + 3D tilt — only update cards near the cursor
         const el = document.elementFromPoint(lastMouseX, lastMouseY);
         const card = el?.closest('.glass-card, [class*="-card"]') as HTMLElement | null;
         if (card) {
@@ -48,6 +48,11 @@ export default function ScrollObserver() {
           const y = ((lastMouseY - rect.top) / rect.height) * 100;
           card.style.setProperty('--mouse-x', `${x}%`);
           card.style.setProperty('--mouse-y', `${y}%`);
+          // tilt: cursor toward edges → card rotates that way (subtle)
+          const tiltY = ((x - 50) * 0.08).toFixed(2); // x right → rotate Y right
+          const tiltX = ((50 - y) * 0.08).toFixed(2); // y top   → rotate X up
+          card.style.setProperty('--tilt-x', `${tiltX}deg`);
+          card.style.setProperty('--tilt-y', `${tiltY}deg`);
         }
 
         // Magnetic buttons

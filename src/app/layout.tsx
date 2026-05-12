@@ -15,6 +15,7 @@ import "../styles/backtest.css";
 import "./globals.css";
 
 import ScrollObserver from "@/components/layout/ScrollObserver";
+import CursorGlow from "@/components/layout/CursorGlow";
 
 import { LanguageProvider } from "@/store/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -51,6 +52,20 @@ export const metadata: Metadata = {
     siteName: "Orion Alpha",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/static/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Orion Alpha — Systematic Swing Trading for IDX",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Orion Alpha — Systematic Swing Trading for IDX",
+    description: "15 walkforward-proven swing setups across the full IDX watchlist. 3,240 trades audited.",
+    images: ["/static/og-image.png"],
   },
   icons: {
     icon: "/static/orion-logo.png",
@@ -89,6 +104,7 @@ gtag('config', 'G-NZJDRV1E53');`}
         <a href="#main-content" className="skip-link">Skip to content</a>
         <LanguageProvider>
           <ScrollObserver />
+          <CursorGlow />
 
           <main id="main-content">
             {children}

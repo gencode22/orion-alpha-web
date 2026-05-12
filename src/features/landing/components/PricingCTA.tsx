@@ -20,7 +20,6 @@ export default function PricingCTA() {
     name: t('pricing_inline.starter.name') || 'STARTER',
     price: t('pricing_inline.starter.price') || 'Rp 49K',
     period: t('pricing_inline.starter.period') || '/month',
-    badge: t('pricing_inline.starter.badge') || 'Most Popular',
     features: t('pricing_inline.starter.features') || [],
     cta: t('pricing_inline.starter.cta') || 'Upgrade to Starter',
     proHint: t('pricing_inline.starter.pro_hint') || 'Need backtest, alerts & watchlist? See Pro plan →',
@@ -71,9 +70,8 @@ export default function PricingCTA() {
           <div className="card-glow"></div>
         </div>
 
-        {/* Starter Tier — homepage's "most popular" preview. Pro is one click away via see-all link. */}
+        {/* Starter Tier — homepage's primary tier preview. Pro is one click away via see-all link. */}
         <div className="pricing-inline-card glass-card is-primary">
-          <div className="pricing-inline-badge">{starterTier.badge}</div>
           <div className="pricing-inline-header">
             <span className="pricing-inline-name">{starterTier.name}</span>
             <div className="pricing-inline-price">
