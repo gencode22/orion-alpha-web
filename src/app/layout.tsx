@@ -87,7 +87,10 @@ export default function RootLayout({
       className={cn("dark", geist.variable, inter.variable, jetbrainsMono.variable, outfit.variable)}
       data-theme="dark"
     >
-      <body className="antialiased">
+      <body
+        className="antialiased animated-bg"
+        style={{ minHeight: '100vh' }}
+      >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NZJDRV1E53"
           strategy="afterInteractive"

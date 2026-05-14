@@ -21,7 +21,7 @@ export default function Hero() {
           <p data-cascade="2" dangerouslySetInnerHTML={{ __html: t('hero.desc') }} />
           <div className="intro-ctas" data-cascade="3">
             <a
-              href="https://t.me/orion_idx_bot"
+              href="https://t.me/orion_circle"
               target="_blank"
               rel="noopener"
               className="btn btn-telegram btn-shine btn-magnetic"

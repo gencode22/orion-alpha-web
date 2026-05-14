@@ -29,7 +29,7 @@ export const translations: Record<'en' | 'id', any> = {
         rating: 'Backtest Rating'
       },
       ctas: {
-        telegram: 'Open Telegram Bot',
+        telegram: 'Join Telegram Group',
         docs: 'Documentation',
         backtest: 'View Backtest',
         hint: '3,240 trades audited · No signup'
@@ -113,7 +113,7 @@ export const translations: Record<'en' | 'id', any> = {
     final_cta: {
       title: 'Your edge in IDX is one click away.',
       desc: 'Start with Free — 3 signals/day, full market scan, regime read. No credit card. No expiry. Upgrade only when you\'re ready.',
-      telegram: 'Open Telegram Bot',
+      telegram: 'Join Telegram Group',
       discord: 'Join Discord'
     },
     pricing_cta: {
@@ -194,14 +194,14 @@ export const translations: Record<'en' | 'id', any> = {
       badge: 'Swing Trading Engine · IDX',
       title: 'Find the Setup.',
       title_accent: 'Execute with Edge.',
-      desc: 'Berhenti menebak saham IDX mana yang harus dibeli hari ini. Orion memindai semuanya berdasarkan <span class="kw">15 setup swing tervalidasi walkforward</span> — dan memberi tahu Anda <span class="kw">kapan harus masuk</span>, di mana harus stop, dan kapan harus take profit.',
+      desc: 'Stop tebak-tebakan saham IDX. Orion scan semua ticker pakai <span class="kw">15 setup teruji walkforward</span> — kasih sinyal <span class="kw">kapan masuk</span>, di mana stop, kapan ambil profit.',
       ctas: {
-        telegram: 'Buka Bot Telegram',
+        telegram: 'Gabung Grup Telegram',
         docs: 'Dokumentasi',
         backtest: 'Lihat Backtest',
         hint: '3.240 trade teraudit · Tanpa daftar'
       },
-      micro: '3 sinyal/hari gratis · Tanpa kartu kredit · Tanpa batas waktu',
+      micro: '3 sinyal/hari gratis · Tanpa kartu kredit · Tanpa kadaluwarsa',
       panel_title: 'Mesin Analisis',
       panel_platforms: 'Telegram · Discord · Web Dashboard',
       stats: {
@@ -215,8 +215,8 @@ export const translations: Record<'en' | 'id', any> = {
       eyebrow: 'Swing Trading Toolkit',
       title: 'Temukan setup yang tepat.',
       title_accent: 'Setiap saat.',
-      also_included: 'Juga termasuk:',
-      desc: 'Sembilan modul — deteksi setup, skor confluence, manajemen risiko, fundamental, dan notifikasi — bekerja bersama agar Anda selalu tahu apa yang dikatakan data.',
+      also_included: 'Termasuk juga:',
+      desc: 'Sembilan modul kerja bareng — deteksi setup, skor confluence, sizing risiko, fundamental, alert. Data dengan konteks, bukan angka mentah.',
       cards: {
         setups: { title: '15 Detektor Swing Setup', desc: '<span class="kw">VCP, Pullback-Uptrend, EMA200-Bounce</span>, Wyckoff-Spring, Ichimoku-Break, Donchian-Break — masing-masing diberi skor 0–100 dengan filter kondisi market.' },
         confluence: { title: 'Skor Konfluensi Multi-TF', desc: 'Evaluasi 12 indikator di <span class="kw">Daily, Weekly, 4H</span>. Skor akhir 0–100 yang adaptif terhadap kondisi market.' },
@@ -248,63 +248,63 @@ export const translations: Record<'en' | 'id', any> = {
       ]
     },
     advantages: {
-      eyebrow: 'Mengapa Orion Alpha',
+      eyebrow: 'Kenapa Orion Alpha',
       title: 'Built different.',
       title_accent: 'Priced for everyone.',
-      desc: 'Kebanyakan bot hanya memberi angka tanpa konteks. Orion Alpha <span class="kw">menunjukkan prosesnya</span> — sehingga Anda belajar sambil trading.',
+      desc: 'Bot sinyal lain cuma kasih angka. Orion <span class="kw">tunjukin prosesnya</span> — biar makin paham tiap kali trading.',
       cards: [
-          { title: 'Dibuat untuk IDX, bukan adaptasi', desc: 'Ticker Indonesia, jam market BEI, format Rupiah, grup sektor <span class="kw">LQ45 / IDX30</span> — dirancang khusus untuk pasar kita.' },
-          { title: 'Sinyal yang sama di mana saja', desc: 'Telegram, Discord, atau web — <span class="kw">sinkronisasi sempurna</span> antar platform.' },
-          { title: 'Mulai Gratis. Selamanya.', desc: '3 sinyal/hari, scan seluruh market, dan berita — <span class="kw">tanpa perlu kartu kredit</span>.' },
-          { title: 'AI yang Bisa Dijelaskan', desc: 'Bukan sekadar "BELI" — dapatkan <span class="kw">checklist konfluensi</span> dan konteks kondisi market untuk setiap sinyal.' },
-        { title: 'Kecerdasan Lokal', desc: 'Qwen 2.5 mengambil alih secara lokal jika koneksi cloud terputus. Tanpa interupsi.' },
-        { title: 'Keandalan Tanpa Tanding', desc: 'Retry otomatis dan sistem yang tangguh. Orion Alpha berjalan saat market buka, setiap hari.' }
+          { title: 'Dibuat khusus untuk IDX', desc: 'Ticker Indonesia, jam BEI, format Rupiah, grup sektor <span class="kw">LQ45 / IDX30</span> — bukan tool global yang di-adaptasi.' },
+          { title: 'Sinyal sama di semua platform', desc: 'Telegram, Discord, web — <span class="kw">sinkron 100%</span>, gak ada beda angka.' },
+          { title: 'Gratis selamanya', desc: '3 sinyal/hari, scan full market, berita — <span class="kw">tanpa kartu kredit</span>.' },
+          { title: 'AI yang transparan', desc: 'Bukan cuma "BELI" — tiap sinyal disertai <span class="kw">checklist konfluensi</span> + konteks regime.' },
+        { title: 'Local fallback', desc: 'Qwen 2.5 jalan lokal kalau cloud down. Zero interruption.' },
+        { title: 'Selalu on time', desc: 'Auto-retry + state persistence. Engine jalan tiap market buka, tanpa miss.' }
       ]
     },
     audience: {
-      eyebrow: 'Siapa pengguna Orion',
+      eyebrow: 'Buat siapa Orion ini',
       title: 'Untuk trader yang butuh sistem, ',
-      title_italic: 'bukan kebisingan.',
-      desc: "Baik Anda baru memulai atau sudah berpengalaman, Orion menyesuaikan dengan kebutuhan Anda.",
+      title_italic: 'bukan tebak-tebakan.',
+      desc: "Baru mulai atau sudah tahunan trading sistematis — Orion menyesuaikan level.",
       cards: [
-        { title: 'Pemula yang butuh sistem nyata', desc: 'Bukan sekadar grup sinyal. Setiap sinyal menjelaskan alasannya — skor, setup, level — agar Anda belajar sambil bot bekerja.' },
-        { title: 'Profesional yang sibuk', desc: 'Cukup 30 detik untuk melihat setup. Cek watchlist saat jam istirahat, pasang alert, dan trading dengan tenang.' },
-        { title: 'Retail trader berbasis data', desc: 'Metodologi terbuka. Skor yang transparan. Backtest walk-forward. Tanpa "black box" — setiap sinyal bisa dilacak sumbernya.' }
+        { title: 'Pemula yang serius', desc: 'Bukan grup sinyal asal-asalan. Tiap alert jelas alasannya — skor, setup, level — belajar sambil bot kerja.' },
+        { title: 'Profesional sibuk', desc: '30 detik buat lihat setup, bukan 3 jam charting. Cek watchlist jam istirahat, pasang alert, eksekusi tenang.' },
+        { title: 'Trader berbasis data', desc: 'Metodologi terbuka. Skor decomposable. Backtest walk-forward. Tiap sinyal traceable ke inputnya.' }
       ]
     },
     pipeline: {
       eyebrow: 'Cara kerja',
       title: 'Empat tahap, satu sinyal',
-      desc: 'Setiap sinyal mengikuti pipeline yang sama — dari data mentah hingga setup siap pakai. Tanpa kotak hitam. Anda bisa menelusuri logika di setiap langkah.',
+      desc: 'Tiap sinyal lewat pipeline yang sama: data mentah → setup siap pakai. Bisa di-trace dari awal sampai akhir, tanpa black box.',
       steps: [
-        { title: 'Pengumpulan Data', desc: 'OHLCV dari yfinance (tunda 15 mnt) dengan retry otomatis. Berita RSS dari 6 penerbit lokal dan global.' },
+        { title: 'Pengumpulan Data', desc: 'OHLCV dari yfinance (delay 15mnt) + auto-retry. Berita RSS dari 6 publisher lokal & global.' },
         { title: 'Komputasi Indikator', desc: '12 indikator di Daily / Weekly / 4H — RSI, MACD, BB, ATR, ADX, Supertrend, PSAR, OBV, MFI, CMF, Stoch, Ichimoku.' },
-        { title: 'Konfluensi + Regime', desc: 'Deteksi kondisi IHSG (Bull / Bear / Sideways), terapkan bobot adaptif, gabungkan menjadi skor 0–100.' },
-        { title: 'Setup + Risiko', desc: 'Cocokkan dengan 15 setup (VCP, Donchian-Break, Pullback-Uptrend…). Hitung Entry/SL/TP dengan stop berbasis ATR.' }
+        { title: 'Konfluensi + Regime', desc: 'Deteksi regime IHSG (Bull / Bear / Sideways), terapkan bobot adaptif, gabung jadi skor 0–100.' },
+        { title: 'Setup + Risiko', desc: 'Match ke 15 setup (VCP, Donchian-Break, Pullback-Uptrend…). Hitung Entry/SL/TP dengan ATR-anchored stop.' }
       ]
     },
     final_cta: {
-      title: 'Hanya selangkah lagi menuju keunggulan di IDX.',
+      title: 'Edge di IDX, tinggal satu klik.',
       title_accent: 'Mulai sekarang.',
-      desc: 'Mulai dengan yang Gratis — 3 sinyal/hari, scan seluruh market, pembacaan regime. Tanpa kartu kredit. Tanpa batas waktu. Upgrade hanya jika Anda siap.',
-      telegram: 'Buka Bot Telegram',
+      desc: 'Mulai Gratis — 3 sinyal/hari, full market scan, regime read. Tanpa kartu kredit. Upgrade kalau memang butuh.',
+      telegram: 'Gabung Grup Telegram',
       discord: 'Gabung Discord'
     },
     pricing_cta: {
       eyebrow: 'Harga',
       title: 'Mulai gratis. Upgrade ',
       title_italic: 'saat butuh lebih',
-      desc: 'Paket bulanan, tanpa kontrak. Batalkan kapan saja. Aktivasi manual di bawah 10 menit via QRIS atau transfer bank.',
+      desc: 'Bulanan, tanpa kontrak. Cancel kapan aja. Aktivasi manual <10 menit via QRIS atau transfer bank.',
       cta: 'Lihat semua paket',
       see_all: 'Lihat detail lengkap paket',
       tiers: {
         free: { title: 'Free', desc: '3 sinyal/hari · scan · regime' },
-        starter: { title: 'Starter', badge: 'Populer', desc: 'Sinyal tanpa batas · swing · FA · chart' },
+        starter: { title: 'Starter', badge: 'Populer', desc: 'Sinyal unlimited · swing · FA · chart' },
         pro: { title: 'Pro', desc: '+ backtest · auto-alert · watchlist' }
       }
     },
     stats: {
-      tickers: 'Ticker IDX Dipindai',
+      tickers: 'Ticker IDX di-scan',
       setups: 'Setup Swing',
       indicators: 'Indikator Konfluensi',
       rating: 'Rating Backtest'
@@ -313,32 +313,32 @@ export const translations: Record<'en' | 'id', any> = {
       free: {
         name: 'GRATIS',
         price: 'Rp 0',
-        features: ['3 sinyal/hari', 'Scan seluruh market IDX', 'Pembacaan regime (Bull/Bear/Sideways)', 'Agregasi berita', 'Akses Telegram & Discord'],
+        features: ['3 sinyal/hari', 'Full market scan IDX', 'Regime read (Bull/Bear/Sideways)', 'Agregasi berita', 'Akses Telegram & Discord'],
         cta: 'Mulai Gratis di Telegram',
-        note: 'Tanpa kartu kredit · Tanpa batas waktu'
+        note: 'Tanpa kartu kredit · Tanpa kadaluwarsa'
       },
       starter: {
         name: 'STARTER',
         price: 'Rp 49K',
         period: '/bulan',
         badge: 'Paling Populer',
-        features: ['Sinyal tanpa batas (/signal)', '/chart indikator & pola lengkap', '/swing — 15 detektor setup', '/fa + /fascan screener', '/sizing + /calculator', '/scan seluruh sektor IDX'],
+        features: ['Sinyal unlimited (/signal)', '/chart indikator & pattern lengkap', '/swing — 15 detektor setup', '/fa + /fascan screener', '/sizing + /calculator', '/scan seluruh sektor IDX'],
         cta: 'Upgrade ke Starter',
         pro_hint: 'Butuh backtest, alert & watchlist? Lihat paket Pro →'
       }
     },
     method_summary: {
-      text: 'Setiap sinyal dibangun dari <strong>voting berbobot 12-indikator</strong>, bobot adaptif regime, keselarasan multi-timeframe, dan manajemen risiko berbasis ATR. <strong>Tanpa black box.</strong>',
+      text: 'Tiap sinyal dibangun dari <strong>voting berbobot 12-indikator</strong>, bobot adaptif regime, alignment multi-timeframe, dan sizing risiko berbasis ATR. <strong>Tanpa black box.</strong>',
       link: 'Lihat metodologi lengkap'
     },
     trust: [
-      'Dibuat oleh trader, untuk trader',
-      'Metodologi terbuka — tanpa kotak hitam',
-      'Rating Walk-forward A',
-      '213 tes otomatis'
+      'Dibuat trader, buat trader',
+      'Metodologi terbuka — tanpa black box',
+      'Walk-forward Rating A',
+      '213 automated tests'
     ],
     footer: {
-      legal: 'Dibuat untuk trader IDX. Data tertunda ~15 menit. Alat edukasi — bukan nasihat investasi.',
+      legal: 'Dibuat buat trader IDX. Data delay ~15 menit. Alat edukasi — bukan saran investasi.',
       links: {
         privacy: 'Privasi',
         terms: 'Ketentuan'

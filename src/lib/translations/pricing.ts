@@ -184,7 +184,7 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
     final: {
       title: 'Your edge in IDX is one click away.',
       desc: "Start with Free — 3 signals/day, full market scan, regime read. No credit card. No expiry. Upgrade only when you're ready.",
-      telegram: 'Open Telegram Bot',
+      telegram: 'Join Telegram Group',
       backtest: 'See the Backtest',
     },
   },
@@ -370,9 +370,9 @@ export const pricingTranslations: Record<'en' | 'id', any> = {
       p2: 'Semua data market bersumber dari Yahoo Finance dan delay ~15 menit. Sinyal Orion mencerminkan data ini — verifikasi harga terkini sebelum order.',
     },
     final: {
-      title: 'Edge Anda di IDX hanya satu klik lagi.',
-      desc: 'Mulai dengan Free — 3 sinyal/hari, scan seluruh market, pembacaan regime. Tanpa kartu kredit. Tanpa batas waktu. Upgrade hanya saat Anda siap.',
-      telegram: 'Buka Bot Telegram',
+      title: 'Edge di IDX, tinggal satu klik.',
+      desc: 'Mulai Gratis — 3 sinyal/hari, full market scan, regime read. Tanpa kartu kredit. Upgrade kalau memang butuh.',
+      telegram: 'Gabung Grup Telegram',
       backtest: 'Lihat Backtest',
     },
   },

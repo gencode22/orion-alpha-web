@@ -2,7 +2,6 @@
 
     /* ── Landing page scoped styles ── */
     .landing {
-      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
@@ -615,55 +614,6 @@
       border-bottom: 1px solid var(--glass-border);
     }
 
-    /* ── Powered-by strip ── */
-    .built-on {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin: 0 auto 112px;
-      padding: 0 24px;
-    }
-    .built-on-label {
-      font-family: var(--mono, 'JetBrains Mono', monospace);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-    .built-on-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .built-on-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text2);
-      opacity: 0.65;
-      letter-spacing: 0.01em;
-      transition: opacity 240ms ease, color 240ms ease;
-    }
-    .built-on-item:hover { opacity: 1; color: var(--text); }
-    .built-on-item svg {
-      width: 16px;
-      height: 16px;
-      opacity: 0.85;
-    }
-    @media (max-width: 640px) {
-      .built-on { margin-bottom: 64px; }
-      .built-on-row { gap: 18px 24px; }
-      .built-on-item { font-size: 13px; }
-    }
     .stats-bar-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -813,17 +763,17 @@
     /* Visual emphasis for the hero card (wide top-left) and tall card (right) */
     .feature-grid > :nth-child(1),
     .feature-grid > :nth-child(2) {
-      padding: 28px 26px;
+      padding: 22px 22px;
     }
     .feature-grid > :nth-child(1) h3,
     .feature-grid > :nth-child(2) h3 {
-      font-size: 17px;
+      font-size: 16px;
     }
     .feature-grid > :nth-child(1) .feature-icon,
     .feature-grid > :nth-child(2) .feature-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 18px;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
     }
     @media (max-width: 880px) {
       .feature-grid {
@@ -843,7 +793,7 @@
       .feature-grid > * { grid-area: auto !important; }
     }
     .feature-card {
-      padding: 22px 20px;
+      padding: 18px 20px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -888,13 +838,13 @@
       transition: transform var(--dur-base) var(--ease-out-expo);
     }
     .feature-icon {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       color: var(--cyan);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       transition: transform var(--dur-base) var(--ease-out-expo);
     }
     .feature-card:hover .feature-icon {
@@ -984,7 +934,7 @@
     }
     .pricing-inline-card {
       border-radius: 14px;
-      padding: 28px;
+      padding: 22px 24px;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -1280,7 +1230,7 @@
     /* Final CTA — cleaner, less gradient */
     .final-cta {
       text-align: center;
-      padding: 44px 32px;
+      padding: 32px 28px;
       border-radius: 14px;
     }
     .final-cta::before {
@@ -1307,12 +1257,12 @@
     }
     @media (max-width: 640px) {
       .final-cta {
-        padding: 48px 20px;
+        padding: 36px 20px;
         margin-left: -4px;
         margin-right: -4px;
       }
       .final-cta h2 {
-        font-size: 26px;
+        font-size: 24px;
       }
       .final-cta p {
         font-size: 14px;
@@ -1430,7 +1380,7 @@
       .pipeline-arrow-dot { animation: none; left: 50%; opacity: 0.8; }
     }
     .pipeline-step {
-      padding: 28px 24px;
+      padding: 22px 22px;
       background: var(--glass-bg);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
@@ -1859,8 +1809,6 @@
       .hero-preview-ticker { font-size: 32px; }
       .signal-ticker-item { font-size: 10.5px; }
       .signal-ticker-track { gap: 24px; }
-      .built-on-row { gap: 14px 20px; }
-      .built-on-item { font-size: 12.5px; }
     }
 
     /* ── Safe area for notched devices ── */

@@ -66,7 +66,7 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
       cta: {
         title: 'Hunt smarter. Start free.',
         body: 'Like Orion the hunter — wait for the right setup, strike with precision. Your first analysis is one command away.',
-        telegram: 'Open Telegram Bot',
+        telegram: 'Join Telegram Group',
         pricing: 'See Pricing →',
       },
     },
@@ -222,8 +222,8 @@ export const pagesTranslations: Record<'en' | 'id', any> = {
       ],
       cta: {
         title: 'Berburu lebih cerdas. Mulai gratis.',
-        body: 'Seperti Orion sang pemburu — tunggu setup yang tepat, serang dengan presisi. Analisis pertama Anda hanya satu command lagi.',
-        telegram: 'Buka Bot Telegram',
+        body: 'Seperti Orion sang pemburu — tunggu setup yang tepat, serang dengan presisi. Analisis pertama lo cuma satu command lagi.',
+        telegram: 'Gabung Grup Telegram',
         pricing: 'Lihat Harga →',
       },
     },
