@@ -1,8 +1,9 @@
 import { modalTranslations } from './modals';
 import { pricingTranslations } from './pricing';
 import { pagesTranslations } from './pages';
+import type { TranslationDict } from './types';
 
-export const translations: Record<'en' | 'id', any> = {
+export const translations: Record<'en' | 'id', TranslationDict> = {
   en: {
     common: {
       learn_more: 'Read detail',

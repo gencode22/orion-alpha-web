@@ -1,5 +1,7 @@
 // Translations for /about and /start pages.
-export const pagesTranslations: Record<'en' | 'id', any> = {
+import type { TranslationDict } from './types';
+
+export const pagesTranslations: Record<'en' | 'id', TranslationDict> = {
   en: {
     about: {
       eyebrow: 'About Orion Alpha',

@@ -1,4 +1,6 @@
-export const pricingTranslations: Record<'en' | 'id', any> = {
+import type { TranslationDict } from './types';
+
+export const pricingTranslations: Record<'en' | 'id', TranslationDict> = {
   en: {
     hero: {
       eyebrow: 'Pricing',

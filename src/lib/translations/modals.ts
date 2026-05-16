@@ -1,4 +1,6 @@
-export const modalTranslations: Record<'en' | 'id', any> = {
+import type { TranslationDict } from './types';
+
+export const modalTranslations: Record<'en' | 'id', TranslationDict> = {
   en: {
     setups: {
       eyebrow: '01 · Signal · setups',
