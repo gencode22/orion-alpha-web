@@ -482,7 +482,9 @@ export default function DocsPage() {
   const handleNav = useCallback((id: string) => {
     setActive(id);
     // scroll content area to top on mobile
-    window.scrollTo({ top: document.querySelector('.docs-layout')?.getBoundingClientRect().top! + window.scrollY - 70, behavior: 'smooth' });
+    const top = document.querySelector('.docs-layout')?.getBoundingClientRect().top;
+    if (top === undefined) return;
+    window.scrollTo({ top: top + window.scrollY - 70, behavior: 'smooth' });
   }, []);
 
   const ActiveChapter = chapters[active];
