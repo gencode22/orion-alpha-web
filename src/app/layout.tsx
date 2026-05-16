@@ -6,7 +6,6 @@ import Script from "next/script";
 import "../styles/theme.css";
 import "../styles/style.css";
 import "../styles/landing.css";
-import "../styles/showcase.css";
 import "../styles/pricing.css";
 import "../styles/docs.css";
 import "../styles/backtest.css";
@@ -81,9 +80,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
-      lang="en" 
-      suppressHydrationWarning 
+    <html
+      lang="id"
+      suppressHydrationWarning
       className={cn("dark", geist.variable, inter.variable, jetbrainsMono.variable, outfit.variable)}
       data-theme="dark"
     >
@@ -101,10 +100,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-NZJDRV1E53');`}
         </Script>
-        <Script
-          src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"
-          strategy="afterInteractive"
-        />
         <a href="#main-content" className="skip-link">Skip to content</a>
         <LanguageProvider>
           <ScrollObserver />
