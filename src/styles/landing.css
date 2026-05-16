@@ -1660,9 +1660,12 @@
       transition: transform 0.15s;
     }
     .modal-cta:hover { transform: translateY(-1px); }
-    .modal-cta svg { width: 14px; height: 14px; }    @media (max-width: 640px) {
+    .modal-cta svg { width: 14px; height: 14px; }
+    @media (max-width: 640px) {
       .modal-content { padding: 28px 22px 32px; }
       .modal-content h2 { font-size: 22px; }
+      /* Bump the close button to a comfortable touch target on mobile. */
+      .modal-close { width: 44px; height: 44px; top: 10px; right: 10px; }
     }
 
     /* Footer */
@@ -1777,8 +1780,8 @@
       .topbar-nav { gap: 10px; }
       .intro { margin-bottom: 40px; }
       .intro .eyebrow { margin-bottom: 14px; font-size: 10px; }
-      .intro h1 { font-size: 34px; letter-spacing: -0.035em; }
-      .intro p { font-size: 15px; margin-bottom: 24px; }
+      .intro h1 { font-size: 34px; letter-spacing: -0.035em; line-height: 1.08; }
+      .intro p { font-size: 15px; margin-bottom: 24px; line-height: 1.55; }
       .intro-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
       .btn { width: 100%; justify-content: center; min-height: 48px; }
       .btn-explore { width: 100%; justify-content: center; }
@@ -1805,9 +1808,9 @@
     }
 
     @media (max-width: 400px) {
-      .intro h1 { font-size: 30px; letter-spacing: -0.035em; }
+      .intro h1 { font-size: 30px; letter-spacing: -0.035em; line-height: 1.08; }
       .feature-grid { grid-template-columns: 1fr; }
-      .topbar-nav a.is-cta { font-size: 13px; padding: 6px 12px; }
+      .topbar-nav a.is-cta { font-size: 13px; padding: 8px 14px; min-height: 38px; }
       .topbar-wrap { margin: 10px 10px 0; }
       .landing-topbar { padding: 8px 10px 8px 14px; gap: 10px; }
       .landing-brand span { font-size: 14px; }
@@ -1822,9 +1825,6 @@
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
       .landing-container {
         padding-bottom: calc(60px + env(safe-area-inset-bottom));
-      }
-      .mobile-sticky-cta {
-        bottom: calc(24px + env(safe-area-inset-bottom));
       }
     }
 

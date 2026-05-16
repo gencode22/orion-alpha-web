@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -16,6 +16,21 @@ export default function Navbar() {
   const closeMobileMenu = () => setIsMenuOpen(false);
   const toggleLang = () => setLang(lang === 'en' ? 'id' : 'en');
 
+  // Lock body scroll + close on ESC while the mobile drawer is open.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
     { name: t('nav.pricing'), href: "/pricing" },
     { name: t('nav.docs'), href: "/docs" },
@@ -24,7 +39,13 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="topbar-wrap">
+    <>
+      <div
+        className={`landing-nav-backdrop${isMenuOpen ? ' is-open' : ''}`}
+        onClick={closeMobileMenu}
+        aria-hidden="true"
+      />
+      <div className="topbar-wrap">
       <div className="landing-topbar">
         <Link href="/" className="landing-brand">
           <Image
@@ -94,6 +115,9 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
+        <div className="mobile-menu-meta">
+          <MarketStatusPill />
+        </div>
         <div className="mobile-menu-actions">
           <button
             type="button"
@@ -108,6 +132,7 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
-    </div>
+      </div>
+    </>
   );
 }
