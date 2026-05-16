@@ -20,6 +20,16 @@ export default function HomePage() {
   const { t } = useLanguage();
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
+  const openModal = (key: string) => {
+    setActiveModal(key);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setActiveModal(null);
+    document.body.style.overflow = '';
+  };
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeModal();
@@ -30,16 +40,6 @@ export default function HomePage() {
       document.body.style.overflow = '';
     };
   }, []);
-
-  const openModal = (key: string) => {
-    setActiveModal(key);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setActiveModal(null);
-    document.body.style.overflow = '';
-  };
 
   return (
     <div className="landing">
@@ -59,12 +59,10 @@ export default function HomePage() {
         {/* 5. Proof — signals we actually shipped */}
         <section className="sample-signal-home fade-up" aria-labelledby="sample-signal-home-title">
           <div className="section-head">
-            <span className="eyebrow">Receipts</span>
-            <h2 id="sample-signal-home-title">Two signals we shipped</h2>
-            <p>
-              Auto-broadcast that lands in subscribers&rsquo; DMs, and a manual <code>/signal</code> query.
-              What the engine returned. What the stock did.
-            </p>
+            <span className="eyebrow">{t('proof.eyebrow')}</span>
+            <h2 id="sample-signal-home-title">{t('proof.title')}</h2>
+            <p dangerouslySetInnerHTML={{ __html: t('proof.desc') }} />
+            <p className="sample-signal-illustrative">{t('proof.illustrative')}</p>
           </div>
           <SampleSignals variant="home" />
         </section>

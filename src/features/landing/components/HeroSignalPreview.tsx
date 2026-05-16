@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/store/LanguageContext";
 
 type Signal = {
   ticker: string;
@@ -93,6 +94,7 @@ function QRing({ q }: { q: number }) {
 }
 
 export default function HeroSignalPreview() {
+  const { t } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -164,7 +166,7 @@ export default function HeroSignalPreview() {
             </div>
           </div>
           <div className="hero-preview-footnote">
-            Auto-broadcast · {sig.time}
+            {t('proof.auto_broadcast')} · {sig.time}
           </div>
         </div>
       </div>

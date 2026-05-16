@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/store/LanguageContext";
 import "@/styles/backtest.css";
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -9,11 +10,12 @@ import "@/styles/backtest.css";
    ───────────────────────────────────────────────────────────────────────── */
 
 function MapiCase() {
+  const { t } = useLanguage();
   return (
     <div className="bt-sample-case">
       <div className="bt-sample-case-header">
         <span className="bt-sample-case-num">Case 1</span>
-        <span className="bt-sample-case-mode">Auto-broadcast · 08 May 09:00 WIB · MAPI</span>
+        <span className="bt-sample-case-mode">{t('proof.auto_broadcast')} · 08 May 09:00 WIB · MAPI</span>
         <span className="bt-sample-case-result is-green">→ Same-session TP1 hit +12.36%</span>
       </div>
 
@@ -130,11 +132,12 @@ function MapiCase() {
    ───────────────────────────────────────────────────────────────────────── */
 
 function MinaCase() {
+  const { t } = useLanguage();
   return (
     <div className="bt-sample-case">
       <div className="bt-sample-case-header">
         <span className="bt-sample-case-num">Case 2</span>
-        <span className="bt-sample-case-mode">Manual /signal · 08 May 13:23 WIB · MINA</span>
+        <span className="bt-sample-case-mode">{t('proof.manual_signal')} · 08 May 13:23 WIB · MINA</span>
         <span className="bt-sample-case-result is-green">→ TP1 breached on Day 3 · high Rp 390</span>
       </div>
 

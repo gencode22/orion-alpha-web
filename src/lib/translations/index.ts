@@ -116,6 +116,14 @@ export const translations: Record<'en' | 'id', any> = {
       telegram: 'Join Telegram Group',
       discord: 'Join Discord'
     },
+    proof: {
+      eyebrow: 'Receipts',
+      title: 'Two signals we shipped',
+      desc: 'Auto-broadcast that lands in subscribers&rsquo; DMs, and a manual <code>/signal</code> query. What the engine returned. What the stock did.',
+      illustrative: 'Historical case studies · illustrative, not a forecast',
+      auto_broadcast: 'Auto-broadcast',
+      manual_signal: 'Manual /signal'
+    },
     pricing_cta: {
       eyebrow: 'Pricing',
       title: 'Start free. Upgrade ',
@@ -289,6 +297,14 @@ export const translations: Record<'en' | 'id', any> = {
       desc: 'Mulai Gratis — 3 sinyal/hari, full market scan, regime read. Tanpa kartu kredit. Upgrade kalau memang butuh.',
       telegram: 'Gabung Grup Telegram',
       discord: 'Gabung Discord'
+    },
+    proof: {
+      eyebrow: 'Bukti',
+      title: 'Dua sinyal yang sudah kami kirim',
+      desc: 'Auto-broadcast yang masuk ke DM pelanggan, dan query manual <code>/signal</code>. Apa yang engine kirim. Apa yang saham itu lakukan.',
+      illustrative: 'Studi kasus historis · ilustratif, bukan prediksi',
+      auto_broadcast: 'Auto-broadcast',
+      manual_signal: 'Manual /signal'
     },
     pricing_cta: {
       eyebrow: 'Harga',
