@@ -5,20 +5,22 @@ export const pagesTranslations: Record<'en' | 'id', TranslationDict> = {
   en: {
     about: {
       eyebrow: 'About Orion Alpha',
-      title_main: 'A name built',
-      title_accent: 'on purpose.',
-      desc: "Every product name carries intent. Here's what ours means — and why it shapes everything we build.",
-      name_orion: {
-        label: 'The constellation',
-        word: 'Orion',
-        etymology: 'The Hunter · Latin / Greek',
-        body: "Orion is one of the most recognizable constellations — a hunter who doesn't chase every prey. He studies patterns, waits for the right moment, and strikes with precision. Swing trading works exactly the same way. Not every day, not every stock. Just the right setup, at the right time.",
+      title_main: 'A trading engine',
+      title_accent: 'built on receipts.',
+      desc: 'Orion Alpha is a systematic swing trading engine for the Indonesia Stock Exchange. No black boxes, no hot tips — measurable edge, with the work to back it.',
+      trust_block: {
+        eyebrow: 'Verifiable',
+        title: 'Backed by work, not promises.',
+        cta: 'See the full backtest',
       },
-      name_alpha: {
-        label: 'The edge',
-        word: 'Alpha',
-        etymology: 'α · Finance / Astronomy',
-        body: 'In finance, alpha is excess return above the benchmark — the measurable edge that separates systematic trading from noise. In astronomy, alpha (α) marks the brightest star in a constellation. We build tools to help traders find their alpha: systematic, decomposable, repeatable.',
+      honest: {
+        eyebrow: 'Honest disclosure',
+        title: "If you want hot tips, this isn't it.",
+        body: "Orion won't call the next 10x. It won't tell you to buy with conviction at the top. What it ships: which detectors fired, how the indicators scored, where to put your stop. The rest is yours.",
+      },
+      etymology: {
+        eyebrow: 'About the name',
+        body: '<strong>Orion</strong> — the constellation of the hunter. Patient, patterned, precise. <strong>Alpha</strong> — the measurable excess return above the benchmark.',
       },
       principles: {
         eyebrow: 'How we build',
@@ -60,14 +62,14 @@ export const pagesTranslations: Record<'en' | 'id', TranslationDict> = {
         ],
       },
       trust: [
-        'Built by a trader, for traders',
-        'Open methodology — no black box',
         'Walk-forward A rated',
+        '3,240 trades audited',
         '213 automated tests',
+        'Open methodology — no black box',
       ],
       cta: {
-        title: 'Hunt smarter. Start free.',
-        body: 'Like Orion the hunter — wait for the right setup, strike with precision. Your first analysis is one command away.',
+        title: 'Built for traders who want a system.',
+        body: 'Free to try. No signup, no credit card. Your first IDX swing analysis is one command away.',
         telegram: 'Join Telegram Group',
         pricing: 'See Pricing →',
       },
@@ -162,20 +164,22 @@ export const pagesTranslations: Record<'en' | 'id', TranslationDict> = {
   id: {
     about: {
       eyebrow: 'Tentang Orion Alpha',
-      title_main: 'Sebuah nama dibangun',
-      title_accent: 'dengan tujuan.',
-      desc: 'Setiap nama produk membawa niat. Inilah arti nama kami — dan mengapa ia membentuk semua yang kami bangun.',
-      name_orion: {
-        label: 'Konstelasi',
-        word: 'Orion',
-        etymology: 'Sang Pemburu · Latin / Yunani',
-        body: 'Orion adalah salah satu konstelasi paling dikenal — pemburu yang tidak mengejar setiap mangsa. Ia mempelajari pola, menunggu momen yang tepat, dan menyerang dengan presisi. Swing trading bekerja persis seperti ini. Bukan setiap hari, bukan setiap saham. Hanya setup yang tepat, di waktu yang tepat.',
+      title_main: 'Mesin trading',
+      title_accent: 'yang dibuktikan kerjanya.',
+      desc: 'Orion Alpha adalah mesin swing trading sistematis untuk Bursa Efek Indonesia. Tanpa black box, tanpa tip panas — edge yang terukur, lengkap dengan proses yang membuktikannya.',
+      trust_block: {
+        eyebrow: 'Bisa diverifikasi',
+        title: 'Didukung kerja, bukan janji.',
+        cta: 'Lihat backtest lengkap',
       },
-      name_alpha: {
-        label: 'Sang edge',
-        word: 'Alpha',
-        etymology: 'α · Finance / Astronomi',
-        body: 'Dalam finance, alpha adalah excess return di atas benchmark — edge terukur yang memisahkan trading sistematis dari kebisingan. Dalam astronomi, alpha (α) menandai bintang paling terang dalam konstelasi. Kami membangun alat untuk membantu trader menemukan alpha mereka: sistematis, bisa diuraikan, bisa direplikasi.',
+      honest: {
+        eyebrow: 'Disclosure jujur',
+        title: 'Kalau cari tip panas, ini bukan tempatnya.',
+        body: 'Orion gak akan kasih "rekomendasi 10x". Gak akan bilang beli pas puncak. Yang dikirim: detektor mana yang fire, indikator skornya berapa, di mana taruh stop. Sisanya keputusan Anda.',
+      },
+      etymology: {
+        eyebrow: 'Tentang nama',
+        body: '<strong>Orion</strong> — konstelasi sang pemburu. Sabar, berpola, presisi. <strong>Alpha</strong> — excess return terukur di atas benchmark.',
       },
       principles: {
         eyebrow: 'Cara kami membangun',
@@ -217,14 +221,14 @@ export const pagesTranslations: Record<'en' | 'id', TranslationDict> = {
         ],
       },
       trust: [
-        'Dibuat oleh trader, untuk trader',
-        'Metodologi terbuka — tanpa black box',
-        'Rating Walk-forward A',
+        'Walk-forward Rating A',
+        '3.240 trade teraudit',
         '213 tes otomatis',
+        'Metodologi terbuka — tanpa black box',
       ],
       cta: {
-        title: 'Berburu lebih cerdas. Mulai gratis.',
-        body: 'Seperti Orion sang pemburu — tunggu setup yang tepat, serang dengan presisi. Analisis pertama lo cuma satu command lagi.',
+        title: 'Dibuat untuk trader yang butuh sistem.',
+        body: 'Gratis dicoba. Tanpa daftar, tanpa kartu kredit. Analisis swing saham IDX pertama Anda tinggal satu command.',
         telegram: 'Gabung Grup Telegram',
         pricing: 'Lihat Harga →',
       },

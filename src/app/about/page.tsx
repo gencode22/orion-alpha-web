@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useLanguage } from "@/store/LanguageContext";
@@ -16,6 +17,7 @@ export default function AboutPage() {
   const about = t('about');
   const principles: { num: string; title: string; body: string }[] = about.principles?.items || [];
   const outcomes: { title: string; body: string }[] = about.outcomes?.items || [];
+  const trustChips: string[] = about.trust || [];
 
   return (
     <div className="landing">
@@ -54,23 +56,30 @@ export default function AboutPage() {
           <p className="lede">{about.desc}</p>
         </section>
 
-        {/*  ── The Name ──  */}
-        <div className="name-grid">
-          <div className="name-card glass-card">
-            <div className="name-label">{about.name_orion.label}</div>
-            <div className="name-word">{about.name_orion.word}</div>
-            <div className="name-etymology">{about.name_orion.etymology}</div>
-            <p>{about.name_orion.body}</p>
-            <div className="card-glow"></div>
+        {/*  ── Trust chips — verifiable credibility signals ──  */}
+        <section className="about-trust fade-up">
+          <div className="section-header">
+            <span className="section-eyebrow">{about.trust_block.eyebrow}</span>
+            <h2>{about.trust_block.title}</h2>
           </div>
-          <div className="name-card glass-card gold-accent">
-            <div className="name-label">{about.name_alpha.label}</div>
-            <div className="name-word">{about.name_alpha.word}</div>
-            <div className="name-etymology">{about.name_alpha.etymology}</div>
-            <p>{about.name_alpha.body}</p>
-            <div className="card-glow"></div>
-          </div>
-        </div>
+          <ul className="about-trust-chips" role="list">
+            {trustChips.map((chip, i) => (
+              <li key={i} className="about-trust-chip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>{chip}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/backtest" className="about-trust-link">
+            {about.trust_block.cta}
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </Link>
+        </section>
 
         {/*  ── Principles ──  */}
         <section className="principles-section fade-up">
@@ -90,6 +99,13 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/*  ── Honest disclosure (counter-positioning) ──  */}
+        <section className="about-honest fade-up">
+          <span className="section-eyebrow">{about.honest.eyebrow}</span>
+          <h2>{about.honest.title}</h2>
+          <p>{about.honest.body}</p>
+        </section>
+
         {/*  ── Outcomes ──  */}
         <section className="outcomes-section fade-up">
           <div className="section-header">
@@ -107,6 +123,12 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+
+        {/*  ── Etymology (demoted to a small note before the CTA) ──  */}
+        <aside className="about-etymology fade-up" aria-label="About the name">
+          <span className="section-eyebrow">{about.etymology.eyebrow}</span>
+          <p dangerouslySetInnerHTML={{ __html: about.etymology.body }} />
+        </aside>
 
         {/*  ── CTA ──  */}
         <section className="about-cta fade-up glass-card">
