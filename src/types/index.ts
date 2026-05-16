@@ -34,16 +34,15 @@ export interface FAQItem {
   answer: string;
 }
 
-export interface FeatureModalData {
+export interface FeatureModalSection {
   title: string;
-  description: string;
-  bullets: string[];
-  capabilities: {
-    label: string;
-    items: string[];
-  }[];
-  cta: {
-    label: string;
-    href: string;
-  };
+  items: string[];
+}
+
+export interface FeatureModalData {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  sections: FeatureModalSection[];
+  cta?: { label: string; href: string };
 }

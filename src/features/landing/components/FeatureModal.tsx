@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import type { FeatureModalData, FeatureModalSection } from '@/types';
 
 interface FeatureModalProps {
   activeModal: string | null;
   closeModal: () => void;
-  featureData: any;
+  featureData: FeatureModalData | null;
 }
 
 export default function FeatureModal({ activeModal, closeModal, featureData }: FeatureModalProps) {
@@ -68,7 +69,7 @@ export default function FeatureModal({ activeModal, closeModal, featureData }: F
         <p className="lede">{featureData.intro}</p>
         <div className="card-glow"></div>
 
-        {featureData.sections.map((sec: any, i: number) => (
+        {featureData.sections.map((sec: FeatureModalSection, i: number) => (
           <div className="modal-section" key={i}>
             <h3>{sec.title}</h3>
             <ul>

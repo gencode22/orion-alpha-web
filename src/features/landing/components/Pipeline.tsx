@@ -1,8 +1,14 @@
 import React from 'react';
 import { useLanguage } from '@/store/LanguageContext';
 
+interface PipelineStep {
+  title: string;
+  desc: string;
+}
+
 export default function Pipeline() {
   const { t } = useLanguage();
+  const steps: PipelineStep[] = t('pipeline.steps');
 
   return (
     <section className="pipeline fade-up" id="how">
@@ -13,7 +19,7 @@ export default function Pipeline() {
       </div>
 
       <div className="pipeline-grid">
-        {t('pipeline.steps').map((step: any, idx: number) => (
+        {steps.map((step, idx) => (
           <React.Fragment key={idx}>
             <div className="pipeline-step glass-card">
               <h4>{step.title}</h4>
