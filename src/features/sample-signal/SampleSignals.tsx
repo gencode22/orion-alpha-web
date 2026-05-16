@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import "@/styles/backtest.css";
 
 /* ─────────────────────────────────────────────────────────────────────────
    Case 1 — MAPI auto-broadcast

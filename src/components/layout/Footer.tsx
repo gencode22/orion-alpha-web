@@ -51,7 +51,7 @@ export default function Footer() {
         {footerLinks.map((link, i) => (
           <Fragment key={link.name}>
             {link.external ? (
-              <a href={link.href} target="_blank" rel="noopener">
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
                 {link.name}
               </a>
             ) : (

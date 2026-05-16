@@ -19,7 +19,7 @@ export default function NotFoundPage() {
             <Link href="/backtest" className="nf-secondary">Backtest</Link>
             <Link href="/docs" className="nf-secondary">Docs</Link>
             <Link href="/pricing" className="nf-secondary">Pricing</Link>
-            <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="nf-secondary">Telegram Bot</a>
+            <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener noreferrer" className="nf-secondary">Telegram Bot</a>
           </div>
         </div>
 

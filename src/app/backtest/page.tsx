@@ -14,8 +14,6 @@ import {
 import { mergedSetups, mergedStocks, mergedWalkforward, mergedHeadline } from "./merged";
 import { useCountUp } from "./useCountUp";
 import { PerSetupChart, Top10StockChart } from "./charts";
-import "@/styles/docs.css";
-import "@/styles/backtest.css";
 
 const STOCK_PAGE_SIZE = 10;
 

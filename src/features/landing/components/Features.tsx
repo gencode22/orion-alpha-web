@@ -94,7 +94,7 @@ export default function Features({ openModal }: FeaturesProps) {
                 key={f.id}
                 href={f.link}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="feature-compact-item"
                 aria-label={`Join our Discord community`}
               >

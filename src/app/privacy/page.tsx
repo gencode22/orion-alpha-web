@@ -61,9 +61,9 @@ export default function PrivacyPage() {
         <div className="privacy-section">
           <h2>4. Third-Party Services</h2>
           <ul>
-            <li><strong>Google Analytics 4</strong> — website usage analytics. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. You can opt out via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out</a>.</li>
-            <li><strong>Telegram</strong> — bot platform. Messages are processed per <a href="https://telegram.org/privacy" target="_blank" rel="noopener">Telegram's Privacy Policy</a>.</li>
-            <li><strong>Discord</strong> — community server only (no bot deployed). Membership is governed by <a href="https://discord.com/privacy" target="_blank" rel="noopener">Discord's Privacy Policy</a>.</li>
+            <li><strong>Google Analytics 4</strong> — website usage analytics. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>. You can opt out via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out</a>.</li>
+            <li><strong>Telegram</strong> — bot platform. Messages are processed per <a href="https://telegram.org/privacy" target="_blank" rel="noopener noreferrer">Telegram's Privacy Policy</a>.</li>
+            <li><strong>Discord</strong> — community server only (no bot deployed). Membership is governed by <a href="https://discord.com/privacy" target="_blank" rel="noopener noreferrer">Discord's Privacy Policy</a>.</li>
             <li><strong>Yahoo Finance (yfinance)</strong> — market data source. Data is delayed ~15 minutes. We do not share your identity with Yahoo Finance.</li>
             <li><strong>Google Gemini / Ollama</strong> — AI analysis (owner account only). Messages sent to AI agents may be processed by Google's API.</li>
           </ul>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
         <div className="privacy-section">
           <h2>6. Your Rights</h2>
           <p>You may request deletion of your data at any time by contacting us via Telegram. We will delete your Telegram user ID, watchlist, alerts, and any stored preferences within 7 days of your request.</p>
-          <p>To opt out of GA4 analytics, use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a> or enable "Do Not Track" in your browser settings.</p>
+          <p>To opt out of GA4 analytics, use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a> or enable "Do Not Track" in your browser settings.</p>
         </div>
 
         <div className="privacy-section">
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
 
         <div className="privacy-contact privacy-section">
           <h2>9. Contact</h2>
-          <p>Questions about this policy? Reach us via <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener">Telegram bot</a> or email at <a href="mailto:genta.prdna@gmail.com">genta.prdna@gmail.com</a>.</p>
+          <p>Questions about this policy? Reach us via <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener noreferrer">Telegram bot</a> or email at <a href="mailto:genta.prdna@gmail.com">genta.prdna@gmail.com</a>.</p>
         </div>
 
         <Footer />

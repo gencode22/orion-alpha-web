@@ -59,7 +59,7 @@ export default function TierGrid() {
           {free.off.map((html: string, i: number) => <FeatureItem key={`off-${i}`} html={html} on={false} />)}
         </ul>
 
-        <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener" className="tier-cta">
+        <a href="https://t.me/orion_idx_bot" target="_blank" rel="noopener noreferrer" className="tier-cta">
           {free.cta}
           <ArrowRightIcon />
         </a>
@@ -89,7 +89,7 @@ export default function TierGrid() {
           {starter.off.map((html: string, i: number) => <FeatureItem key={`off-${i}`} html={html} on={false} />)}
         </ul>
 
-        <a href="https://t.me/orion_idx_bot?start=upgrade_starter" target="_blank" rel="noopener" className="tier-cta is-primary btn-shine">
+        <a href="https://t.me/orion_idx_bot?start=upgrade_starter" target="_blank" rel="noopener noreferrer" className="tier-cta is-primary btn-shine">
           {starter.cta}
           <ArrowRightIcon />
         </a>
@@ -118,7 +118,7 @@ export default function TierGrid() {
           {pro.on.map((html: string, i: number) => <FeatureItem key={`on-${i}`} html={html} on />)}
         </ul>
 
-        <a href="https://t.me/orion_idx_bot?start=upgrade_pro" target="_blank" rel="noopener" className="tier-cta btn-shine">
+        <a href="https://t.me/orion_idx_bot?start=upgrade_pro" target="_blank" rel="noopener noreferrer" className="tier-cta btn-shine">
           {pro.cta}
           <ArrowRightIcon />
         </a>

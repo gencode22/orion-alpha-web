@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@/styles/pricing.css";
 
 export const metadata: Metadata = {
   title: "Pricing — Orion Alpha",

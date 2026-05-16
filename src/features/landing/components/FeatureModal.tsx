@@ -80,7 +80,7 @@ export default function FeatureModal({ activeModal, closeModal, featureData }: F
         ))}
 
         {featureData.cta && (
-          <a href={featureData.cta.href} target="_blank" rel="noopener" className="modal-cta">
+          <a href={featureData.cta.href} target="_blank" rel="noopener noreferrer" className="modal-cta">
             {featureData.cta.label}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12"/>

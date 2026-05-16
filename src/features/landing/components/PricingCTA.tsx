@@ -60,7 +60,7 @@ export default function PricingCTA() {
             <a
               href={freeTier.ctaHref}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="pricing-inline-cta btn btn-explore"
             >
               {freeTier.cta}
@@ -93,7 +93,7 @@ export default function PricingCTA() {
             <a
               href={starterTier.ctaHref}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="pricing-inline-cta btn btn-telegram btn-shine"
             >
               {starterTier.cta}

@@ -23,7 +23,7 @@ export default function Hero() {
             <a
               href="https://t.me/orion_circle"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="btn btn-telegram btn-shine btn-magnetic"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
