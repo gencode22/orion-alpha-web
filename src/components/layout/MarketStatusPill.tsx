@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type Status = { open: boolean; label: string; time: string };
 
@@ -29,17 +29,43 @@ function computeStatus(now: Date): Status {
   return { open, label: open ? "OPEN" : "CLOSED", time: timeStr };
 }
 
-export default function MarketStatusPill() {
-  const [status, setStatus] = useState<Status | null>(null);
+// Module-level store: time is an external source, so useSyncExternalStore
+// is the recommended primitive (vs useState + setState-in-effect).
+const listeners = new Set<() => void>();
+let snapshot: Status | null = null;
+let interval: ReturnType<typeof setInterval> | null = null;
 
-  useEffect(() => {
-    setStatus(computeStatus(new Date()));
-    const id = setInterval(
-      () => setStatus(computeStatus(new Date())),
-      30000
-    );
-    return () => clearInterval(id);
-  }, []);
+function getSnapshot(): Status | null {
+  if (snapshot === null && typeof window !== "undefined") {
+    snapshot = computeStatus(new Date());
+  }
+  return snapshot;
+}
+
+function getServerSnapshot(): null {
+  // Render nothing during SSR; client fills in after mount.
+  return null;
+}
+
+function subscribe(callback: () => void): () => void {
+  listeners.add(callback);
+  if (interval === null) {
+    interval = setInterval(() => {
+      snapshot = computeStatus(new Date());
+      listeners.forEach((cb) => cb());
+    }, 30000);
+  }
+  return () => {
+    listeners.delete(callback);
+    if (listeners.size === 0 && interval !== null) {
+      clearInterval(interval);
+      interval = null;
+    }
+  };
+}
+
+export default function MarketStatusPill() {
+  const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   if (!status) return null;
 

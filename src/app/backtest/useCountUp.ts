@@ -11,14 +11,16 @@ export function useCountUp(target: number, durationMs = 1100, decimals = 0): num
   const fromRef = useRef(0);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      setValue(target);
-      return;
-    }
+    // useEffect already runs client-only — no `typeof window` guard needed.
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     if (prefersReduced) {
-      setValue(target);
-      return;
+      // Snap to target without animation. Defer via rAF so setValue
+      // happens in a callback rather than directly in the effect body.
+      rafRef.current = requestAnimationFrame(() => setValue(target));
+      return () => {
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      };
     }
 
     fromRef.current = value;

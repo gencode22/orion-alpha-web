@@ -22,6 +22,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     const savedLang = localStorage.getItem('orion-lang') as Language;
+    // Mount-only hydration from localStorage. We deliberately accept the
+    // extra render after hydration (rather than reading localStorage in
+    // useState's lazy initializer) because doing so would mismatch the
+    // server-rendered HTML when the user has a stored locale other than
+    // 'id'. useSyncExternalStore would be equivalent — just heavier.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (savedLang) setLangState(savedLang);
   }, []);
 
