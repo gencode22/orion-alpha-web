@@ -42,6 +42,20 @@ export default function Hero() {
           <p className="hero-micro" data-cascade="3">
             {t('hero.micro') || '3 signals/day free · No credit card · No expiry'}
           </p>
+          <p className="hero-trust" data-cascade="3">
+            <span className="hero-trust-item">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {t('hero.trust.walkforward')}
+            </span>
+            <span className="hero-trust-sep" aria-hidden="true">·</span>
+            <span className="hero-trust-item">{t('hero.trust.audited')}</span>
+            <span className="hero-trust-sep" aria-hidden="true">·</span>
+            <Link href="/backtest" className="hero-trust-link">
+              {t('hero.trust.methodology')} →
+            </Link>
+          </p>
         </div>
 
         <HeroSignalPreview />

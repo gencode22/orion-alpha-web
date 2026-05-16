@@ -36,6 +36,11 @@ export const translations: Record<'en' | 'id', TranslationDict> = {
         hint: '3,240 trades audited · No signup'
       },
       micro: '3 signals/day free · No credit card · No expiry',
+      trust: {
+        walkforward: 'Walk-forward A-rated',
+        audited: '3,240 trades audited',
+        methodology: 'See methodology'
+      },
       panel_title: 'Analysis Engine',
       panel_platforms: 'Telegram · Discord · Web Dashboard'
     },
@@ -142,7 +147,8 @@ export const translations: Record<'en' | 'id', TranslationDict> = {
       tickers: 'IDX Tickers Scanned',
       setups: 'Swing Setups',
       indicators: 'Confluence Indicators',
-      rating: 'Backtest Rating'
+      rating: 'Backtest Rating',
+      see_backtest: 'See full backtest report'
     },
     pricing_inline: {
       free: {
@@ -211,6 +217,11 @@ export const translations: Record<'en' | 'id', TranslationDict> = {
         hint: '3.240 trade teraudit · Tanpa daftar'
       },
       micro: '3 sinyal/hari gratis · Tanpa kartu kredit · Tanpa kadaluwarsa',
+      trust: {
+        walkforward: 'Walk-forward Rating A',
+        audited: '3.240 trade teraudit',
+        methodology: 'Lihat metodologi'
+      },
       panel_title: 'Mesin Analisis',
       panel_platforms: 'Telegram · Discord · Web Dashboard',
       stats: {
@@ -324,7 +335,8 @@ export const translations: Record<'en' | 'id', TranslationDict> = {
       tickers: 'Ticker IDX di-scan',
       setups: 'Setup Swing',
       indicators: 'Indikator Konfluensi',
-      rating: 'Rating Backtest'
+      rating: 'Rating Backtest',
+      see_backtest: 'Lihat laporan backtest lengkap'
     },
     pricing_inline: {
       free: {

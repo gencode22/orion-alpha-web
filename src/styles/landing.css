@@ -251,6 +251,41 @@
       letter-spacing: 0.03em;
     }
 
+    /* ── Hero trust row — verifiable credibility signals above the fold ─ */
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text2);
+      letter-spacing: 0.01em;
+    }
+    .hero-trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .hero-trust-item svg {
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .hero-trust-sep {
+      color: var(--dim);
+      opacity: 0.55;
+      user-select: none;
+    }
+    .hero-trust-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.18s ease;
+    }
+    .hero-trust-link:hover {
+      opacity: 0.78;
+    }
+
     /* ── Hero 2-col layout (text + signal preview card) ─────────────── */
     .hero-grid {
       display: grid;
@@ -541,7 +576,8 @@
       .hero-text h1, .hero-text p { text-align: center; }
       .hero-text p { margin-left: auto; margin-right: auto; }
       .hero-text .intro-ctas { justify-content: center; }
-      .hero-text .hero-micro { align-self: center; }
+      .hero-text .hero-micro,
+      .hero-text .hero-trust { align-self: center; justify-content: center; }
       .hero-preview-card { max-width: 360px; }
     }
 
@@ -660,6 +696,24 @@
       text-transform: uppercase;
       color: var(--muted);
     }
+    .stats-bar-cta {
+      margin-top: 24px;
+      text-align: center;
+    }
+    .stats-bar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: opacity 0.18s ease;
+    }
+    .stats-bar-link:hover { opacity: 0.78; }
+    .stats-bar-link svg { transition: transform 0.18s ease; }
+    .stats-bar-link:hover svg { transform: translateX(3px); }
 
     /* ── Social Proof Bar ── */
     .social-proof-bar {

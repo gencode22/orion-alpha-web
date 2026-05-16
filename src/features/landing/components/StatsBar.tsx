@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { useLanguage } from "@/store/LanguageContext";
 
@@ -81,6 +82,15 @@ export default function StatsBar() {
             <div className="stats-bar-lbl">{stat.label}</div>
           </motion.div>
         ))}
+      </div>
+      <div className="stats-bar-cta">
+        <Link href="/backtest" className="stats-bar-link">
+          {t('stats.see_backtest')}
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </Link>
       </div>
     </section>
   );
