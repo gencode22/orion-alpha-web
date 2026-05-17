@@ -2041,5 +2041,236 @@
       font-weight: 600;
       letter-spacing: 0.01em;
     }
-  
 
+    /* ═══════════════════════════════════════════════════════════════════
+       /about — hero, constellation, principles, outcomes, CTA
+       ═══════════════════════════════════════════════════════════════════ */
+    .about-hero {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 88px;
+      padding-top: 24px;
+    }
+    .about-eyebrow {
+      display: inline-block;
+      font-family: var(--mono, 'JetBrains Mono', monospace);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      padding: 6px 16px;
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      border-radius: 100px;
+      background: rgba(6, 182, 212, 0.06);
+      margin-bottom: 26px;
+    }
+    .constellation-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 28px;
+    }
+    .constellation-svg {
+      width: 116px;
+      height: 116px;
+    }
+    .constellation-svg .star-line {
+      stroke: var(--cyan);
+      stroke-width: 1;
+      opacity: 0.28;
+    }
+    .constellation-svg .star-line.star-belt {
+      stroke-width: 1.6;
+      opacity: 0.65;
+    }
+    .constellation-svg .star-dot {
+      fill: var(--cyan);
+      filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.7));
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .constellation-svg .star-dot.bright {
+      fill: var(--cyan2, #22d3ee);
+      filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.85));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .constellation-svg .star-dot {
+        animation: star-pulse 3s ease-in-out infinite;
+      }
+      .constellation-svg .star-dot:nth-child(2n) { animation-delay: 1.5s; }
+    }
+    @keyframes star-pulse {
+      0%, 100% { opacity: 0.6; transform: scale(0.95); }
+      50%      { opacity: 1;   transform: scale(1.08); }
+    }
+    .about-hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+      margin: 0 0 18px;
+      color: var(--text);
+    }
+    .about-hero .lede {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text2);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    /* About page reuses .section-header as vertical eyebrow+h2 (override
+       the flex variant defined in style.css for other components) */
+    .landing .principles-section .section-header,
+    .landing .outcomes-section .section-header,
+    .landing .about-trust .section-header {
+      display: block;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--mono, 'JetBrains Mono', monospace);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    .landing .principles-section .section-header h2,
+    .landing .outcomes-section .section-header h2,
+    .landing .about-trust .section-header h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin: 0;
+      color: var(--text);
+    }
+
+    /* Principles + Outcomes — same glass-card grid pattern */
+    .principles-section,
+    .outcomes-section {
+      margin: 0 auto 96px;
+      max-width: 1080px;
+    }
+    .principles-grid,
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .principle-card,
+    .outcome-card {
+      padding: 22px 22px;
+      border-radius: 14px;
+      background: var(--glass-bg, rgba(18, 21, 31, 0.7));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.06));
+      position: relative;
+      overflow: hidden;
+      transition:
+        border-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .principle-card:hover,
+    .outcome-card:hover {
+      border-color: rgba(6, 182, 212, 0.4);
+      transform: translateY(-3px);
+      box-shadow:
+        0 12px 28px -10px rgba(0, 0, 0, 0.4),
+        0 0 32px -14px rgba(6, 182, 212, 0.3);
+    }
+    .principle-num {
+      font-family: var(--mono, 'JetBrains Mono', monospace);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .principle-card h3,
+    .outcome-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+    .principle-card p,
+    .outcome-card p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text2);
+      margin: 0;
+    }
+    .outcome-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(6, 182, 212, 0.1);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .outcome-icon svg { width: 18px; height: 18px; }
+    @media (max-width: 880px) {
+      .principles-grid,
+      .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .principles-grid,
+      .outcomes-grid { grid-template-columns: 1fr; }
+    }
+
+    /* About closing CTA card */
+    .about-cta {
+      text-align: center;
+      padding: 44px 36px;
+      margin: 0 auto 80px;
+      max-width: 720px;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-cta h2 {
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+    .about-cta p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text2);
+      margin: 0 auto 24px;
+      max-width: 520px;
+    }
+    .about-cta .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .about-hero { margin-bottom: 64px; }
+      .about-hero h1 { font-size: 32px; }
+      .principles-section,
+      .outcomes-section { margin-bottom: 72px; }
+      .principle-card,
+      .outcome-card { padding: 20px; }
+      .about-cta {
+        padding: 32px 22px;
+      }
+      .about-cta h2 { font-size: 22px; }
+      .about-cta p { font-size: 14px; }
+      .about-cta .cta-buttons { flex-direction: column; align-items: stretch; }
+      .about-cta .cta-buttons .btn { width: 100%; justify-content: center; }
+    }
